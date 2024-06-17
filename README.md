@@ -352,20 +352,19 @@
 4. ### Write a pictorial diagram of Angular architecture?
     The main building blocks of an Angular application are shown in the diagram below:-
     ![ScreenShot](images/PictorialDiagram.png)
-
-   Diagram Details:
-	Angular App: The root of the application.
-	App Module: The main module that bootstraps the application.
-	Root Component: The main entry component.
-	Template and Style Files: HTML and CSS files associated with components.
-	Component Logic: TypeScript classes containing data and behavior.
-	Services: Injectable services for business logic and data management.
-	Dependency Injection: Mechanism to inject services into components and other services.
-	Other Components: Additional components within the application.
-	Router Module: Handles navigation and routing.
-	HTTP Client Module: Manages HTTP requests.
-	Forms and Reactive Forms Module: Manages forms and form validation.
-	State Management (e.g., NgRx): Manages application state.
+   ### Diagram Components:
+   1. **Angular App**: The root of the application.
+   2. **App Module**: The main module that bootstraps the application.
+   3. **Root Component**: The main entry component.
+   4. **Template and Style Files**: HTML and CSS files associated with components.
+   5. **Component Logic**: TypeScript classes containing data and behavior.
+   6. **Services**: Injectable services for business logic and data management.
+   7. **Dependency Injection**: Mechanism to inject services into components and other services.
+   8. **Other Components**: Additional components within the application.
+   9. **Router Module**: Handles navigation and routing.
+   10. **HTTP Client Module**: Manages HTTP requests.
+   11. **Forms and Reactive Forms Module**: Manages forms and form validation.
+   12. **State Management (e.g., NgRx)**: Manages application state.
 
   **[⬆ Back to Top](#table-of-contents)**
 
