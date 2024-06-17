@@ -351,7 +351,7 @@
 
 4. ### Write a pictorial diagram of Angular architecture?
     The main building blocks of an Angular application are shown in the diagram below:-
-    ![ScreenShot](images/PictorialDiagram.png)
+    ![ScreenShot](images/PictorialDiagram1.png)
    ### Diagram Components:
    1. **Angular App**: The root of the application.
    2. **App Module**: The main module that bootstraps the application.
