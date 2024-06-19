@@ -345,7 +345,6 @@
     ```
     Above function declaration is a standalone declaration which means the function can be called anywhere.
     Whereas in angular commonly used function declarations are done inside a class which doesnt have function keyword in declation.
-    The greeter method allows only string type as argument.
 
   **[⬆ Back to Top](#table-of-contents)**
 
