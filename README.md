@@ -10,7 +10,7 @@
    - **Dependency Injection**: Efficiently manages service dependencies.
    - **Directives**: Extend HTML with custom attributes and functionality.
    - **Routing**: Manages navigation between views.
-   - **RxJS**: Reactive programming for managing asynchronous data streams.
+   - **RxJS**: Reactive Extensions for JavaScript for asynchronous programming using observables.
  
 
 2. ### What is the difference between AngularJS and Angular?
