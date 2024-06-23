@@ -1,17 +1,17 @@
 **Angular Interview Quetions**
 1. ### What is Angular Framework?
 
-Angular is a platform and framework for building client-side applications using HTML, CSS, and JavaScript/TypeScript. Angular is developed and maintained by Google and is widely used for building single-page applications (SPAs). It is built entirely using typescript.
+   Angular is a platform and framework for building client-side applications using HTML, CSS, and JavaScript/TypeScript. Angular is developed and maintained by Google and is widely used for building single-page applications 
+   (SPAs). It is built entirely using typescript.
 
-Key Features:
-- **Component-Based Architecture**: Everything in Angular is a component.
-- **Data Binding**: Synchronizes data between the model and the view.
-- **Dependency Injection**: Efficiently manages service dependencies.
-- **Directives**: Extend HTML with custom attributes and functionality.
-- **Routing**: Manages navigation between views.
-- **RxJS**: Reactive programming for managing asynchronous data streams.
-
-  
+   Key Features:
+   - **Component-Based Architecture**: Everything in Angular is a component.
+   - **Data Binding**: Synchronizes data between the model and the view.
+   - **Dependency Injection**: Efficiently manages service dependencies.
+   - **Directives**: Extend HTML with custom attributes and functionality.
+   - **Routing**: Manages navigation between views.
+   - **RxJS**: Reactive programming for managing asynchronous data streams.
+ 
 
 2. ### What is the difference between AngularJS and Angular?
     Angular is a completely revived component-based framework in which an application is a tree of individual components.
