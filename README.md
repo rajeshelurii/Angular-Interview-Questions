@@ -29,10 +29,9 @@
   
 
 3. ### What is TypeScript?
-   #### What is TypeScript?
    TypeScript is a superset of JavaScript that adds static types. It enables catching errors early through a type system and makes development more efficient by providing powerful tooling.
 
-   #### Why Use TypeScript?
+   **Features:**
    - **Type Safety**: Catch type-related errors during development.
    - **Enhanced IDE Support**: Better code completion and refactoring.
    - **Object-Oriented Programming**: Supports features like classes and interfaces.
