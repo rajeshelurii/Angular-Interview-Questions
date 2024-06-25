@@ -37,7 +37,7 @@
    - **Object-Oriented Programming**: Supports features like classes and interfaces.
    - **Interoperability**: Seamlessly integrates with existing JavaScript code.
 
-   #### Setting Up TypeScript
+   **Setting Up TypeScript**
    To set up TypeScript, follow these steps:
    1. **Install Node.js and npm**: Download and install from the [official Node.js website](https://nodejs.org/).
    2. **Install TypeScript**: Open your terminal and run:
@@ -69,7 +69,7 @@
 4. ### Write a pictorial diagram of Angular architecture?
     The main building blocks of an Angular application are shown in the diagram below:-
     ![ScreenShot](images/PictorialDiagram.png)
-   ### Diagram Components:
+   **Diagram Components:**
    1. **Angular App**: The root of the application.
    2. **App Module**: The main module that bootstraps the application.
    3. **Root Component**: The main entry component.
