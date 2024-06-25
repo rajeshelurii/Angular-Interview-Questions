@@ -95,7 +95,7 @@
 
 	**Types of Directives**
 	
-	1. **Component Directives**: Directives with a template.
+	1. **Component Directives**: Component directive is meta data that is defined using the @Component decorator.
 	2. **Structural Directives**: Change the DOM layout by adding or removing elements (`*ngIf`, `*ngFor`).
 	3. **Attribute Directives**: Change the appearance or behavior of an element (e.g., `ngClass`, `ngStyle`).
 	
