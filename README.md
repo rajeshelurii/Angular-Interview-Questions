@@ -91,44 +91,83 @@
     4. **Services:** Are used to create components which can be shared across the entire application.
   
 6. ### What are directives?
-    Directives add behaviour to an existing DOM element or an existing component instance.
-    ```typescript
-    import { Directive, ElementRef, Input } from '@angular/core';
+    Directives are special markers on a DOM element that tell Angular to do something with that element and its children.
 
-    @Directive({ selector: '[myHighlight]' })
-    export class HighlightDirective {
-        constructor(el: ElementRef) {
-           el.nativeElement.style.backgroundColor = 'yellow';
-        }
-    }
-    ```
-
-    Now this directive extends HTML element behavior with a yellow background as below
-    ```html
-    <p myHighlight>Highlight me!</p>
-    ```
+	**Types of Directives**
+	
+	1. **Component Directives**: Directives with a template.
+	2. **Structural Directives**: Change the DOM layout by adding or removing elements (`*ngIf`, `*ngFor`).
+	3. **Attribute Directives**: Change the appearance or behavior of an element (e.g., `ngClass`, `ngStyle`).
+	
+	**Example: Structural Directive**
+	
+	Using `*ngIf`:
+	```html
+	<p *ngIf="isVisible">This text is conditionally visible.</p>
+	```
+	
+	Using `*ngFor`:
+	```html
+	<ul>
+	  <li *ngFor="let item of items">{{ item }}</li>
+	</ul>
+	```
+	
+	**Example: Attribute Directive**
+	
+	Using `ngClass`:
+	```html
+	<div [ngClass]="{ 'active': isActive }">Toggle class based on condition</div>
+	```
+	---
   
-
 7. ### What are components?
-    Components are the most basic UI building block of an Angular app, which form a tree of Angular components. These components are a subset of directives. Unlike directives, components always have a template, and only one component can be instantiated per element in a template.
-    Let's see a simple example of Angular component
-    ```typescript
-    import { Component } from '@angular/core';
-
-    @Component ({
-       selector: 'my-app',
-       template: ` <div>
-          <h1>{{title}}</h1>
-          <div>Learn Angular6 with examples</div>
-       </div> `,
-    })
-
-    export class AppComponent {
-       title: string = 'Welcome to Angular world';
-    }
-    ```
-
-  
+    Components are the building blocks of Angular applications. Each component consists of:
+	- **A TypeScript class** that handles data and logic.
+	- **An HTML template** that defines the view.
+	- **CSS styles** that define the look and feel.
+	
+	**Creating a Component**
+	
+	Use the Angular CLI to generate a new component:
+	```bash
+	ng generate component my-component
+	```
+	
+	This command will create four files:
+	- `my-component.component.ts`: The component class.
+	- `my-component.component.html`: The component template.
+	- `my-component.component.css`: The component styles.
+	- `my-component.component.spec.ts`: The component test file.
+	
+	**Example: Simple Component**
+	
+	`src/app/my-component/my-component.component.ts`:
+	```typescript
+	import { Component } from '@angular/core';
+	
+	@Component({
+	  selector: 'app-my-component',
+	  templateUrl: './my-component.component.html',
+	  styleUrls: ['./my-component.component.css']
+	})
+	export class MyComponent {
+	  title = 'Hello Angular!';
+	}
+	```
+	
+	`src/app/my-component/my-component.component.html`:
+	```html
+	<h1>{{ title }}</h1>
+	```
+	
+	Add the component to the main app template:
+	`src/app/app.component.html`:
+	```html
+	<app-my-component></app-my-component>
+	```
+	
+	---  
 
 8. ### What are the differences between Component and Directive?
     In a short note, A component(@component) is a directive-with-a-template.
@@ -184,21 +223,30 @@
 
 10. ### What is a module?
 
-    Modules are logical boundaries in your application and the application is divided into separate modules to separate the functionality of your application.
-    Lets take an example of **app.module.ts** root module declared with **@NgModule** decorator as below,
-    ```typescript
-    import { NgModule }      from '@angular/core';
-    import { BrowserModule } from '@angular/platform-browser';
-    import { AppComponent }  from './app.component';
+    Modules are used to group related components, directives, services, etc., into functional units. Every Angular app has at least one module, the root module, which is defined in `app.module.ts`.
 
-    @NgModule ({
-       imports:      [ BrowserModule ],
-       declarations: [ AppComponent ],
-       bootstrap:    [ AppComponent ],
-       providers: []
-    })
-    export class AppModule { }
-    ```
+	**Example: App Module**
+	
+	`src/app/app.module.ts`:
+	```typescript
+	import { NgModule } from '@angular/core';
+	import { BrowserModule } from '@angular/platform-browser';
+	import { AppComponent } from './app.component';
+	import { MyComponent } from './my-component/my-component.component';
+	
+	@NgModule({
+	  declarations: [
+	    AppComponent,
+	    MyComponent
+	  ],
+	  imports: [
+	    BrowserModule
+	  ],
+	  providers: [],
+	  bootstrap: [AppComponent]
+	})
+	export class AppModule { }
+	```
     The NgModule decorator has five important (among all) options:
     1. The imports option is used to import other dependent modules. The BrowserModule is required by default for any web based angular application.
     2. The declarations option is used to define components in the respective module.
@@ -227,30 +275,29 @@
   
 
 12. ### What is a data binding?
-    Data binding is a core concept in Angular and allows to define communication between a component and the DOM, making it very easy to define interactive applications without worrying about pushing and pulling data. There are four forms of data binding(divided as 3 categories) which differ in the way the data is flowing.
-    1. **From the Component to the DOM:**
+    Data binding is a core concept in Angular and allows to define communication between a component and the DOM, making it very easy to define interactive applications without worrying about pushing and pulling data.
+    Angular supports four types of data binding:
 
-        **Interpolation:** {{ value }}: Adds the value of a property from the component
-        ```html
-        <li>Name: {{ user.name }}</li>
-        <li>Address: {{ user.address }}</li>
-        ```
-        **Property binding:** [property]=”value”: The value is passed from the component to the specified property or simple HTML attribute
-        ```html
-        <input type="email" [value]="user.email">
-        ```
-    2. **From the DOM to the Component:**
-        **Event binding: (event)=”function”:** When a specific DOM event happens (eg.: click, change, keyup), call the specified method in the component
-        ```html
-        <button (click)="logout()"></button>
-        ```
-    3. **Two-way binding:**
-        **Two-way data binding:** [(ngModel)]=”value”: Two-way data binding allows to have the data flow both ways. For example, in the below code snippet, both the email DOM input and component email property are in sync
-        ```html
-        <input type="email" [(ngModel)]="user.email">
-        ```
-
-  
+	1. **Interpolation**: Binding data from the component to the template.
+	    ```html
+	    <p>{{ title }}</p>
+	    ```
+	
+	2. **Property Binding**: Binding a property of a DOM element to a field in the component.
+	    ```html
+	    <img [src]="imageUrl">
+	    ```
+	
+	3. **Event Binding**: Binding an event (like a click) to a method in the component.
+	    ```html
+	    <button (click)="handleClick()">Click me</button>
+	    ```
+	
+	4. **Two-Way Binding**: Binding a property to a form element and updating the property when the form element's value changes.
+	    ```html
+	    <input [(ngModel)]="name">
+	    <p>Hello, {{ name }}!</p>
+	    ```  
 
 13. ### What is metadata?
     Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators
