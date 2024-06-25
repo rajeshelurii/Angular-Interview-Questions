@@ -82,19 +82,14 @@
    10. **HTTP Client Module**: Manages HTTP requests.
    11. **Forms and Reactive Forms Module**: Manages forms and form validation.
    12. **State Management (e.g., NgRx)**: Manages application state.
-
-  
-
+ 
 5. ### What are the key components of Angular?
     Angular has the key components below,
     1. **Component:** These are the basic building blocks of an Angular application to control HTML views.
     2. **Modules:** An Angular module is a set of angular basic building blocks like components, directives, services etc. An application is divided into logical pieces and each piece of code is called as "module" which perform a single task.
     3. **Templates:** These represent the views of an Angular application.
     4. **Services:** Are used to create components which can be shared across the entire application.
-    5. **Metadata:** This can be used to add more data to an Angular class.
-
   
-
 6. ### What are directives?
     Directives add behaviour to an existing DOM element or an existing component instance.
     ```typescript
