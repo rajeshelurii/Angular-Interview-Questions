@@ -258,7 +258,7 @@
 
 11. ### What are lifecycle hooks available?
     Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application.
-    Constructor is the first method triggered when component is started and ngoninit is the first lifecycle hook.
+    Constructor is the first method triggered when component is started and ngOnChanges is the first lifecycle hook.
 
     ![ScreenShot](images/lifecycle.png)
 
