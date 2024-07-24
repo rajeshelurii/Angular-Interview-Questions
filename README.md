@@ -58,7 +58,6 @@
 	    - **Two-way Binding**: Binding data in both directions (component to template and template to component).
 	12. **State Management (e.g., NgRx)**: Manages application state in a predictable and scalable way, especially for complex applications.
 
----
  
 5. ### What are the key components of Angular?
     Angular has the key components below,
