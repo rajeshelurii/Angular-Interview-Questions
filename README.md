@@ -409,24 +409,14 @@
     In Angular, both the constructor and the `ngOnInit` lifecycle hook are used to initialize a component, but they serve different purposes and are used in different contexts. Here's a concise comparison of the two:
 
 	### Constructor:
-	1. **Purpose:**
 	   - The constructor is a standard TypeScript feature and is used to initialize class members and inject dependencies.
-	   
-	2. **Timing:**
 	   - The constructor is called when the class is instantiated, before Angular initializes the component's inputs and before any lifecycle hooks.
-	
-	3. **Usage:**
 	   - Generally used to initialize class properties and perform dependency injection.
 	   - Avoid complex logic or interacting with Angular properties that rely on inputs or other lifecycle events.
 	
 	### `ngOnInit`:
-	1. **Purpose:**
 	   - `ngOnInit` is a lifecycle hook provided by Angular, specifically for component initialization tasks that require Angular's bindings to be set.
-	
-	2. **Timing:**
 	   - Called by Angular after the constructor and after Angular has initialized all data-bound properties of a directive.
-	
-	3. **Usage:**
 	   - Ideal for initialization that depends on Angular bindings, such as fetching data or setting up the component's initial state.
 	   - Safe to interact with component inputs and properties that rely on bindings.
 	
