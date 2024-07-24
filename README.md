@@ -18,13 +18,13 @@
 
     Some of the major differences are:-
 
-    | AngularJS | Angular |
-    |---- | ---------
-    | It is based on MVC architecture| This is based on Service/Controller|
-    | It uses JavaScript to build the application| Uses TypeScript to build the application|
-    | Based on controllers concept| This is a component based UI approach|
-    | No support for mobile platforms| Fully supports mobile platforms|
-    | Difficult to build SEO friendly application| Ease to build SEO friendly applications|
+	| AngularJS | Angular |
+	|-----------|---------|
+	| It is based on the MVC architecture. | It is based on a component-based architecture. |
+	| It uses JavaScript to build applications. | It uses TypeScript to build applications. |
+	| It is based on the controllers concept. | It uses a component-based UI approach. |
+	| It has limited support for mobile platforms. | It fully supports mobile platforms. |
+	| It is difficult to build SEO-friendly applications. | It is easier to build SEO-friendly applications. |
 
   
 
