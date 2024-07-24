@@ -61,7 +61,7 @@
 
 5. ### Define angular Project Structure
 
-When you create a new Angular project, the following structure is generated:
+	When you create a new Angular project, the following structure is generated:
 
 	```
 	my-angular-app/
