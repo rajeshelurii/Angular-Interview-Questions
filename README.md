@@ -361,7 +361,7 @@
         ```
 
         - **@HostListener**: This decorator is used to listen to events on the host element of the component. It allows you to handle specific events within the component without needing to add event listeners in the template. 	For example, it can be used to listen to click events directly on the host element.
-        - 
+    
     4. **Parameter decorators** Used for parameters inside class constructors, e.g. @Inject, @Optional
         ```typescript
         import { Component, Inject } from '@angular/core';
