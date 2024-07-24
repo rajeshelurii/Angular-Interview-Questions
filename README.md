@@ -173,17 +173,19 @@
 	---  
 
 8. ### What are the differences between Component and Directive?
-    In a short note, A component(@component) is a directive-with-a-template.
 
-    Some of the major differences are mentioned in a tabular form
+	In short, a component (`@Component`) is essentially a directive with a template.
+	
+	Some of the major differences are mentioned in the table below:
+	
+	| **Component** | **Directive** |
+	|---------------|---------------|
+	| To register a component, we use the `@Component` decorator. | To register a directive, we use the `@Directive` decorator. |
+	| Components are typically used to create UI widgets. | Directives are used to add behavior to an existing DOM element. |
+	| Components are used to break down the application into smaller, reusable pieces. | Directives are used to design reusable behaviors that can be applied to DOM 	elements. |
+	| Only one component can be present per DOM element. | Many directives can be used per DOM element. |
+	| Components require a `@View` decorator or template/templateUrl. | Directives do not use a view or template. |
 
-    | Component | Directive |
-    |---- | ---------
-    | To register a component we use @Component meta-data annotation  | To register a directive we use @Directive meta-data annotation |
-    | Components are typically used to create UI widgets| Directives are used to add behavior to an existing DOM element |
-    | Component is used to break down the application into smaller components| Directive is used to design re-usable components|
-    | Only one component can be present per DOM element | Many directives can be used per DOM element |
-    | @View decorator or templateurl/template are mandatory | Directive doesn't use View|
 
   
 
