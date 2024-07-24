@@ -359,6 +359,9 @@
             }
         }
         ```
+
+        - **@HostListener**: This decorator is used to listen to events on the host element of the component. It allows you to handle specific events within the component without needing to add event listeners in the template. 	For example, it can be used to listen to click events directly on the host element.
+        - 
     4. **Parameter decorators** Used for parameters inside class constructors, e.g. @Inject, @Optional
         ```typescript
         import { Component, Inject } from '@angular/core';
@@ -374,7 +377,8 @@
             }
         }
         ```
-  
+
+  - **@Inject**: This decorator is used for injecting dependencies in Angular. It tells Angular which dependency to inject into the constructor of a class. This is particularly useful when you want to provide a custom token or when you need to inject something that isn't a class.
 
 15. ### What is angular CLI?
     Angular CLI(**Command Line Interface**) is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules.
