@@ -29,20 +29,40 @@
 
 4. ### Write a pictorial diagram of Angular architecture?
     The main building blocks of an Angular application are shown in the diagram below:-
-    ![ScreenShot](images/PictorialDiagram.png)
-   **Diagram Components:**
-   1. **Angular App**: The root of the application.
-   2. **App Module**: The main module that bootstraps the application.
-   3. **Root Component**: The main entry component.
-   4. **Template and Style Files**: HTML and CSS files associated with components.
-   5. **Component Logic**: TypeScript classes containing data and behavior.
-   6. **Services**: Injectable services for business logic and data management.
-   7. **Dependency Injection**: Mechanism to inject services into components and other services.
-   8. **Other Components**: Additional components within the application.
-   9. **Router Module**: Handles navigation and routing.
-   10. **HTTP Client Module**: Manages HTTP requests.
-   11. **Forms and Reactive Forms Module**: Manages forms and form validation.
-   12. **State Management (e.g., NgRx)**: Manages application state.
+    For clarity and ease of reading, it is best to use a structured approach that outlines the key components and their roles within the Angular architecture. Here's a consolidated version that combines the detailed explanation with clear categorization:
+
+### Write a Pictorial Diagram of Angular Architecture
+
+The main building blocks of an Angular application are shown in the diagram below:
+
+1. **Angular App**: The root of the application.
+2. **App Module (NgModule)**: The main module that bootstraps the application. It includes:
+   - **Components**: Building blocks of the UI.
+   - **Directives**: Custom attributes that enhance the functionality of HTML elements.
+   - **Pipes**: Transform data in templates.
+   - **Services**: Provide reusable logic, such as data retrieval.
+3. **Root Component**: The main entry component serving as the starting point.
+4. **Templates and Style Files**: HTML and CSS files associated with components.
+5. **Component Logic**: TypeScript classes containing data and behavior for the component.
+6. **Services & Dependency Injection**: 
+   - **Services**: Injectable classes for business logic and data management.
+   - **Dependency Injection**: Mechanism to inject services into components and other services.
+7. **Component Tree**: Structure of components within the application:
+   - **Parent Component**
+   - **Child Components**
+8. **Routing**: 
+   - **Router Module**: Manages navigation and routing within the application.
+   - **Routes**: Define the paths and components associated with each route.
+9. **HTTP Client Module**: Handles HTTP requests and communication with backend services.
+10. **Forms and Reactive Forms Module**: Manages forms, form controls, and form validation.
+11. **Data Flow**: Mechanisms for data binding in Angular:
+    - **Interpolation**: Binding data from the component to the template.
+    - **Property Binding**: Binding component properties to HTML elements.
+    - **Event Binding**: Binding events from the template to the component.
+    - **Two-way Binding**: Binding data in both directions (component to template and template to component).
+12. **State Management (e.g., NgRx)**: Manages application state in a predictable and scalable way, especially for complex applications.
+
+---
  
 5. ### What are the key components of Angular?
     Angular has the key components below,
