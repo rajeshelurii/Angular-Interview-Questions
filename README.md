@@ -381,25 +381,30 @@
 	- **@Inject**: This decorator is used for injecting dependencies in Angular. It tells Angular which dependency to inject into the constructor of a class. This is particularly useful when you want to provide a custom token or when you need to inject something that isn't a class.
 
 15. ### What is angular CLI?
-    Angular CLI(**Command Line Interface**) is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules.
-    You need to install using below npm command,
-    ```
-    npm install @angular/cli@latest
-    ```
-    Below are the list of few commands, which will come handy while creating angular projects
-    1. **Creating New Project:** ng new <project-name>
+    Certainly! Here is a concise explanation of the Angular CLI suitable for an interview:
 
-    2. **Generating Components, Directives & Services:** ng generate/g <feature-name>
-        The different types of commands would be,
-        * ng generate class my-new-class: add a class to your application
-        * ng generate component my-new-component: add a component to your application
-        * ng generate directive my-new-directive: add a directive to your application
-        * ng generate enum my-new-enum: add an enum to your application
-        * ng generate module my-new-module: add a module to your application
-        * ng generate pipe my-new-pipe: add a pipe to your application
-        * ng generate service my-new-service: add a service to your application
+### What is Angular CLI?
 
-    3. **Running the Project:** ng serve
+	The Angular CLI (Command Line Interface) is a tool that helps developers create, manage, and build Angular applications efficiently.
+	
+	**Key Features:**
+	
+	1. **Project Setup and Initialization:**
+	   - **Create New Projects:** Use `ng new project-name` to generate a new Angular project.
+	   - **Generate Code:** Use commands like `ng generate component component-name` to create components, services, and more.
+	
+	2. **Development Server:**
+	   - **Live Reload:** Use `ng serve` to start a development server with live reload for automatic updates when code changes.
+	
+	3. **Building and Bundling:**
+	   - **Production Builds:** Use `ng build --prod` for optimized production builds with AOT compilation, minification, and tree shaking.
+	
+	4. **Testing:**
+	   - **Unit Testing:** Use `ng test` for running unit tests.
+	   - **E2E Testing:** Use `ng e2e` for end-to-end tests.
+	
+	5. **Updating Projects:**
+	   - **Upgrade Dependencies:** Use `ng update` to update Angular and CLI dependencies.
 
   
 
