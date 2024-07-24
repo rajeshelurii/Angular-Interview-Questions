@@ -443,29 +443,46 @@
 	```
 
 17. ### What is a service?
-    A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
+    In Angular, a service is a class that provides reusable functionalities that can be shared across different components of an application. Services are typically used to encapsulate business logic, interact with external APIs, perform data manipulation, or handle any other operations that need to be centralized and reused.
 
-    Let's create a repoService which can be used across components,
-
-    ```typescript
-    import { Injectable } from '@angular/core';
-    import { Http } from '@angular/http';
-
-    @Injectable({ // The Injectable decorator is required for dependency injection to work
-      // providedIn option registers the service with a specific NgModule
-      providedIn: 'root',  // This declares the service with the root app (AppModule)
-    })
-    export class RepoService{
-      constructor(private http: Http){
-      }
-
-      fetchAll(){
-        return this.http.get('https://api.github.com/repositories');
-      }
-    }
-    ```
-    The above service uses Http service as a dependency.
-
+	**Key Characteristics of a Service:**
+	
+	1. **Encapsulation of Logic:**
+	   - Services encapsulate business logic, making it easier to maintain and test.
+	   - They help keep components focused on presentation logic.
+	
+	2. **Reusability:**
+	   - Services can be reused across multiple components, promoting DRY (Don't Repeat Yourself) principles.
+	
+	3. **Dependency Injection:**
+	   - Angular uses dependency injection (DI) to provide instances of services to components or other services.
+	   - This makes it easy to manage dependencies and improves testability.
+	
+	4. **Separation of Concerns:**
+	   - Services help in separating concerns by moving logic that doesn't belong in the component into a separate class.
+	
+	**Using Angular CLI:**
+	```bash
+	ng generate service my-service
+	```
+	
+	```typescript
+	import { Injectable } from '@angular/core';
+	
+	@Injectable({
+	  providedIn: 'root'
+	})
+	export class MyService {
+	  constructor() { }
+	
+	  getData() {
+	    return 'Some data';
+	  }
+	}
+	```
+	
+	- The `@Injectable` decorator marks the class as a service that can be injected.
+	- `providedIn: 'root'` registers the service at the root level, making it a singleton and available throughout the application.
   
 
 18. ### What is dependency injection in Angular?
