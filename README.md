@@ -58,6 +58,33 @@
 	    - **Two-way Binding**: Binding data in both directions (component to template and template to component).
 	12. **State Management (e.g., NgRx)**: Manages application state in a predictable and scalable way, especially for complex applications.
 
+
+5. ### Define angular Project Structure
+
+When you create a new Angular project, the following structure is generated:
+
+	```
+	my-angular-app/
+	├── e2e/                     // End-to-end tests
+	├── node_modules/            // Project dependencies
+	├── src/                     // Source code
+	│   ├── app/                 // App components, modules, and services
+	│   ├── assets/              // Static assets
+	│   ├── environments/        // Environment-specific configurations
+	│   ├── index.html           // Main HTML file
+	│   ├── main.ts              // Main entry point for the application
+	│   ├── polyfills.ts         // Polyfills for browser compatibility
+	│   ├── styles.css           // Global styles
+	│   └── test.ts              // Test configuration
+	├── .editorconfig            // Editor configuration
+	├── .gitignore               // Git ignore file
+	├── angular.json             // Angular CLI configuration
+	├── package.json             // NPM dependencies and scripts
+	├── README.md                // Project documentation
+	├── tsconfig.app.json        // TypeScript configuration for the app
+	├── tsconfig.json            // TypeScript configuration
+	└── tsconfig.spec.json       // TypeScript configuration for tests
+	```
  
 5. ### What are the key components of Angular?
     Angular has the key components below,
