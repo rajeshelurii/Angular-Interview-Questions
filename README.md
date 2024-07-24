@@ -378,7 +378,7 @@
         }
         ```
 
-  - **@Inject**: This decorator is used for injecting dependencies in Angular. It tells Angular which dependency to inject into the constructor of a class. This is particularly useful when you want to provide a custom token or when you need to inject something that isn't a class.
+	- **@Inject**: This decorator is used for injecting dependencies in Angular. It tells Angular which dependency to inject into the constructor of a class. This is particularly useful when you want to provide a custom token or when you need to inject something that isn't a class.
 
 15. ### What is angular CLI?
     Angular CLI(**Command Line Interface**) is a command line interface to scaffold and build angular apps using nodejs style (commonJs) modules.
