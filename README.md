@@ -406,25 +406,42 @@
   
 
 16. ### What is the difference between constructor and ngOnInit?
-    The **Constructor** is a default method of the class that is executed when the class is instantiated and ensures proper initialisation of fields in the class and its subclasses. Angular, or better Dependency Injector (DI), analyses the constructor parameters and when it creates a new instance by calling new MyClass() it tries to find providers that match the types of the constructor parameters, resolves them and passes them to the constructor.  
-    **ngOnInit** is a life cycle hook called by Angular to indicate that Angular is done creating the component.  
-    Mostly we use ngOnInit for all the initialization/declaration and avoid stuff to work in the constructor. The constructor should only be used to initialize class members but shouldn't do actual "work".
-    So you should use constructor() to setup Dependency Injection and not much else. ngOnInit() is better place to "start" - it's where/when components' bindings are resolved.
+    In Angular, both the constructor and the `ngOnInit` lifecycle hook are used to initialize a component, but they serve different purposes and are used in different contexts. Here's a concise comparison of the two:
 
-    ```typescript
-    export class App implements OnInit{
-      constructor(private myService: MyService){
-         //called first time before the ngOnInit()
-      }
-
-      ngOnInit(){
-         //called after the constructor and called  after the first ngOnChanges()
-         //e.g. http call...
-      }
-    }
-    ```
-
-  
+	### Constructor:
+	1. **Purpose:**
+	   - The constructor is a standard TypeScript feature and is used to initialize class members and inject dependencies.
+	   
+	2. **Timing:**
+	   - The constructor is called when the class is instantiated, before Angular initializes the component's inputs and before any lifecycle hooks.
+	
+	3. **Usage:**
+	   - Generally used to initialize class properties and perform dependency injection.
+	   - Avoid complex logic or interacting with Angular properties that rely on inputs or other lifecycle events.
+	
+	### `ngOnInit`:
+	1. **Purpose:**
+	   - `ngOnInit` is a lifecycle hook provided by Angular, specifically for component initialization tasks that require Angular's bindings to be set.
+	
+	2. **Timing:**
+	   - Called by Angular after the constructor and after Angular has initialized all data-bound properties of a directive.
+	
+	3. **Usage:**
+	   - Ideal for initialization that depends on Angular bindings, such as fetching data or setting up the component's initial state.
+	   - Safe to interact with component inputs and properties that rely on bindings.
+	
+	    ```typescript
+	    export class App implements OnInit{
+	      constructor(private myService: MyService){
+	         //called first time before the ngOnInit()
+	      }
+	
+	      ngOnInit(){
+	         //called after the constructor and called  after the first ngOnChanges()
+	         //e.g. http call...
+	      }
+	    }
+	    ```
 
 17. ### What is a service?
     A service is used when a common functionality needs to be provided to various modules. Services allow for greater separation of concerns for your application and better modularity by allowing you to extract common functionality out of components.
