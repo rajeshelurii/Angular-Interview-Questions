@@ -14,9 +14,9 @@
  
 
 2. ### What is the difference between AngularJS and Angular?
-    Angular is a completely revived component-based framework in which an application is a tree of individual components.
+    Angular is a completely re-written version of angular js using type script. It follows component based architecture.
 
-    Here are some of the major differences in tabular format:-
+    Some of the major differences are:-
 
     | AngularJS | Angular |
     |---- | ---------
