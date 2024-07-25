@@ -1336,17 +1336,19 @@
  68. ### What is Angular DSL?
 
 	Angular DSL (Domain-Specific Language) is a special syntax used in Angular to extend standard HTML with Angular-specific features. It allows you to write HTML-like code that Angular understands and compiles into regular HTML for the browser.
-	
+
    **Key Parts of Angular DSL:**
 
    1. **`()`**: Used for handling output and DOM events.
-   - Example: `(click)="doSomething()"`
+      - Example: `(click)="doSomething()"`
 
    2. **`[]`**: Used for binding input values and setting DOM element attributes.
-   - Example: `[src]="imageUrl"`
+      - Example: `[src]="imageUrl"`
 
    3. **`*`**: Used for structural directives that change the DOM layout.
-   - Example: `*ngIf="isVisible"`   
+      - Example: `*ngIf="isVisible"`
+
+This syntax helps you create dynamic and interactive web applications in Angular.  
 
 69. ### what is an rxjs subject in Angular
      An RxJS Subject is a special type of Observable that allows values to be multicasted to many Observers. While plain Observables are unicast (each subscribed Observer owns an independent execution of the Observable), Subjects are multicast.
