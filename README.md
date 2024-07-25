@@ -1267,11 +1267,10 @@
    
 
  62. ### How do you create app shell in Angular?
-      An App shell is a way to render a portion of your application via a route at build time. This is useful to first paint of your application that appears quickly because the browser can render static HTML and CSS without the need to initialize JavaScript. You can achieve this using Angular CLI which generates an app shell for running server-side of your app.
+      An app shell is a way to render a portion of your application at build time, providing a fast initial loading experience. It allows the browser to display static HTML and CSS quickly, without waiting for JavaScript to initialize.
 
-      ```javascript
-      ng generate appShell [options] (or)
-      ng g appShell [options]
+      ```bash
+      ng generate appShell [options]
       ```
    
 
