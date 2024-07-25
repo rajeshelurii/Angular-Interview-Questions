@@ -491,31 +491,59 @@
   
 
 19. ### How is Dependency Hierarchy formed?
-    Injectors in Angular have rules that can be leveraged to achieve the desired visibility of injectables in your applications. By understanding these rules, you can determine in which NgModule, Component, or Directive you should declare a provider.
+	In Angular, the dependency hierarchy is a crucial concept that defines how services and other dependencies are provided and injected within the application. Here’s an overview of how it works:
+	Angular's dependency injection (DI) system allows you to define providers at different levels of the application. These levels form a hierarchy that determines how and where instances of services are shared and reused.
 
-    #### Angular has two injector hierarchies:
-    ![Screenshot](/images/injector%20hierarchies.png)
+	1. **Root Level (Application-wide) Providers:**
+	   - **@Injectable({ providedIn: 'root' })**: When you configure a service to be provided in the root, Angular creates a single instance of the service that is shared across the entire application.
+	   - **providers array in AppModule**: You can also register services in the providers array of the `AppModule`. This method also creates a singleton service available application-wide.
+	
+	   ```typescript
+	   @Injectable({
+	     providedIn: 'root'
+	   })
+	   export class MyService {
+	     constructor() { }
+	   }
+	   ```
+	
+	   ```typescript
+	   @NgModule({
+	     providers: [MyService]
+	   })
+	   export class AppModule { }
+	   ```
+	
+	2. **Feature Module Level Providers:**
+	   - **providers array in a Feature Module**: When you register a service in the providers array of a feature module, Angular creates a new instance of the service that is shared among all the components, directives, and other services in that module.
+	   
+	   ```typescript
+	   @NgModule({
+	     providers: [MyService]
+	   })
+	   export class FeatureModule { }
+	   ```
+	
+	3. **Component Level Providers:**
+	   - **providers array in a Component**: When you register a service in the providers array of a component, Angular creates a new instance of the service for that component and its children.
+	   
+	   ```typescript
+	   @Component({
+	     selector: 'app-my-component',
+	     providers: [MyService],
+	     templateUrl: './my-component.component.html'
+	   })
+	   export class MyComponent {
+	     constructor(private myService: MyService) { }
+	   }
+	   ```
 
-    #### Module injector 
-    When angular starts, it creates a root injector where the services will be registered, these are provided via injectable annotation. All services provided in the `ng-model` property are called providers (if those modules are not lazy-loaded).
-
-    Angular recursively goes through all models which are being used in the application and creates instances for provided services in the root injector. If you provide some service in an eagerly-loaded model, the service will be added to the root injector, which makes it available across the whole application.
-
-    #### Platform Module
-    During application bootstrapping angular creates a few more injectors, above the root injector goes the platform injector, this one is created by the platform browser dynamic function inside the `main.ts` file, and it provides some platform-specific features like `DomSanitizer`. 
-
-    #### NullInjector()
-    At the very top, the next parent injector in the hierarchy is the `NullInjector()`.The responsibility of this injector is to throw the error if something tries to find dependencies there, unless you've used `@Optional()` because ultimately, everything ends at the `NullInjector()` and it returns an error or, in the case of `@Optional()`, `null`.
-
-    ![Screenshot](images/hierarchy%20diagram.png)
-
-
-    #### ElementInjector
-    Angular creates `ElementInjector` hierarchies implicitly for each DOM element. `ElementInjector` injector is being created for any tag that matches the angular component, or any tag on which directive is applied, and you can configure it in component and directive annotations inside the provider's property, thus, it creates its own hierarchy likewise the upper one.
-
-    ![Screenshot](images/element%20injector%20hieracrhy.png)
-
-  
+	**Hierarchical Dependency Injection**
+	Angular resolves dependencies in a hierarchical manner, starting from the component where the dependency is requested and moving up the hierarchy. Here's how it works:
+	
+	1. **Component Level**: If a service is provided in the component's providers array, Angular uses this instance for the component and its children.
+	2. **Module Level**: If the service is not found at the component level, Angular looks for it in the providers array of the module that declared the component.
+	3. **Root Level**: If the service is not found at the module level, Angular looks for it at the root level. 
 
 20. ### What is the purpose of async pipe?
     The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
