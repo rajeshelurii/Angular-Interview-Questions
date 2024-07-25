@@ -1727,3 +1727,204 @@
 96. ### Can I share services using modules?
      No, it is not recommended to share services by importing module. i.e Import modules when you want to use directives, pipes, and components only. The best approach to get a hold of shared services is through 'Angular dependency injection' because importing a module will result in a new service instance.
 
+Certainly! Here are detailed answers to your questions:
+
+97. ### How do you provide configuration inheritance?
+In Angular, configuration inheritance isn't directly supported in a hierarchical manner like some other frameworks. However, you can manage configuration inheritance through services. For example, you can create a base service with shared configuration and then extend or override that configuration in derived services.
+
+**Example:**
+```typescript
+// Base service
+@Injectable({
+  providedIn: 'root'
+})
+export class BaseService {
+  config = { apiUrl: 'https://api.example.com' };
+}
+
+// Derived service
+@Injectable({
+  providedIn: 'root'
+})
+export class DerivedService extends BaseService {
+  constructor() {
+    super();
+    this.config.apiUrl = 'https://api.derived.com';
+  }
+}
+```
+
+98. ### What is Angular's security model for preventing XSS attacks?
+Angular's security model includes multiple layers of protection to prevent Cross-Site Scripting (XSS) attacks:
+- **Sanitization**: Angular automatically sanitizes potentially dangerous content. It removes unsafe HTML, styles, and URLs.
+- **Template Security**: Angular's template compiler ensures that expressions used in templates are safe. It disallows dangerous content and provides context-aware escaping.
+- **DomSanitizer**: Angular provides `DomSanitizer` for explicitly marking content as safe.
+
+99. ### What is the role of the template compiler in the prevention of XSS attacks?
+The Angular template compiler performs several tasks to prevent XSS:
+- **Context-Sensitive Encoding**: It ensures that data bindings in templates are contextually safe (HTML, URL, etc.).
+- **Sanitization**: It automatically escapes potentially dangerous content to prevent XSS.
+
+100. ### What is sanitization? Does Angular support it?
+Sanitization is the process of cleaning and filtering data to remove potentially harmful content. Angular supports sanitization through its `DomSanitizer` service, which cleans and verifies content based on its context (HTML, style, URL, etc.).
+
+**Example:**
+```typescript
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+constructor(private sanitizer: DomSanitizer) {}
+
+sanitizeHtml(html: string): SafeHtml {
+  return this.sanitizer.bypassSecurityTrustHtml(html);
+}
+```
+
+101. ### How do you support server-side XSS protection in Angular applications?
+Server-side XSS protection should be implemented in conjunction with Angular's client-side protection. This includes:
+- **Input Validation**: Ensure all user inputs are validated and sanitized on the server-side.
+- **Output Encoding**: Encode output data to prevent injection attacks.
+- **Security Headers**: Use HTTP security headers like Content Security Policy (CSP) to mitigate XSS risks.
+
+102. ### What are HTTP Interceptors?
+HTTP Interceptors are a mechanism in Angular to intercept and modify HTTP requests and responses. They allow you to:
+- Add headers to requests.
+- Handle or transform responses.
+- Implement logging, authentication, and error handling.
+
+**Example:**
+```typescript
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const authReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer token') });
+    return next.handle(authReq);
+  }
+}
+```
+
+103. ### What are the applications of HTTP interceptors?
+- **Authentication**: Add authentication tokens to HTTP requests.
+- **Logging**: Log request and response details.
+- **Error Handling**: Handle and transform HTTP errors.
+- **Caching**: Implement request caching.
+
+104. ### Is multiple interceptors supported in Angular?
+Yes, Angular supports multiple HTTP interceptors. They are executed in the order they are provided in the `providers` array.
+
+**Example:**
+```typescript
+providers: [
+  AuthInterceptor,
+  LoggingInterceptor
+]
+```
+
+105. ### How can I use an interceptor for an entire application?
+You register interceptors in the root module’s `providers` array to apply them globally across the application.
+
+**Example:**
+```typescript
+@NgModule({
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true }
+  ]
+})
+export class AppModule {}
+```
+
+106. ### How does Angular simplify Internationalization (i18n)?
+Angular simplifies internationalization by providing built-in support for:
+- **Translation of text** using i18n attributes.
+- **Date, number, and currency formatting** based on locale.
+- **Dynamic localization** using Angular’s `@angular/localize` package.
+
+107. ### What is the purpose of the `i18n` attribute?
+The `i18n` attribute in Angular is used to mark text that should be translated in templates. It helps in identifying and extracting translatable strings.
+
+**Example:**
+```html
+<p i18n="@@welcomeMessage">Welcome to Angular!</p>
+```
+
+108. ### What is the purpose of a custom ID in translation?
+A custom ID is used to uniquely identify translatable text, making it easier to manage and translate content, especially in large applications. It ensures consistency across translations.
+
+109. ### What happens if the custom ID is not unique?
+If a custom ID is not unique, it can lead to translation conflicts or incorrect translations. Multiple elements with the same ID might be translated incorrectly or inconsistently.
+
+110. ### Can I translate text without creating an element?
+Yes, you can translate text without creating a new HTML element by using Angular’s i18n API to handle translations programmatically.
+
+**Example:**
+```typescript
+import { getLocaleDateFormat } from '@angular/common';
+
+const translatedText = this.translate.instant('Hello World');
+```
+
+111. ### How can I translate attributes?
+You can translate attributes similarly to text content by using the `i18n` attribute on the element.
+
+**Example:**
+```html
+<img [attr.alt]="'image.alt' | translate">
+```
+
+112. ### What is an Angular library?
+An Angular library is a reusable package of code that can be used across multiple Angular applications. It can include components, services, and other Angular artifacts.
+
+113. ### What is the purpose of `ngcc`?
+The Angular Compatibility Compiler (ngcc) converts Angular libraries compiled with the View Engine to Ivy-compatible format. It ensures compatibility with the Ivy rendering engine.
+
+114. ### What is NgZone?
+`NgZone` is an Angular service that helps manage change detection and application state by allowing you to control when Angular runs change detection and handles asynchronous operations.
+
+115. ### What is NoopZone?
+`NoopZone` is a placeholder implementation of `NgZone` that disables Angular’s change detection. It can be used for performance testing or to avoid Angular’s automatic change detection.
+
+116. ### How do you create displayBlock components?
+To create a component that displays as a block element, set the component's CSS `display` property to `block`.
+
+**Example:**
+```css
+:host {
+  display: block;
+}
+```
+
+117. ### What are the possible data update scenarios for change detection?
+- **User Actions**: Events like clicks and input changes.
+- **HTTP Responses**: Data returned from HTTP requests.
+- **Timer-based Updates**: Intervals or timeouts.
+- **Observable Data**: Data changes from RxJS observables.
+
+118. ### What is the purpose of any type cast function?
+Type casting functions (e.g., `as` keyword) are used to assert or convert a value to a specific type. This is useful when you need to override TypeScript’s type inference.
+
+**Example:**
+```typescript
+const someValue = someFunction() as SomeType;
+```
+
+119. ### What is the non-null type assertion operator?
+The non-null type assertion operator (`!`) asserts that a value is not `null` or `undefined`. It tells TypeScript to treat the value as if it’s guaranteed to be present.
+
+**Example:**
+```typescript
+const element = document.getElementById('myElement')!;
+```
+
+120. ### What is type narrowing?
+Type narrowing is the process of refining a variable’s type within a conditional block. It helps TypeScript understand more specific types based on runtime checks.
+
+**Example:**
+```typescript
+function example(value: string | number) {
+  if (typeof value === 'string') {
+    // TypeScript knows value is a string here
+  } else {
+    // TypeScript knows value is a number here
+  }
+}
+```
