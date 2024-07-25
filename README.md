@@ -1164,7 +1164,7 @@
 	  }
 	  ```
 
- 51. ### What are the features included in ivy preview?
+ 51. ### What are the features included in ivy?
 		1. **Faster Compilation**:
 		   - **Improved Build Times**: Faster initial and incremental builds, improving development speed.
 		
