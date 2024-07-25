@@ -1165,21 +1165,21 @@
 	  ```
 
  51. ### What are the features included in ivy preview?
-	1. **Faster Compilation**:
-	   - **Improved Build Times**: Faster initial and incremental builds, improving development speed.
-	
-	2. **Smaller Bundle Sizes**:
-	   - **Efficient Code Generation**: Reduces the size of the JavaScript bundles, resulting in faster load times.
-	
-	3. **Enhanced Debugging**:
-	   - **Readable Error Messages**: More readable and helpful error messages for easier debugging.
-	   - **Better Runtime Debugging Tools**: Provides tools for improved runtime debugging and more human-readable output.
-	
-	4. **Better Type Checking**:
-	   - **Improved Template Type Checking**: More accurate and detailed type checking in templates, leading to more reliable code.
-	
-	5. **Backward Compatibility**:
-	   - **Smooth Migration**: Designed to be compatible with existing Angular applications and libraries, allowing for smooth migration.
+		1. **Faster Compilation**:
+		   - **Improved Build Times**: Faster initial and incremental builds, improving development speed.
+		
+		2. **Smaller Bundle Sizes**:
+		   - **Efficient Code Generation**: Reduces the size of the JavaScript bundles, resulting in faster load times.
+		
+		3. **Enhanced Debugging**:
+		   - **Readable Error Messages**: More readable and helpful error messages for easier debugging.
+		   - **Better Runtime Debugging Tools**: Provides tools for improved runtime debugging and more human-readable output.
+		
+		4. **Better Type Checking**:
+		   - **Improved Template Type Checking**: More accurate and detailed type checking in templates, leading to more reliable code.
+		
+		5. **Backward Compatibility**:
+		   - **Smooth Migration**: Designed to be compatible with existing Angular applications and libraries, allowing for smooth migration.
 
  52. ### Can I use AOT compilation with Ivy?
       Yes, it is a recommended configuration. Also, AOT compilation with Ivy is faster. So you need set the default build options(with in angular.json) for your project to always use AOT compilation.
