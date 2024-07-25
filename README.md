@@ -550,14 +550,7 @@
 	constructor(private myService: MyService) { }
 	}
 	```
-
-	**Hierarchical Dependency Injection**
-	Angular resolves dependencies in a hierarchical manner, starting from the component where the dependency is requested and moving up the hierarchy. Here's how it works:
-	
-	1. **Component Level**: If a service is provided in the component's providers array, Angular uses this instance for the component and its children.
-	2. **Module Level**: If the service is not found at the component level, Angular looks for it in the providers array of the module that declared the component.
-	3. **Root Level**: If the service is not found at the module level, Angular looks for it at the root level.
-
+ 
 	Angular has two injector hierarchies: the **Module Injector** and the **Element Injector**. These two hierarchies play distinct roles in dependency injection and contribute to the flexibility and modularity of Angular applications.
 	
 	**Module Injector**
