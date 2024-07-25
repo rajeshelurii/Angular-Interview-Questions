@@ -491,8 +491,7 @@
   
 
 19. ### How is Dependency Hierarchy formed?
-	In Angular, the dependency hierarchy is a crucial concept that defines how services and other dependencies are provided and injected within the application. Here’s an overview of how it works:
-	Angular's dependency injection (DI) system allows you to define providers at different levels of the application. These levels form a hierarchy that determines how and where instances of services are shared and reused.
+	In Angular, the dependency hierarchy defines how services and dependencies are provided and injected within the application. Angular's dependency injection (DI) system allows you to define providers at different levels of the application. These levels form a hierarchy that determines how and where instances of services are shared and reused.
 
 	1. **Root Level (Application-wide) Providers:**
 	   - **@Injectable({ providedIn: 'root' })**: When you configure a service to be provided in the root, Angular creates a single instance of the service that is shared across the entire application.
