@@ -543,7 +543,15 @@
 	
 	1. **Component Level**: If a service is provided in the component's providers array, Angular uses this instance for the component and its children.
 	2. **Module Level**: If the service is not found at the component level, Angular looks for it in the providers array of the module that declared the component.
-	3. **Root Level**: If the service is not found at the module level, Angular looks for it at the root level. 
+	3. **Root Level**: If the service is not found at the module level, Angular looks for it at the root level.
+
+	Angular has two injector hierarchies: the **Module Injector** and the **Element Injector**. These two hierarchies play distinct roles in dependency injection and contribute to the flexibility and modularity of Angular applications.
+	
+	**Module Injector**
+	The Module Injector is responsible for providing services at the module level. It is created when an Angular module is bootstrapped and can provide services to all components, directives, and other services that are declared within that module.
+	
+	**Element Injector**
+	The Element Injector is responsible for providing services at the component and directive level. Each Angular component and directive has its own Element Injector, allowing for a more granular and localized provision of services.
 
 20. ### What is the purpose of async pipe?
     The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
