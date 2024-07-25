@@ -720,8 +720,8 @@
   
 
 31. ### What is a parameterized pipe?
-    -parameterized pipe is a type of pipe that can accept one or more parameters to customize its behavior. Pipes are a way to transform data in templates, and parameterized pipes provide additional flexibility by allowing you to pass arguments to the pipe.
-    -A parameterized pipe is used by adding a colon (:) followed by the parameter value(s) after the pipe name. Multiple parameters can be separated by colons.
+    parameterized pipe is a type of pipe that can accept one or more parameters to customize its behavior. Pipes are a way to transform data in templates, and parameterized pipes provide additional flexibility by allowing you to pass arguments to the pipe.
+    A parameterized pipe is used by adding a colon (:) followed by the parameter value(s) after the pipe name. Multiple parameters can be separated by colons.
 
 	```html
 	{{ 'Hello, world!' | slice:7:12 }} <!-- Outputs: world -->
@@ -738,7 +738,7 @@
 	  today: number = Date.now();
 	}
 	```
-	-In this example, the date pipe is used with the parameter 'fullDate', which tells Angular to format the date as a full date string.
+	In this example, the date pipe is used with the parameter 'fullDate', which tells Angular to format the date as a full date string.
 	
 	 You can also add parameters to custom pipes:
 	
