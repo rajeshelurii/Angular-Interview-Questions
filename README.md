@@ -1072,16 +1072,62 @@
   
 
 47. ### What is the difference between promise and observable?
-    Below are the list of differences between promise and observable:
+    Both **Promises** and **Observables** are used for handling asynchronous operations in JavaScript and TypeScript, but they have different characteristics and use cases. Here’s a comparison to help you understand their differences:
 
-       | Observable | Promise |
-       |---- | --------- |
-       | Declarative: Computation does not start until subscription, so they can run whenever you need the result | Executes immediately on creation|
-       | Provides multiple values over time | Provides only one |
-       | Subscribe method is used for error handling that facilitates centralized and predictable error handling | Push errors to the child promises |
-       | Provides chaining and subscription to handle complex applications | Uses only `.then()` clause |
-
-  
+	**Promises**
+	
+	1. **Single Value**: A Promise represents a single value that may be available now or in the future. Once a Promise is resolved or rejected, it cannot emit any more values.
+	2. **Eager Execution**: Promises start executing as soon as they are created, regardless of whether you have subscribed to them or not.
+	3. **Immutable**: A Promise is a one-time event. Once resolved or rejected, it cannot change or emit new values.
+	4. **Chaining**: Promises allow chaining of `.then()`, `.catch()`, and `.finally()` methods to handle success, error, and finalization.
+	5. **Error Handling**: Errors can be caught using `.catch()` in the promise chain.
+	6. **Cancellation**: Promises do not provide built-in cancellation. Once a Promise is initiated, it will run to completion.
+	
+	**Example:**
+	```javascript
+	const promise = new Promise((resolve, reject) => {
+	  setTimeout(() => {
+	    resolve('Data fetched successfully!');
+	  }, 1000);
+	});
+	
+	promise.then(data => {
+	  console.log(data); // Outputs: Data fetched successfully!
+	}).catch(error => {
+	  console.error('Error:', error);
+	});
+	```
+	
+	**Observables**
+	
+	1. **Multiple Values**: Observables can emit multiple values over time. They are suitable for handling streams of data.
+	2. **Lazy Execution**: Observables are lazy; they do not execute until you subscribe to them. Execution only starts when there is an active subscription.
+	3. **Mutable**: Observables can emit multiple values and can be used to handle complex asynchronous workflows, including streams and events.
+	4. **Operators**: Observables provide a wide range of operators (like `map`, `filter`, `merge`, etc.) for transforming and combining streams of data.
+	5. **Error Handling**: Errors are handled through the observer's `error` method and can be managed using operators like `catchError`.
+	6. **Cancellation**: Observables support cancellation. Subscriptions can be unsubscribed to stop receiving updates and clean up resources.
+	
+	**Example:**
+	```typescript
+	import { Observable } from 'rxjs';
+	
+	const observable = new Observable(subscriber => {
+	  setTimeout(() => {
+	    subscriber.next('First value');
+	    subscriber.next('Second value');
+	    subscriber.complete();
+	  }, 1000);
+	});
+	
+	const subscription = observable.subscribe({
+	  next(value) { console.log(value); },
+	  error(err) { console.error('Error:', err); },
+	  complete() { console.log('Complete'); }
+	});
+	
+	// Unsubscribe if needed
+	subscription.unsubscribe();
+	```
 
 48. ### What is multicasting?
     Multi-casting is the practice of broadcasting to a list of multiple subscribers in a single execution.
