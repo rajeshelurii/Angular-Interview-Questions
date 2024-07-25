@@ -1091,24 +1091,7 @@
 	```
 
 42. ### What is multicasting?
-    Multi-casting is the practice of broadcasting to a list of multiple subscribers in a single execution.
-
-    Let's demonstrate the multi-casting feature:
-    ```javascript
-    var source = Rx.Observable.from([1, 2, 3]);
-    var subject = new Rx.Subject();
-    var multicasted = source.multicast(subject);
-
-    // These are, under the hood, `subject.subscribe({...})`:
-    multicasted.subscribe({
-      next: (v) => console.log('observerA: ' + v)
-    });
-    multicasted.subscribe({
-      next: (v) => console.log('observerB: ' + v)
-    });
-
-    // This is, under the hood, `s
-    ```
+    Multicasting in RxJS is a technique where a single Observable execution is shared among multiple subscribers, allowing all subscribers to receive the same emitted values without triggering separate executions. This is useful for efficient resource management, especially for expensive operations like HTTP requests.
 
 43. ### How do you perform error handling in observables?
     You can handle errors by specifying an **error callback** on the observer instead of relying on `try`/`catch`, which are ineffective in asynchronous environment.
