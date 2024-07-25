@@ -1245,9 +1245,12 @@
 
 
  59. ### What is Angular CLI Builder?
-      In Angular8, the CLI Builder API is stable and available to developers who want to customize the `Angular CLI` by adding or modifying commands. For example, you could supply a builder to perform an entirely new task, or to change which third-party tool is used by an existing command.
-
-   
+	Angular CLI Builder is a feature introduced in Angular 8 that allows developers to customize the Angular CLI by adding or modifying commands. With CLI Builders, you can:
+	
+	- Create new commands to perform custom tasks.
+	- Modify existing commands to use different tools or perform additional actions.
+	
+	This provides flexibility to tailor the Angular CLI to better suit the specific needs of your project.
 
  60. ### What is a builder?
       A builder function is a function that uses the `Architect API` to perform a complex process such as "build" or "test". The builder code is defined in an npm package. For example, BrowserBuilder runs a webpack build for a browser target and KarmaBuilder starts the Karma server and runs a webpack build for unit tests.
