@@ -1335,7 +1335,7 @@
 
  68. ### What is Angular DSL?
      
-	Angular DSL (Domain-Specific Language) is a special syntax used in Angular to extend standard HTML with Angular-specific features. It allows you to write HTML-like code that Angular understands and compiles into regular HTML for the browser.
+	Angular DSL (Domain Specific Language) is a special syntax used in Angular to extend standard HTML with Angular-specific features. It allows you to write HTML like code that Angular understands and compiles into regular HTML for the browser.
  
 
    **Key Parts of Angular DSL:**
