@@ -1105,9 +1105,8 @@
     ```
 
 44. ### What is Angular Universal?
-    Angular Universal is a server-side rendering module for Angular applications in various scenarios. This is a community driven project and available under @angular/platform-server package. Recently Angular Universal is integrated with Angular CLI.
+    Angular Universal is a technology for Angular that allows you to render Angular applications on the server side rather than in the browser. This server-side rendering (SSR) approach has several benefits, including improved performance, better SEO, and faster initial load times.
 
-  
 
 45. ### What are different types of compilation in Angular?
     Angular offers two ways to compile your application,
