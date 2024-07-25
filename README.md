@@ -1234,7 +1234,7 @@
  55. ### Is there any editor support for Angular Language Service?
       Yes, Angular Language Service is currently available for Visual Studio Code and WebStorm IDEs. You need to install angular language service using an extension and devDependency respectively. In sublime editor, you need to install typescript which has has a language service plugin model.
 
- 56. ### How are web workers in angular?
+ 56. ### What are web workers in angular?
      A web worker in Angular is a mechanism that allows you to run scripts in background threads. This can be particularly useful for performing computationally intensive tasks without blocking the main thread, thereby maintaining a smooth user interface experience. you can add a Web Worker using `ng generate web-worker app` command which will create `src/app/app.worker.ts` web worker file. This command will perform below actions,
 
  58. ### What are the limitations with web workers?
