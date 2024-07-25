@@ -1138,33 +1138,48 @@
     The metadata.json files in Angular serve a crucial role in the Ahead-of-Time (AOT) compilation process. The metadata.json files are used to store metadata about Angular decorators. These files can be thought of as representations of the overall structure of a decorator's metadata, and they are structured in a way similar to an abstract syntax tree (AST).
 
 50. ### What is Angular Ivy?
-      Angular Ivy is a new rendering engine for Angular. You can choose to opt in a preview version of Ivy from Angular version 8.
 
-      1. You can enable ivy in a new project by using the --enable-ivy flag with the ng new command
-
-          ```bash
-          ng new ivy-demo-app --enable-ivy
-          ```
-      2. You can add it to an existing project by adding `enableIvy` option in the `angularCompilerOptions` in your project's `tsconfig.app.json`.
-
-          ```javascript
-          {
-            "compilerOptions": { ... },
-            "angularCompilerOptions": {
-              "enableIvy": true
-            }
-          }
-          ```
+	Angular Ivy is the default rendering engine for Angular starting from version 9. Ivy is designed to improve build times, enable smaller bundle sizes, and provide enhanced debugging capabilities.
+	
+	**Enabling Ivy in a Project**
+	
+	- **For New Projects**: Ivy is enabled by default in new Angular projects starting from version 9. However, if you need to specify Ivy explicitly, you could do so in earlier versions.
+	  
+	  Example command to create a new project with Ivy (though this is not necessary for Angular 9 and later):
+	  ```sh
+	  ng new ivy-demo-app --enable-ivy
+	  ```
+	
+	- **For Existing Projects**: If you have an existing project and you want to ensure Ivy is enabled, you need to set the `enableIvy` option in the `angularCompilerOptions` section of your `tsconfig.app.json` (or `tsconfig.json` for the entire project).
+	
+	  Example configuration in `tsconfig.app.json`:
+	  ```json
+	  {
+	    "compilerOptions": {
+	      // Other compiler options
+	    },
+	    "angularCompilerOptions": {
+	      "enableIvy": true
+	    }
+	  }
+	  ```
 
  51. ### What are the features included in ivy preview?
-      You can expect below features with Ivy preview,
-
-      1. Generated code that is easier to read and debug at runtime
-      2. Faster re-build time
-      3. Improved payload size
-      4. Improved template type checking
-
-   
+	1. **Faster Compilation**:
+	   - **Improved Build Times**: Faster initial and incremental builds, improving development speed.
+	
+	2. **Smaller Bundle Sizes**:
+	   - **Efficient Code Generation**: Reduces the size of the JavaScript bundles, resulting in faster load times.
+	
+	3. **Enhanced Debugging**:
+	   - **Readable Error Messages**: More readable and helpful error messages for easier debugging.
+	   - **Better Runtime Debugging Tools**: Provides tools for improved runtime debugging and more human-readable output.
+	
+	4. **Better Type Checking**:
+	   - **Improved Template Type Checking**: More accurate and detailed type checking in templates, leading to more reliable code.
+	
+	5. **Backward Compatibility**:
+	   - **Smooth Migration**: Designed to be compatible with existing Angular applications and libraries, allowing for smooth migration.
 
  52. ### Can I use AOT compilation with Ivy?
       Yes, it is a recommended configuration. Also, AOT compilation with Ivy is faster. So you need set the default build options(with in angular.json) for your project to always use AOT compilation.
