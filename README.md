@@ -1204,8 +1204,15 @@
    
 
  53. ### What is Angular Language Service?
-      The Angular Language Service is a way to get completions, errors, hints, and navigation inside your Angular templates whether they are external in an HTML file or embedded in annotations/decorators in a string. It has the ability to autodetect that you are opening an Angular file, reads your `tsconfig.json` file, finds all the templates you have in your application, and then provides all the language services.
-  
+      The Angular Language Service is a tool that provides helpful features for Angular development within your editor or Integrated Development Environment (IDE). It enhances the development experience by offering intelligent code completions, type checking, and error detection in Angular templates and TypeScript files.
+
+	**Key Features of Angular Language Service**
+	
+	1. Intelligent Code Completions.
+	2. Error Detection and Highlighting.
+	3. Type Checking.
+	4. Hover Information.
+	5. Go to Definition.  
 
  54. ### How do you install angular language service in the project?
       You can install Angular Language Service in your project with the following npm command,
