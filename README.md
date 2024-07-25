@@ -1135,7 +1135,7 @@
     - **Improved performance:** Pre-compiled templates and metadata result in faster rendering and change detection.
 
 49. ### What is the purpose of metadata json files?
-    The metadata.json file can be treated as a diagram of the overall structure of a decorator's metadata, represented as an abstract syntax tree(AST). During the analysis phase, the AOT collector scan the metadata recorded in the Angular decorators and outputs metadata information in .metadata.json files, one per .d.ts file. 
+    The metadata.json files in Angular serve a crucial role in the Ahead-of-Time (AOT) compilation process. The metadata.json files are used to store metadata about Angular decorators. These files can be thought of as representations of the overall structure of a decorator's metadata, and they are structured in a way similar to an abstract syntax tree (AST).
 
 50. ### What is Angular Ivy?
       Angular Ivy is a new rendering engine for Angular. You can choose to opt in a preview version of Ivy from Angular version 8.
