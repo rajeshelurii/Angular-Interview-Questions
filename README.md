@@ -1129,11 +1129,10 @@
 48. ### What are the advantages with AOT?
     Below are the list of AOT benefits,
 
-    1. **Faster rendering:** The browser downloads a pre-compiled version of the application. So it can render the application immediately without compiling the app.
-    2. **Fewer asynchronous requests:** It inlines external HTML templates and CSS style sheets within the application javascript which eliminates separate ajax requests.
-    3. **Smaller Angular framework download size:** Doesn't require downloading the Angular compiler. Hence it dramatically reduces the application payload.
-    4. **Detect template errors earlier:** Detects and reports template binding errors during the build step itself
-    5. **Better security:** It compiles HTML templates and components into JavaScript.  So there won't be any injection attacks.
+    - **Faster initial load time:** Since the application is already compiled, the browser can execute the code directly, resulting in a quicker startup.
+    - **Smaller application size:** The Angular compiler is not included in the final bundle, reducing the application's size.
+    - **Better security:** Templates and metadata are not included in the client-side code, reducing the risk of injection attacks.
+    - **Improved performance:** Pre-compiled templates and metadata result in faster rendering and change detection.
 
 49. ### What is the purpose of metadata json files?
     The metadata.json file can be treated as a diagram of the overall structure of a decorator's metadata, represented as an abstract syntax tree(AST). During the analysis phase, the AOT collector scan the metadata recorded in the Angular decorators and outputs metadata information in .metadata.json files, one per .d.ts file. 
