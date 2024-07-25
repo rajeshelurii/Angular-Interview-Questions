@@ -515,27 +515,41 @@
 	
 	2. **Feature Module Level Providers:**
 	   - **providers array in a Feature Module**: When you register a service in the providers array of a feature module, Angular creates a new instance of the service that is shared among all the components, directives, and other services in that module.
-	   
-	   ```typescript
-	   @NgModule({
-	     providers: [MyService]
-	   })
-	   export class FeatureModule { }
-	   ```
+   
+	```typescript
+	@Injectable()
+	export class MyService {
+	  constructor() { }
+	}
+	```
+		   
+	```typescript
+	@NgModule({
+	providers: [MyService]
+	})
+	export class FeatureModule { }
+	```
 	
 	3. **Component Level Providers:**
 	   - **providers array in a Component**: When you register a service in the providers array of a component, Angular creates a new instance of the service for that component and its children.
-	   
-	   ```typescript
-	   @Component({
-	     selector: 'app-my-component',
-	     providers: [MyService],
-	     templateUrl: './my-component.component.html'
-	   })
-	   export class MyComponent {
-	     constructor(private myService: MyService) { }
-	   }
-	   ```
+
+	```typescript
+	@Injectable()
+	export class MyService {
+	    constructor() { }
+	}
+	```
+	
+	```typescript
+	@Component({
+	selector: 'app-my-component',
+	providers: [MyService],
+	templateUrl: './my-component.component.html'
+	})
+	export class MyComponent {
+	constructor(private myService: MyService) { }
+	}
+	```
 
 	**Hierarchical Dependency Injection**
 	Angular resolves dependencies in a hierarchical manner, starting from the component where the dependency is requested and moving up the hierarchy. Here's how it works:
@@ -552,7 +566,7 @@
 	**Element Injector**
 	The Element Injector is responsible for providing services at the component and directive level. Each Angular component and directive has its own Element Injector, allowing for a more granular and localized provision of services.
 
-20. ### What is the purpose of async pipe?
+21. ### What is the purpose of async pipe?
     The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
 
     Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
@@ -576,7 +590,7 @@
 
   
 
-21. ### What is the option to choose between inline and external template file?
+22. ### What is the option to choose between inline and external template file?
     You can store your component's template in one of two places. You can define it inline using the **template** property, or you can define the template in a separate HTML file and link to it in the component metadata using the **@Component** decorator's **templateUrl** property.
 
     The choice between inline and separate HTML is a matter of taste, circumstances, and organization policy. But normally we use inline template for small portion of code and external template file for bigger views. By default, the Angular CLI generates components with a template file. But you can override that with the below command,
@@ -586,7 +600,7 @@
 
   
 
-22. ### What is the purpose of `*ngFor` directive?
+23. ### What is the purpose of `*ngFor` directive?
     We use Angular `*ngFor` directive in the template to display each item in the list. For example, here we can iterate over a list of users:
     ```html
     <li *ngFor="let user of users">
@@ -597,7 +611,7 @@
 
   
 
-23. ### What is the purpose of `*ngIf` directive?
+24. ### What is the purpose of `*ngIf` directive?
     Sometimes an app needs to display a view or a portion of a view only under specific circumstances. The Angular `*ngIf` directive inserts or removes an element based on a truthy/falsy condition. Let's take an example to display a message if the user age is more than 18:
     ```html
     <p *ngIf="user.age > 18">You are not eligible for student pass!</p>
@@ -606,7 +620,7 @@
 
   
 
-24. ### What happens if you use script tag inside template?
+25. ### What happens if you use script tag inside template?
 
     Angular recognizes the value as unsafe and automatically sanitizes it, which removes the `script` tag but keeps safe content such as the text content of the `script` tag. This way it eliminates the risk of script injection attacks. If you still use it then it will be ignored and a warning appears in the browser console.
 
@@ -620,7 +634,7 @@
 
   
 
-25. ### What is interpolation?
+26. ### What is interpolation?
 
     Interpolation is a special syntax that Angular converts into property binding. It’s a convenient alternative to property binding. It is represented by double curly braces({{}}). The text between the braces is often the name of a component property. Angular replaces that name with the string value of the corresponding component property.
 
@@ -635,7 +649,7 @@
 
   
 
-26. ### What are template expressions?
+27. ### What are template expressions?
     A template expression produces a value similar to any Javascript expression. Angular executes the expression and assigns it to a property of a binding target; the target might be an HTML element, a component, or a directive. In the property binding, a template expression appears in quotes to the right of the = symbol as in `[property]="expression"`.
     In interpolation syntax, the template expression is surrounded by double curly braces. For example, in the below interpolation, the template expression is `{{username}}`,
 
@@ -652,7 +666,7 @@
 
   
 
-27. ### What are template statements?
+28. ### What are template statements?
     A template statement responds to an event raised by a binding target such as an element, component, or directive. The template statements appear in quotes to the right of the = symbol like `(event)="statement"`.
 
     Let's take an example of button click event's statement
@@ -670,7 +684,7 @@
 
   
 
-28. ### How do you categorize data binding types?
+29. ### How do you categorize data binding types?
 
      Binding types can be grouped into three categories distinguished by the direction of data flow. They are listed as below,
      1. From the source-to-view
@@ -687,7 +701,7 @@
 
   
 
-29. ### What are pipes?
+30. ### What are pipes?
     Pipes are simple functions that use [template expressions](#what-are-template-expressions) to accept data as input and transform it into a desired output. For example, let us take a pipe to transform a component's birthday property into a human-friendly date using **date** pipe.
 
     ```javascript
@@ -704,7 +718,7 @@
 
   
 
-30. ### What is a parameterized pipe?
+31. ### What is a parameterized pipe?
     A pipe can accept any number of optional parameters to fine-tune its output. The parameterized pipe can be created by declaring the pipe name with a colon ( : ) and then the parameter value. If the pipe accepts multiple parameters, separate the values with colons. Let's take a birthday example with a particular format(dd/MM/yyyy):
 
     ```javascript
@@ -722,7 +736,7 @@
 
   
 
-31. ### How do you chain pipes?
+32. ### How do you chain pipes?
     You can chain pipes together in potentially useful combinations as per the needs. Let's take a birthday property which uses date pipe(along with parameter) and uppercase pipes as below
 
     ```javascript
@@ -740,7 +754,7 @@
 
   
 
-32. ### What is a custom pipe?
+33. ### What is a custom pipe?
     Apart from built-in pipes, you can write your own custom pipe with the below key characteristics:
     1. A pipe is a class decorated with pipe metadata `@Pipe` decorator, which you import from the core Angular library
        For example,
@@ -761,7 +775,7 @@
 
   
 
-33. ### Give an example of custom pipe?
+34. ### Give an example of custom pipe?
     You can create custom reusable pipes for the transformation of existing value. For example, let us create a custom pipe for finding file size based on an extension,
       ```javascript
         import { Pipe, PipeTransform } from '@angular/core';
@@ -783,12 +797,12 @@
 
   
 
-34. ### What is the difference between pure and impure pipe?
+35. ### What is the difference between pure and impure pipe?
     A pure pipe is only called when Angular detects a change in the value or the parameters passed to a pipe. For example, any changes to a primitive input value (String, Number, Boolean, Symbol) or a changed object reference (Date, Array, Function, Object). An impure pipe is called for every change detection cycle no matter whether the value or parameters changes. i.e, An impure pipe is called often, as often as every keystroke or mouse-move.
 
   
 
-35. ### What is a bootstrapping module?
+36. ### What is a bootstrapping module?
     Every application has at least one Angular module, the root module that you bootstrap to launch the application is called as bootstrapping module. It is commonly known as `AppModule`. The default structure of `AppModule` generated by AngularCLI would be as follows:
 	
 	```javascript
@@ -817,12 +831,12 @@
 
   
 
-36. ### What are observables?
+37. ### What are observables?
     Observables are declarative which provide support for passing messages between publishers and subscribers in your application. They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
 
   
 
-37. ### What is HttpClient and its benefits?
+38. ### What is HttpClient and its benefits?
     Most of the Front-end applications communicate with backend services over `HTTP` protocol using either `XMLHttpRequest` interface or the `fetch()` API. Angular provides a simplified client HTTP API known as `HttpClient` which is based on top of `XMLHttpRequest` interface. This client is available from `@angular/common/http` package.
     You can import in your root module as below:
 
@@ -839,7 +853,7 @@
 
   
 
-38. ### Explain on how to use `HttpClient` with an example?
+39. ### Explain on how to use `HttpClient` with an example?
     Below are the steps need to be followed for the usage of `HttpClient`.
     1. Import `HttpClient` into root module:
         ```javascript
@@ -887,7 +901,7 @@
 
   
 
-39. ### How can you read full response?
+40. ### How can you read full response?
     The response body doesn't or may not return full response data because sometimes servers also return special headers or status code, which are important for the application workflow. In order to get the full response, you should use `observe` option from `HttpClient`:
 
     ```javascript
@@ -900,7 +914,7 @@
 
   
 
-40. ### How do you perform Error handling?
+41. ### How do you perform Error handling?
     If the request fails on the server or fails to reach the server due to network issues, then `HttpClient` will return an error object instead of a successful reponse. In this case, you need to handle in the component by passing `error` object as a second callback to `subscribe()` method.
 
     Let's see how it can be handled in the component with an example,
@@ -917,7 +931,7 @@
 
   
 
-41. ### What is RxJS?
+42. ### What is RxJS?
     RxJS is a library for composing asynchronous and callback-based code in a functional, reactive style using Observables. Many APIs such as  HttpClient produce and consume RxJS Observables and also uses operators for processing observables.
 
     For example, you can import observables and operators for using HttpClient as below,
@@ -928,7 +942,7 @@
 
   
 
-42. ### What is subscribing?
+43. ### What is subscribing?
     An Observable instance begins publishing values only when someone subscribes to it. So you need to subscribe by calling the `subscribe()` method of the instance, passing an observer object to receive the notifications.
 
     Let's take an example of creating and subscribing to a simple observable, with an observer that logs the received message to the console.
@@ -955,7 +969,7 @@
 
   
 
-43. ### What is an observable?
+44. ### What is an observable?
     An Observable is a unique Object similar to a Promise that can help manage async code. Observables are not part of the JavaScript language so we need to rely on a popular Observable library called RxJS.
     The observables are created using new keyword.
 
@@ -972,7 +986,7 @@
 
   
 
-44. ### What is an observer?
+45. ### What is an observer?
     Observer is an interface for a consumer of push-based notifications delivered by an Observable. It has below structure,
 
     ```javascript
@@ -992,7 +1006,7 @@
 
   
 
-45. ### What is the difference between promise and observable?
+46. ### What is the difference between promise and observable?
     Below are the list of differences between promise and observable:
 
        | Observable | Promise |
@@ -1004,7 +1018,7 @@
 
   
 
-46. ### What is multicasting?
+47. ### What is multicasting?
     Multi-casting is the practice of broadcasting to a list of multiple subscribers in a single execution.
 
     Let's demonstrate the multi-casting feature:
@@ -1026,7 +1040,7 @@
 
   
 
-47. ### How do you perform error handling in observables?
+48. ### How do you perform error handling in observables?
     You can handle errors by specifying an **error callback** on the observer instead of relying on `try`/`catch`, which are ineffective in asynchronous environment.
 
     For example, you can define error callback as below,
@@ -1039,7 +1053,7 @@
 
   
 
-48. ### What is the shorthand notation for subscribe method?
+49. ### What is the shorthand notation for subscribe method?
     The `subscribe()` method can accept callback function definitions in line, for `next`, `error`, and `complete` handlers. It is known as shorthand notation or Subscribe method with positional arguments.
 
     For example, you can define subscribe method as below,
@@ -1053,7 +1067,7 @@
 
   
 
-49. ### What are the utility functions provided by RxJS?
+50. ### What are the utility functions provided by RxJS?
     The RxJS library also provides below utility functions for creating and working with observables.
 
     1. Converting existing code for async operations into observables
@@ -1064,7 +1078,7 @@
 
   
 
-50. ### What are observable creation functions?
+51. ### What are observable creation functions?
     RxJS provides creation functions for the process of creating observables from promises, events, timers and Ajax requests. Let us explain each of them with an example:
     1. Create an observable from a promise
         ```javascript
@@ -1102,17 +1116,17 @@
 
   
 
-51. ### What will happen if you do not supply handler for the observer?
+52. ### What will happen if you do not supply handler for the observer?
     Usually, an observer object can define any combination of `next`, `error`, and `complete` notification type handlers. If you don't supply a handler for a notification type, the observer just ignores notifications of that type.
 
   
 
-52. ### What are Angular elements?
+53. ### What are Angular elements?
     Angular elements are Angular components packaged as **custom elements** (a web standard for defining new HTML elements in a framework-agnostic way). Angular Elements host an Angular component, providing a bridge between the data and the logic defined in the component and the standard DOM APIs, thus, providing a way to use Angular components in `non-Angular environments`.
 
   
 
-53. ### What is the browser support of Angular Elements?
+54. ### What is the browser support of Angular Elements?
     Since Angular elements are packaged as custom elements the browser support of angular elements is same as custom elements support.
 
     This feature is is currently supported natively in a number of browsers and pending for other browsers.
@@ -1127,17 +1141,17 @@
 
   
 
-54. ### What are custom elements?
+55. ### What are custom elements?
     Custom elements (or Web Components) are a Web Platform feature which extends HTML by allowing you to define a tag whose content is created and controlled by JavaScript code. The browser maintains a `CustomElementRegistry` of defined custom elements, which maps an instantiable JavaScript class to an HTML tag. Currently this feature is supported by Chrome, Firefox, Opera, and Safari, and available in other browsers through polyfills.
 
   
 
-55. ### Do I need to bootstrap custom elements?
+56. ### Do I need to bootstrap custom elements?
     No, custom elements bootstrap (or start) automatically when they are added to the DOM, and are automatically destroyed when removed from the DOM. Once a custom element is added to the DOM for any page, it looks and behaves like any other HTML element, and does not require any special knowledge of Angular.
 
   
 
-56. ### Explain how custom elements works internally?
+57. ### Explain how custom elements works internally?
     Below are the steps in an order about custom elements functionality,
     1. **App registers custom element with browser:** Use the `createCustomElement()` function to convert a component into a class that can be registered with the browser as a custom element.
     2. **App adds custom element to DOM:**  Add custom element just like a built-in HTML element directly into the DOM.
@@ -1149,7 +1163,7 @@
 
   
 
-57. ### How to transfer components to custom elements?
+58. ### How to transfer components to custom elements?
     Transforming components to custom elements involves **two** major steps,
     1. **Build custom element class:** Angular provides the `createCustomElement()` function for converting an Angular component (along with its dependencies) to a custom element. The conversion process implements `NgElementConstructor` interface, and creates a constructor class which is used to produce a self-bootstrapping instance of Angular component.
     2. **Register element class with browser:** It uses `customElements.define()` JS function, to register the configured constructor and its associated custom-element tag with the browser's `CustomElementRegistry`. When the browser encounters the tag for the registered element, it uses the constructor to create a custom-element instance.
@@ -1159,14 +1173,14 @@
 
   
 
-58. ### What are the mapping rules between Angular component and custom element?
+59. ### What are the mapping rules between Angular component and custom element?
     The Component properties and logic maps directly into HTML attributes and the browser's event system. Let us describe them in two steps,
     1. The createCustomElement() API parses the component input properties with corresponding attributes for the custom element. For example, component @Input('myInputProp') converted as custom element attribute `my-input-prop`.
     2. The Component outputs are dispatched as HTML Custom Events, with the name of the custom event matching the output name. For example, component @Output() valueChanged = new EventEmitter() converted as custom element with dispatch event as "valueChanged".
 
   
 
-59. ### How do you define typings for custom elements?
+60. ### How do you define typings for custom elements?
     You can use the `NgElement` and `WithProperties` types exported from @angular/elements.
 
     Let's see how it can be applied by comparing with Angular component.
@@ -1187,12 +1201,12 @@
 
   
 
-60. ### What are dynamic components?
+61. ### What are dynamic components?
     Dynamic components are the components in which the component's location in the application is not defined at build time i.e. they are not used in any angular template. Instead, the component is instantiated and placed in the application at runtime.
 
   
 
-61. ### What are the various kinds of directives?
+62. ### What are the various kinds of directives?
     There are mainly three kinds of directives:
     1. **Components** — These are directives with a template.
     2. **Structural directives** — These directives change the DOM layout by adding and removing DOM elements.
@@ -1200,12 +1214,12 @@
 
   
 
-62. ### How do you create directives using CLI?
+63. ### How do you create directives using CLI?
     You can use CLI command `ng generate directive` to create the directive class file. It creates the source file(`src/app/components/directivename.directive.ts`), the respective test file `.spec.ts` and declare the directive class file in root module.
 
   
 
-63. ### Give an example for attribute directives?
+64. ### Give an example for attribute directives?
     Let's take simple highlighter behavior as a example directive for DOM element. You can create and apply the attribute directive using below step:
 
     1. Create HighlightDirective class with the file name `src/app/highlight.directive.ts`. In this file, we need to import **Directive** from core library to apply the metadata and **ElementRef** in the directive's constructor to inject a reference to the host DOM element ,
@@ -1232,12 +1246,12 @@
 
   
 
-64. ### What is Angular Router?
+65. ### What is Angular Router?
     Angular Router is a mechanism in which navigation happens from one view to the next as users perform application tasks. It borrows the concepts or model of browser's application navigation. It enables developers to build Single Page Applications with multiple views and allow navigation between these views.
 
   
 
-65. ### What is the purpose of base href tag?
+66. ### What is the purpose of base href tag?
     The routing application should add <base> element to the index.html as the first child in the <head> tag in order to indicate how to compose navigation URLs. If app folder is the application root then you can set the href value as below
 
     ```html
@@ -1246,7 +1260,7 @@
 
   
 
-66. ### What are the router imports?
+67. ### What are the router imports?
     The Angular Router which represents a particular component view for a given URL is not part of Angular Core. It is available in library named `@angular/router` to import required router components. For example, we import them in app module as below,
 
     ```javascript
@@ -1255,7 +1269,7 @@
 
   
 
-67. ### What is router outlet?
+68. ### What is router outlet?
     The RouterOutlet is a directive from the router library and it  acts as a placeholder that marks the spot in the template where the router should display the components for that outlet. Router outlet is used like a component,
 
     ```html
@@ -1265,7 +1279,7 @@
 
   
 
-68. ### What are router links?
+69. ### What are router links?
     The RouterLink is a directive on the anchor tags give the router control over those elements. Since the navigation paths are fixed, you can assign string values to router-link directive as below,
 
     ```html
@@ -1279,7 +1293,7 @@
 
   
 
-69. ### What are active router links?
+70. ### What are active router links?
     RouterLinkActive is a directive that toggles css classes for active RouterLink bindings based on the current RouterState. i.e, The Router will add CSS classes when this link is active and remove when the link is inactive. For example, you can add them to RouterLinks as below.
 
     ```html
@@ -1293,7 +1307,7 @@
 
   
 
-70. ### What is router state?
+71. ### What is router state?
     RouterState is a tree of activated routes. Every node in this tree knows about the "consumed" URL segments, the extracted parameters, and the resolved data. You can access the current RouterState from anywhere in the application using the `Router service` and the `routerState` property.
 
     ```javascript
@@ -1311,7 +1325,7 @@
 
   
 
-71. ### What are router events?
+72. ### What are router events?
     During each navigation, the Router emits navigation events through the Router.events property allowing you to track the lifecycle of the route.
 
     The sequence of router events is as below,
@@ -1335,7 +1349,7 @@
 
   
 
-72. ### What is activated route?
+73. ### What is activated route?
     ActivatedRoute contains the information about a route associated with a component loaded in an outlet. It can also be used to traverse the router state tree. The ActivatedRoute will be injected as a router service to access the information. In the below example, you can access route path and parameters,
 
     ```javascript
@@ -1352,7 +1366,7 @@
 
   
 
-73. ### How do you define routes?
+74. ### How do you define routes?
      A router must be configured with a list of route definitions. You configures the router with routes via the `RouterModule.forRoot()` method, and adds the result to the AppModule's `imports` array.
 
     ```javascript
@@ -1385,7 +1399,7 @@
 
    
 
-74. ### What is the purpose of Wildcard route?
+75. ### What is the purpose of Wildcard route?
     If the URL doesn't match any predefined routes then it causes the router to throw an error and crash the app. In this case, you can use wildcard route. A wildcard route has a path consisting of two asterisks to match every URL.
 
     For example, you can define PageNotFoundComponent for wildcard route as below
@@ -1395,29 +1409,29 @@
 
   
 
-75. ### Do I need a Routing Module always?
+76. ### Do I need a Routing Module always?
     No, the Routing Module is a design choice. You can skip routing Module (for example, AppRoutingModule) when the configuration is simple and merge the routing configuration directly into the companion module (for example, AppModule). But it is recommended when the configuration is complex and includes specialized guard and resolver services.
 
   
 
-76. ### What is Angular Universal?
+77. ### What is Angular Universal?
     Angular Universal is a server-side rendering module for Angular applications in various scenarios. This is a community driven project and available under @angular/platform-server package. Recently Angular Universal is integrated with Angular CLI.
 
   
 
-77. ### What are different types of compilation in Angular?
+78. ### What are different types of compilation in Angular?
     Angular offers two ways to compile your application,
     1. Just-in-Time (JIT)
     2. Ahead-of-Time (AOT)
 
   
 
-78. ### What is JIT?
+79. ### What is JIT?
     Just-in-Time (JIT) is a type of compilation that compiles your app in the browser at runtime. JIT compilation was the default until Angular 8, now default is AOT. When you run the ng build (build only) or ng serve (build and serve locally) CLI commands, the type of compilation (JIT or AOT) depends on the value of the aot property in your build configuration specified in angular.json. By default, aot is set to true.
 
   
 
-79. ### What is AOT?
+80. ### What is AOT?
     Ahead-of-Time (AOT) is a type of compilation that compiles your app at build time. This is the default starting in Angular 9. When you run the ng build (build only) or ng serve (build and serve locally) CLI commands, the type of compilation (JIT or AOT) depends on the value of the aot property in your build configuration specified in angular.json. By default, aot is set to true.
     
     ```cmd
@@ -1427,12 +1441,12 @@
 
   
 
-80. ### Why do we need compilation process?
+81. ### Why do we need compilation process?
     The Angular components and templates cannot be understood by the browser directly. Due to that Angular applications require a compilation process before they can run in a browser. For example, In AOT compilation, both Angular HTML and TypeScript code converted into efficient JavaScript code during the build phase before browser runs it.
 
   
 
-81. ### What are the advantages with AOT?
+82. ### What are the advantages with AOT?
     Below are the list of AOT benefits,
 
     1. **Faster rendering:** The browser downloads a pre-compiled version of the application. So it can render the application immediately without compiling the app.
@@ -1443,14 +1457,14 @@
 
   
 
-82. ### What are the ways to control AOT compilation?
+83. ### What are the ways to control AOT compilation?
     You can control your app compilation in two ways,
     1. By providing template compiler options in the `tsconfig.json` file
     2. By configuring Angular metadata with decorators
 
   
 
-83. ### What are the restrictions of metadata?
+84. ### What are the restrictions of metadata?
     In Angular, You must write metadata with the following general constraints,
     1. Write expression syntax with in the supported range of javascript features
     2. The compiler can only reference symbols which are exported
@@ -1459,7 +1473,7 @@
 
   
 
-84. ### What are the three phases of AOT?
+85. ### What are the three phases of AOT?
     The AOT compiler works in three phases,
     1. **Code Analysis:** The compiler records a representation of the source
     2. **Code generation:** It handles the interpretation as well as places restrictions on what it interprets.
@@ -1467,7 +1481,7 @@
 
   
 
-85. ### Can I use arrow functions in AOT?
+86. ### Can I use arrow functions in AOT?
     No, Arrow functions or lambda functions can’t be used to assign values to the decorator properties. For example, the following snippet is invalid:
 
     ```javascript
@@ -1497,17 +1511,17 @@
 
   
 
-86. ### What is the purpose of metadata json files?
+87. ### What is the purpose of metadata json files?
     The metadata.json file can be treated as a diagram of the overall structure of a decorator's metadata, represented as an abstract syntax tree(AST). During the analysis phase, the AOT collector scan the metadata recorded in the Angular decorators and outputs metadata information in .metadata.json files, one per .d.ts file.
 
   
 
-87. ### Can I use any javascript feature for expression syntax in AOT?
+88. ### Can I use any javascript feature for expression syntax in AOT?
     No, the AOT collector understands a subset  of (or limited) JavaScript features. If an expression uses unsupported syntax, the collector writes an error node to the .metadata.json file. Later point of time, the compiler reports an error if it needs that piece of metadata to generate the application code.
 
   
 
-88. ### What is folding?
+89. ### What is folding?
     The compiler can only resolve references to exported symbols in the metadata. Where as some of the non-exported members are folded while generating the code. i.e Folding is a process in which the collector evaluate an expression during collection and record the result in the .metadata.json instead of the original expression.
     For example, the compiler couldn't refer selector reference because it is not exported
 
@@ -1528,7 +1542,7 @@
 
   
 
-89. ### What are macros?
+90. ### What are macros?
     The AOT compiler supports macros in the form of functions or static methods that return an expression in a `single return expression`.
     For example, let us take a below macro function,
 
@@ -1558,7 +1572,7 @@
 
   
 
-90. ### Give an example of few metadata errors?
+91. ### Give an example of few metadata errors?
     Below are some of the errors encountered in metadata,
 
     1. **Expression form not supported:** Some of the language features outside of the compiler's restricted expression syntax used in angular metadata can produce this error.
@@ -1630,12 +1644,12 @@
 
   
 
-91. ### What is metadata rewriting?
+92. ### What is metadata rewriting?
     Metadata rewriting is the process in which the compiler converts the expression initializing the fields such as useClass, useValue, useFactory, and data into an exported variable, which replaces the expression. Remember that the compiler does this rewriting during the emit of the .js file but not in definition files( .d.ts file).
 
   
 
-92. ### How do you provide configuration inheritance?
+93. ### How do you provide configuration inheritance?
     Angular Compiler supports configuration inheritance through extends in the tsconfig.json on angularCompilerOptions. i.e, The configuration from the base file(for example, tsconfig.base.json) are loaded first, then overridden by those in the inheriting config file.
 
     ```javascript
@@ -1655,7 +1669,7 @@
 
   
 
-93. ### How do you specify angular template compiler options?
+94. ### How do you specify angular template compiler options?
     The angular template compiler options are specified as members of the **angularCompilerOptions** object in the tsconfig.json file. These options will be specified adjecent to typescript compiler options.
 
     ```javascript
@@ -1674,7 +1688,7 @@
 
   
 
-94. ### How do you enable binding expression validation?
+95. ### How do you enable binding expression validation?
     You can enable binding expression validation explicitly by adding the compiler option **fullTemplateTypeCheck** in the "angularCompilerOptions" of the project's tsconfig.json. It produces error messages when a type error is detected in a template binding expression.
 
     For example, consider the following component:
@@ -1694,7 +1708,7 @@
 
   
 
-95. ### What is the purpose of any type cast function?
+96. ### What is the purpose of any type cast function?
     You can disable binding expression type checking using $any() type cast function(by surrounding the expression). In the following example, the error Property contacts does not exist is suppressed by casting user to the any type.
     ```javascript
       template:
@@ -1708,7 +1722,7 @@
 
   
 
-96. ### What is Non null type assertion operator?
+97. ### What is Non null type assertion operator?
     You can use the non-null type assertion operator to suppress the Object is possibly 'undefined' error. In the following example, the user and contact properties are always set together, implying that contact is always non-null if user is non-null. The error is suppressed in the example by using contact!.email.
     ```javascript
     @Component({
@@ -1728,7 +1742,7 @@
 
   
 
-97. ### What is type narrowing?
+98. ### What is type narrowing?
     The expression used in an ngIf directive is used to narrow type unions in the Angular template compiler similar to if expression in typescript. So *ngIf allows the typeScript compiler to infer that the data used in the binding expression will never be undefined.
     ```javascript
     @Component({
@@ -1742,7 +1756,7 @@
 
   
 
-98. ### How do you describe various dependencies in angular application?
+99. ### How do you describe various dependencies in angular application?
     The dependencies section of package.json with in an angular application can be divided as follow,
 
     1. **Angular packages:** Angular core and optional modules; their package names begin @angular/.
@@ -1751,12 +1765,12 @@
 
   
 
-99. ### What is zone?
+100. ### What is zone?
     A Zone is an execution context that persists across async tasks. Angular relies on zone.js to run Angular's change detection processes when native JavaScript operations raise events
 
   
 
-100. ### What is the purpose of common module?
+101. ### What is the purpose of common module?
     The commonly-needed services, pipes, and directives provided by @angular/common module. Apart from these HttpClientModule is available under @angular/common/http.
 
   
