@@ -1334,7 +1334,6 @@
       A DI (Dependency Injection) token is a key used to identify and retrieve a dependency in Angular's dependency injection system. It's like a label that helps the injector find the right provider for the requested dependency.   
 
  68. ### What is Angular DSL?
-
 	Angular DSL (Domain-Specific Language) is a special syntax used in Angular to extend standard HTML with Angular-specific features. It allows you to write HTML-like code that Angular understands and compiles into regular HTML for the browser.
 
    **Key Parts of Angular DSL:**
@@ -1347,8 +1346,6 @@
 
    3. **`*`**: Used for structural directives that change the DOM layout.
       - Example: `*ngIf="isVisible"`
-
-This syntax helps you create dynamic and interactive web applications in Angular.  
 
 69. ### what is an rxjs subject in Angular
      An RxJS Subject is a special type of Observable that allows values to be multicasted to many Observers. While plain Observables are unicast (each subscribed Observer owns an independent execution of the Observable), Subjects are multicast.
