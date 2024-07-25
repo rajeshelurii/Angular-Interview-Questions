@@ -27,7 +27,7 @@
 	| It is difficult to build SEO-friendly applications. | It is easier to build SEO-friendly applications. |
 
 
-4. ### Write a pictorial diagram of Angular architecture?
+3. ### Write a pictorial diagram of Angular architecture?
 
 	The main building blocks of an Angular application are shown in the diagram below:
 	
@@ -59,7 +59,7 @@
 	12. **State Management (e.g., NgRx)**: Manages application state in a predictable and scalable way, especially for complex applications.
 
 
-5. ### Define angular Project Structure
+4. ### Define angular Project Structure
 
 	When you create a new Angular project, the following structure is generated:
 
@@ -279,7 +279,7 @@
 
   
 
-13. ### What is a data binding?
+12. ### What is a data binding?
     Data binding is a core concept in Angular and allows to define communication between a component and the DOM, making it very easy to define interactive applications without worrying about pushing and pulling data.
     Angular supports four types of data binding:
 
@@ -304,7 +304,7 @@
 	    <p>Hello, {{ name }}!</p>
 	    ```  
 
-14. ### What is metadata?
+13. ### What is metadata?
     Metadata is used to decorate a class so that it can configure the expected behavior of the class. The metadata is represented by decorators
     1. **Class decorators**, e.g. @Component and @NgModule
         ```typescript
@@ -380,7 +380,7 @@
 
 	- **@Inject**: This decorator is used for injecting dependencies in Angular. It tells Angular which dependency to inject into the constructor of a class. This is particularly useful when you want to provide a custom token or when you need to inject something that isn't a class.
 
-15. ### What is angular CLI?
+14. ### What is angular CLI?
 
 	The Angular CLI (Command Line Interface) is a tool that helps developers create, manage, and build Angular applications efficiently.
 	
@@ -404,7 +404,7 @@
 	   - **Upgrade Dependencies:** Use `ng update` to update Angular and CLI dependencies.
 
   
-16. ### What is the difference between constructor and ngOnInit?
+15. ### What is the difference between constructor and ngOnInit?
 
 	In Angular, both the constructor and the `ngOnInit` lifecycle hook are used to initialize a component, but they serve different purposes and are used in different contexts. Here's a concise comparison:
 	
@@ -442,7 +442,7 @@
 	}
 	```
 
-17. ### What is a service?
+16. ### What is a service?
     In Angular, a service is a class that provides reusable functionalities that can be shared across different components of an application. Services are typically used to encapsulate business logic, interact with external APIs, perform data manipulation, or handle any other operations that need to be centralized and reused.
 
 	**Key Characteristics of a Service:**
@@ -485,12 +485,12 @@
 	- `providedIn: 'root'` registers the service at the root level, making it a singleton and available throughout the application.
   
 
-18. ### What is dependency injection in Angular?
+17. ### What is dependency injection in Angular?
     Dependency injection (DI), is an important application design pattern in which a class asks for dependencies from external sources rather than creating them itself. Angular comes with its own dependency injection framework for resolving dependencies( services or objects that a class needs to perform its function).So you can have your services depend on other services throughout your application.
 
   
 
-19. ### How is Dependency Hierarchy formed?
+18. ### How is Dependency Hierarchy formed?
 	In Angular, the dependency hierarchy defines how services and dependencies are provided and injected within the application. Angular's dependency injection (DI) system allows you to define providers at different levels of the application. These levels form a hierarchy that determines how and where instances of services are shared and reused.
 
 	1. **Root Level (Application-wide) Providers:**
@@ -559,7 +559,7 @@
 	**Element Injector**
 	The Element Injector is responsible for providing services at the component and directive level. Each Angular component and directive has its own Element Injector, allowing for a more granular and localized provision of services.
 
-21. ### What is the purpose of async pipe?
+19. ### What is the purpose of async pipe?
     The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
 
     Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
@@ -583,7 +583,7 @@
 
   
 
-22. ### What is the option to choose between inline and external template file?
+20. ### What is the option to choose between inline and external template file?
     You can store your component's template in one of two places. You can define it inline using the **template** property, or you can define the template in a separate HTML file and link to it in the component metadata using the **@Component** decorator's **templateUrl** property.
 
     The choice between inline and separate HTML is a matter of taste, circumstances, and organization policy. But normally we use inline template for small portion of code and external template file for bigger views. By default, the Angular CLI generates components with a template file. But you can override that with the below command,
@@ -593,7 +593,7 @@
 
   
 
-23. ### What is the purpose of `*ngFor` directive?
+21. ### What is the purpose of `*ngFor` directive?
     We use Angular `*ngFor` directive in the template to display each item in the list. For example, here we can iterate over a list of users:
     ```html
     <li *ngFor="let user of users">
@@ -604,7 +604,7 @@
 
   
 
-24. ### What is the purpose of `*ngIf` directive?
+22. ### What is the purpose of `*ngIf` directive?
     Sometimes an app needs to display a view or a portion of a view only under specific circumstances. The Angular `*ngIf` directive inserts or removes an element based on a truthy/falsy condition. Let's take an example to display a message if the user age is more than 18:
     ```html
     <p *ngIf="user.age > 18">You are not eligible for student pass!</p>
@@ -613,7 +613,7 @@
 
   
 
-25. ### What happens if you use script tag inside template?
+23. ### What happens if you use script tag inside template?
 
     Angular recognizes the value as unsafe and automatically sanitizes it, which removes the `script` tag but keeps safe content such as the text content of the `script` tag. This way it eliminates the risk of script injection attacks. If you still use it then it will be ignored and a warning appears in the browser console.
 
@@ -627,7 +627,7 @@
 
   
 
-26. ### What is interpolation?
+24. ### What is interpolation?
 
     Interpolation is a special syntax that Angular converts into property binding. It’s a convenient alternative to property binding. It is represented by double curly braces({{}}). The text between the braces is often the name of a component property. Angular replaces that name with the string value of the corresponding component property.
 
@@ -642,7 +642,7 @@
 
   
 
-27. ### What are template expressions?
+25. ### What are template expressions?
     A template expression produces a value similar to any Javascript expression. Angular executes the expression and assigns it to a property of a binding target; the target might be an HTML element, a component, or a directive. In the property binding, a template expression appears in quotes to the right of the = symbol as in `[property]="expression"`.
     In interpolation syntax, the template expression is surrounded by double curly braces. For example, in the below interpolation, the template expression is `{{username}}`,
 
@@ -659,7 +659,7 @@
 
   
 
-28. ### What are template statements?
+26. ### What are template statements?
     A template statement responds to an event raised by a binding target such as an element, component, or directive. The template statements appear in quotes to the right of the = symbol like `(event)="statement"`.
 
     Let's take an example of button click event's statement
@@ -677,7 +677,7 @@
 
   
 
-29. ### How do you categorize data binding types?
+27. ### How do you categorize data binding types?
 
      Binding types can be grouped into three categories distinguished by the direction of data flow. They are listed as below,
      1. From the source-to-view
@@ -694,7 +694,7 @@
 
   
 
-30. ### What are pipes?
+28. ### What are pipes?
     Pipes in Angular are a powerful feature that allow you to transform data in your templates. They can be used to format strings, dates, currencies, and more. Angular provides several built-in pipes, and you can also create your own custom pipes.
 
     **Using Built-in Pipes**
@@ -719,7 +719,7 @@
 
   
 
-31. ### What is a parameterized pipe?
+29. ### What is a parameterized pipe?
     parameterized pipe is a type of pipe that can accept one or more parameters to customize its behavior. Pipes are a way to transform data in templates, and parameterized pipes provide additional flexibility by allowing you to pass arguments to the pipe.
     A parameterized pipe is used by adding a colon (:) followed by the parameter value(s) after the pipe name. Multiple parameters can be separated by colons.
 
@@ -760,7 +760,7 @@
 	```
   
 
-33. ### How do you chain pipes?
+30. ### How do you chain pipes?
     You can chain pipes together in potentially useful combinations as per the needs. Let's take a birthday property which uses date pipe(along with parameter) and uppercase pipes as below
 
     ```typescript
@@ -778,7 +778,7 @@
 
   
 
-34. ### What is a custom pipe?
+31. ### What is a custom pipe?
     You can create your own custom pipes when the built-in ones do not meet your needs. Here’s how you can create a custom pipe in Angular.
 
 	1. **Generate a Custom Pipe**:
@@ -837,7 +837,7 @@
   
   
 
-36. ### What is the difference between pure and impure pipe?
+32. ### What is the difference between pure and impure pipe?
     In Angular, pipes can be classified as either **pure** or **impure** based on their behavior and how often Angular executes them during change detection. Understanding the difference between these two types of pipes is crucial for optimizing performance and ensuring correct behavior in your applications.
 
 	**Pure pipes** are the default type of pipes in Angular. They are executed only when Angular detects a pure change to the input value. Pure changes include:
@@ -867,7 +867,7 @@
 	}
 	```  
 
-37. ### What is a bootstrapping module?
+33. ### What is a bootstrapping module?
     Every application has at least one Angular module, the root module that you bootstrap to launch the application is called as bootstrapping module. It is commonly known as `AppModule`. The default structure of `AppModule` generated by AngularCLI would be as follows:
 	
 	```javascript
@@ -896,12 +896,12 @@
 
   
 
-38. ### What are observables?
+34. ### What are observables?
     Observables are declarative which provide support for passing messages between publishers and subscribers in the application. They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
 
   
 
-39. ### What is HttpClient and its benefits?
+35. ### What is HttpClient and its benefits?
     Most of the Front-end applications communicate with backend services over `HTTP` protocol using either `XMLHttpRequest` interface or the `fetch()` API. Angular provides a simplified client HTTP API known as `HttpClient` which is based on top of `XMLHttpRequest` interface. This client is available from `@angular/common/http` package.
     You can import in your root module as below:
 
@@ -918,7 +918,7 @@
 
   
 
-40. ### Explain on how to use `HttpClient` with an example?
+36. ### Explain on how to use `HttpClient` with an example?
     Below are the steps need to be followed for the usage of `HttpClient`.
     1. Import `HttpClient` into root module:
         ```javascript
@@ -966,7 +966,7 @@
 
   
 
-41. ### How can you read full response?
+37. ### How can you read full response?
     The response body doesn't or may not return full response data because sometimes servers also return special headers or status code, which are important for the application workflow. In order to get the full response, you should use `observe` option from `HttpClient`:
 
     ```javascript
@@ -979,7 +979,7 @@
 
   
 
-42. ### How do you perform Error handling?
+38. ### How do you perform Error handling?
     If the request fails on the server or fails to reach the server due to network issues, then `HttpClient` will return an error object instead of a successful reponse. In this case, you need to handle in the component by passing `error` object as a second callback to `subscribe()` method.
 
     Let's see how it can be handled in the component with an example,
@@ -996,7 +996,7 @@
 
   
 
-43. ### What is RxJS?
+39. ### What is RxJS?
     RxJS is a library for composing asynchronous and callback-based code in a functional, reactive style using Observables. Many APIs such as  HttpClient produce and consume RxJS Observables and also uses operators for processing observables.
 
     For example, you can import observables and operators for using HttpClient as below,
@@ -1007,7 +1007,7 @@
 
   
 
-44. ### What is subscribing?
+40. ### What is subscribing?
     An Observable instance begins publishing values only when someone subscribes to it. So you need to subscribe by calling the `subscribe()` method of the instance, passing an observer object to receive the notifications.
 
     Let's take an example of creating and subscribing to a simple observable, with an observer that logs the received message to the console.
@@ -1030,48 +1030,9 @@
     // => Observer got a next value: 4
     // => Observer got a next value: 5
     // => Observer got a complete notification
-    ```
+    ```  
 
-  
-
-45. ### What is an observable?
-    An Observable is a unique Object similar to a Promise that can help manage async code. Observables are not part of the JavaScript language so we need to rely on a popular Observable library called RxJS.
-    The observables are created using new keyword.
-
-    Let see the simple example of observable,
-    ```javascript
-    import { Observable } from 'rxjs';
-
-    const observable = new Observable(observer => {
-      setTimeout(() => {
-        observer.next('Hello from a Observable!');
-      }, 2000);
-    });
-    ```
-
-  
-
-46. ### What is an observer?
-    Observer is an interface for a consumer of push-based notifications delivered by an Observable. It has below structure,
-
-    ```javascript
-    interface Observer<T> {
-      closed?: boolean;
-      next: (value: T) => void;
-      error: (err: any) => void;
-      complete: () => void;
-    }
-    ```
-    A handler that implements the Observer interface for receiving observable notifications will be passed as a parameter for observable as below,
-
-    ```javascript
-    myObservable.subscribe(myObserver);
-    ```
-    **Note:** If you don't supply a handler for a notification type, the observer ignores notifications of that type.
-
-  
-
-47. ### What is the difference between promise and observable?
+41. ### What is the difference between promise and observable?
     Both **Promises** and **Observables** are used for handling asynchronous operations in JavaScript and TypeScript, but they have different characteristics and use cases. Here’s a comparison to help you understand their differences:
 
 	**Promises**
@@ -1129,7 +1090,7 @@
 	subscription.unsubscribe();
 	```
 
-48. ### What is multicasting?
+42. ### What is multicasting?
     Multi-casting is the practice of broadcasting to a list of multiple subscribers in a single execution.
 
     Let's demonstrate the multi-casting feature:
@@ -1151,7 +1112,7 @@
 
   
 
-49. ### How do you perform error handling in observables?
+43. ### How do you perform error handling in observables?
     You can handle errors by specifying an **error callback** on the observer instead of relying on `try`/`catch`, which are ineffective in asynchronous environment.
 
     For example, you can define error callback as below,
