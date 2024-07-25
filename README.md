@@ -1334,15 +1334,19 @@
       A DI (Dependency Injection) token is a key used to identify and retrieve a dependency in Angular's dependency injection system. It's like a label that helps the injector find the right provider for the requested dependency.   
 
  68. ### What is Angular DSL?
-      A domain-specific language (DSL) is a computer language specialized to a particular application domain. Angular has its own Domain Specific Language (DSL) which allows us to write Angular specific html-like syntax on top of normal html. It has its own compiler that compiles this syntax to html that the browser can understand. This DSL is defined in NgModules such as animations, forms, and routing and navigation.
 
-      Basically you will see 3 main syntax in Angular DSL.
+	Angular DSL (Domain-Specific Language) is a special syntax used in Angular to extend standard HTML with Angular-specific features. It allows you to write HTML-like code that Angular understands and compiles into regular HTML for the browser.
+	
+   **Key Parts of Angular DSL:**
 
-      1. `()`: Used for Output and DOM events.
-      2. `[]`: Used for Input and specific DOM element attributes.
-      3. `*`: Structural directives(*ngFor or *ngIf) will affect/change the DOM structure.
+   1. **`()`**: Used for handling output and DOM events.
+   - Example: `(click)="doSomething()"`
 
-   
+   2. **`[]`**: Used for binding input values and setting DOM element attributes.
+   - Example: `[src]="imageUrl"`
+
+   3. **`*`**: Used for structural directives that change the DOM layout.
+   - Example: `*ngIf="isVisible"`   
 
 69. ### what is an rxjs subject in Angular
      An RxJS Subject is a special type of Observable that allows values to be multicasted to many Observers. While plain Observables are unicast (each subscribed Observer owns an independent execution of the Observable), Subjects are multicast.
