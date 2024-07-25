@@ -1331,16 +1331,7 @@
    
 
  67. ### What is a DI token?
-      A DI token is a lookup token associated with a dependency provider in dependency injection system. The injector maintains an internal token-provider map that it references when asked for a dependency and the DI token is the key to the map. Let's take example of DI Token usage,
-
-      ```javascript
-      const BASE_URL = new InjectionToken<string>('BaseUrl');
-      const injector =
-         Injector.create({providers: [{provide: BASE_URL, useValue: 'http://some-domain.com'}]});
-      const url = injector.get(BASE_URL);
-      ```
-
-   
+      A DI (Dependency Injection) token is a key used to identify and retrieve a dependency in Angular's dependency injection system. It's like a label that helps the injector find the right provider for the requested dependency.   
 
  68. ### What is Angular DSL?
       A domain-specific language (DSL) is a computer language specialized to a particular application domain. Angular has its own Domain Specific Language (DSL) which allows us to write Angular specific html-like syntax on top of normal html. It has its own compiler that compiles this syntax to html that the browser can understand. This DSL is defined in NgModules such as animations, forms, and routing and navigation.
