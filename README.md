@@ -1306,16 +1306,17 @@
       4. @Injectable()
       5. @NgModule()
 
- 65. ### What is declarable in Angular?
-      Declarable is a class type that you can add to the declarations list of an NgModule. The class types such as components, directives, and pipes comes can be declared in the module. The structure of declarations would be,
+ 65. ### What is Declarable in Angular?
 
-      ```javascript
-      declarations: [
-        YourComponent,
-        YourPipe,
-        YourDirective
-      ],
-      ```
+		A declarable is a class type that you can add to the `declarations` list of an NgModule. The class types that can be declared in a module are components, directives, and pipes. The structure of the `declarations` array in an NgModule would look like this:
+		
+		```typescript
+		declarations: [
+		  YourComponent,
+		  YourPipe,
+		  YourDirective
+		]
+		```
 
    
 
