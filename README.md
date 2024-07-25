@@ -1234,59 +1234,32 @@
  55. ### Is there any editor support for Angular Language Service?
       Yes, Angular Language Service is currently available for Visual Studio Code and WebStorm IDEs. You need to install angular language service using an extension and devDependency respectively. In sublime editor, you need to install typescript which has has a language service plugin model.
 
- 56. ### How do you add web workers in your application?
-      You can add web worker anywhere in your application. For example, If the file that contains your expensive computation is `src/app/app.component.ts`, you can add a Web Worker using `ng generate web-worker app` command which will create `src/app/app.worker.ts` web worker file. This command will perform below actions,
+ 56. ### How are web workers in angular?
+     A web worker in Angular is a mechanism that allows you to run scripts in background threads. This can be particularly useful for performing computationally intensive tasks without blocking the main thread, thereby maintaining a smooth user interface experience. you can add a Web Worker using `ng generate web-worker app` command which will create `src/app/app.worker.ts` web worker file. This command will perform below actions,
 
-      1. Configure your project to use Web Workers
-      2. Adds app.worker.ts to receive messages
-          ```javascript
-          addEventListener('message', ({ data }) => {
-            const response = `worker response to ${data}`;
-            postMessage(response);
-          });
-          ```
-      3. The component `app.component.ts` file updated with web worker file
-          ```javascript
-          if (typeof Worker !== 'undefined') {
-            // Create a new
-            const worker = new Worker('./app.worker', { type: 'module' });
-            worker.onmessage = ({ data }) => {
-              console.log('page got message: $\{data\}');
-            };
-            worker.postMessage('hello');
-          } else {
-            // Web Workers are not supported in this environment.
-          }
-          ```
-
-      **Note:** You may need to refactor your initial scaffolding web worker code for sending messages to and from.
-
-   
-
- 57. ### What are the limitations with web workers?
+ 58. ### What are the limitations with web workers?
       You need to remember two important things when using Web Workers in Angular projects,
 
       1. Some environments or platforms(like @angular/platform-server) used in Server-side Rendering, don't support Web Workers. In this case you need to provide a fallback mechanism to perform the computations to work in this environments.
       2. Running Angular in web worker using `@angular/platform-webworker` is not yet supported in Angular CLI.
 
-   
 
- 58. ### What is Angular CLI Builder?
+ 59. ### What is Angular CLI Builder?
       In Angular8, the CLI Builder API is stable and available to developers who want to customize the `Angular CLI` by adding or modifying commands. For example, you could supply a builder to perform an entirely new task, or to change which third-party tool is used by an existing command.
 
    
 
- 59. ### What is a builder?
+ 60. ### What is a builder?
       A builder function is a function that uses the `Architect API` to perform a complex process such as "build" or "test". The builder code is defined in an npm package. For example, BrowserBuilder runs a webpack build for a browser target and KarmaBuilder starts the Karma server and runs a webpack build for unit tests.
 
    
 
- 60. ### How do you invoke a builder?
+ 61. ### How do you invoke a builder?
       The Angular CLI command `ng run` is used to invoke a builder with a specific target configuration. The workspace configuration file, `angular.json`, contains default configurations for built-in builders.
 
    
 
- 61. ### How do you create app shell in Angular?
+ 62. ### How do you create app shell in Angular?
       An App shell is a way to render a portion of your application via a route at build time. This is useful to first paint of your application that appears quickly because the browser can render static HTML and CSS without the need to initialize JavaScript. You can achieve this using Angular CLI which generates an app shell for running server-side of your app.
 
       ```javascript
@@ -1295,7 +1268,7 @@
       ```
    
 
- 62. ### What are the case types in Angular?
+ 63. ### What are the case types in Angular?
       Angular uses capitalization conventions to distinguish the names of various types. Angular follows the list of the below case types.
 
       1. **camelCase :** Symbols, properties, methods, pipe names, non-component directive selectors, constants uses lowercase on the first letter of the item. For example, "selectedUser"
@@ -1305,7 +1278,7 @@
 
    
 
- 63. ### What are the class decorators in Angular?
+ 64. ### What are the class decorators in Angular?
       A class decorator is a decorator that appears immediately before a class definition, which declares the class to be of the given type, and provides metadata suitable to the type
 
       The following list of decorators comes under class decorators,
@@ -1316,7 +1289,7 @@
       4. @Injectable()
       5. @NgModule()
 
- 64. ### What is declarable in Angular?
+ 65. ### What is declarable in Angular?
       Declarable is a class type that you can add to the declarations list of an NgModule. The class types such as components, directives, and pipes comes can be declared in the module. The structure of declarations would be,
 
       ```javascript
@@ -1329,7 +1302,7 @@
 
    
 
- 65. ### What are the restrictions on declarable classes?
+ 66. ### What are the restrictions on declarable classes?
       Below classes shouldn't be declared,
 
       1. A class that's already declared in another NgModule
@@ -1339,7 +1312,7 @@
 
    
 
- 66. ### What is a DI token?
+ 67. ### What is a DI token?
       A DI token is a lookup token associated with a dependency provider in dependency injection system. The injector maintains an internal token-provider map that it references when asked for a dependency and the DI token is the key to the map. Let's take example of DI Token usage,
 
       ```javascript
@@ -1351,7 +1324,7 @@
 
    
 
- 67. ### What is Angular DSL?
+ 68. ### What is Angular DSL?
       A domain-specific language (DSL) is a computer language specialized to a particular application domain. Angular has its own Domain Specific Language (DSL) which allows us to write Angular specific html-like syntax on top of normal html. It has its own compiler that compiles this syntax to html that the browser can understand. This DSL is defined in NgModules such as animations, forms, and routing and navigation.
 
       Basically you will see 3 main syntax in Angular DSL.
@@ -1362,7 +1335,7 @@
 
    
 
-68. ### what is an rxjs subject in Angular
+69. ### what is an rxjs subject in Angular
      An RxJS Subject is a special type of Observable that allows values to be multicasted to many Observers. While plain Observables are unicast (each subscribed Observer owns an independent execution of the Observable), Subjects are multicast.
       
      A Subject is like an Observable, but can multicast to many Observers. Subjects are like EventEmitters: they maintain a registry of many listeners.
@@ -1385,13 +1358,13 @@
 
    
 
-69.  ### What is Bazel tool?
+70.  ### What is Bazel tool?
       Bazel is a powerful build tool developed and massively used by Google and it can keep track of the dependencies between different packages and build targets. In Angular8, you can build your CLI application with Bazel.
       **Note:** The Angular framework itself is built with Bazel.
 
    
 
-70.  ### What are the advantages of Bazel tool?
+71.  ### What are the advantages of Bazel tool?
       Below are the list of key advantages of Bazel tool,
 
       1. It creates the possibility of building your back-ends and front-ends with the same tool
@@ -1400,7 +1373,7 @@
 
    
 
-71. ### How do you use Bazel with Angular CLI?
+72. ### How do you use Bazel with Angular CLI?
      The @angular/bazel package provides a builder that allows Angular CLI to use Bazel as the build tool.
      1. **Use in an existing applciation:** Add @angular/bazel using CLI
          ```javascript
@@ -1415,7 +1388,7 @@
 
    
 
-72. ### How do you run Bazel directly?
+73. ### How do you run Bazel directly?
      Sometimes you may want to bypass the Angular CLI builder and run Bazel directly using Bazel CLI. You can install it globally using @bazel/bazel npm package. i.e, Bazel CLI is available under @bazel/bazel package. After you can apply the below common commands,
 
      ```javascrippt
@@ -1426,7 +1399,7 @@
 
    
 
-73. ### What is platform in Angular?
+74. ### What is platform in Angular?
      A platform is the context in which an Angular application runs. The most common platform for Angular applications is a web browser, but it can also be an operating system for a mobile device, or a web server. The runtime-platform is provided by the @angular/platform-* packages and these packages allow applications that make use of `@angular/core` and `@angular/common` to execute in different environments.
      i.e, Angular can be used as platform-independent framework in different environments, For example,
 
@@ -1435,12 +1408,12 @@
 
    
 
-74. ### What happens if I import the same module twice?
+75. ### What happens if I import the same module twice?
      If multiple modules imports the same module then angular evaluates it only once (When it encounters the module first time). It follows this condition even the module appears at any level in a hierarchy of imported NgModules.
 
    
 
-75. ### How do you select an element with in a component template?
+76. ### How do you select an element with in a component template?
      You can use `@ViewChild` directive to access elements in the view directly. Let's take input element with a reference,
 
      ```html
@@ -1458,7 +1431,7 @@
 
    
 
-76. ### How do you detect route change in Angular?
+77. ### How do you detect route change in Angular?
      In Angular7, you can subscribe to router to detect the changes. The subscription for router events would be as below,
 
      ```javascript
@@ -1497,7 +1470,7 @@
      ```
 
 
-77. ### How do you pass headers for HTTP client?
+78. ### How do you pass headers for HTTP client?
      You can directly pass object map for http client or create HttpHeaders class to supply the headers.
 
      ```javascript
@@ -1520,7 +1493,7 @@
 
      
 
-78. ### What is the purpose of differential loading in CLI?
+79. ### What is the purpose of differential loading in CLI?
      From Angular8 release onwards, the applications are built using differential loading strategy from CLI to build two separate bundles as part of your deployed application.
 
      1. The first build contains ES2015 syntax which takes the advantage of built-in support in modern browsers, ships less polyfills, and results in a smaller bundle size.
@@ -1530,7 +1503,7 @@
 
      
 
-79. ### Is Angular supports dynamic imports?
+80. ### Is Angular supports dynamic imports?
      Yes, Angular 8 supports dynamic imports in router configuration. i.e, You can use the import statement for lazy loading the module using `loadChildren` method and it will be understood by the IDEs(VSCode and WebStorm), webpack, etc.
      Previously, you have been written as below to lazily load the feature module. By mistake, if you have typo in the module name it still accepts the string and throws an error during build time.
      ```javascript
@@ -1543,7 +1516,7 @@
 
      
 
-80. ### What is lazy loading?
+81. ### What is lazy loading?
      Lazy loading is one of the most useful concepts of Angular Routing. It helps us to download the web pages in chunks instead of downloading everything in a big bundle. It is used for lazy loading by asynchronously loading the feature module for routing whenever required using the property `loadChildren`. Let's load both `Customer` and `Order` feature modules lazily as below,
      ```javascript
      const routes: Routes = [
@@ -1563,7 +1536,7 @@
      ];
      ``` 
 
-81. ### What is Angular Material?
+82. ### What is Angular Material?
      Angular Material is a collection of Material Design components for Angular framework following the Material Design spec. You can apply Material Design very easily using Angular Material. The installation can be done through npm or yarn,
      ```bash
      npm install --save @angular/material @angular/cdk @angular/animations
@@ -1572,12 +1545,12 @@
      ```
      It supports the most recent two versions of all major browsers. The latest version of Angular material is 8.1.1
 
-82. ### What is NgUpgrade?
+83. ### What is NgUpgrade?
      NgUpgrade is a library put together by the Angular team, which you can use in your applications to mix and match AngularJS and Angular components and bridge the AngularJS and Angular dependency injection systems.
 
      
 
-83. ### How do you test Angular application using CLI?
+84. ### How do you test Angular application using CLI?
      Angular CLI downloads and install everything needed with the Jasmine Test framework. You just need to run `ng test` to see the test results. By default this command builds the app in watch mode, and launches the `Karma test runner`. The output of test results would be as below,
      ```bash
      10% building modules 1/1 modules 0 active
@@ -1589,12 +1562,12 @@
      ```
      **Note:** A chrome browser also opens and displays the test output in the "Jasmine HTML Reporter".
 
-84. ### What is the difference between ngIf and hidden property?
+85. ### What is the difference between ngIf and hidden property?
      The main difference is that *ngIf will remove the element from the DOM, while [hidden] actually plays with the CSS style by setting `display:none`. Generally it is expensive to add and remove stuff from the DOM for frequent actions.
 
      
 
-85. ### What is slice pipe?
+86. ### What is slice pipe?
      The slice pipe is used to create a new Array or String containing a subset (slice) of the elements. The syntax looks like as below,
      ```javascript
      {{ value_expression | slice : start [ : end ] }}
@@ -1612,7 +1585,7 @@
      }
      ```     
 
-86. ### What is the purpose of ngFor trackBy?
+87. ### What is the purpose of ngFor trackBy?
      The main purpose of using *ngFor with trackBy option is performance optimization. Normally if you use NgFor with large data sets, a small change to one item by removing or adding an item, can trigger a cascade of DOM manipulations. In this case, Angular sees only a fresh list of new object references and to replace the old DOM elements with all new DOM elements. You can help Angular to track which items added or removed by providing a `trackBy` function which takes the index and the current item as arguments and needs to return the unique identifier for this item.
 
      For example, lets set trackBy to the trackByTodos() method
@@ -1628,7 +1601,7 @@
 
      
 
-87. ### What is the purpose of ngSwitch directive?
+88. ### What is the purpose of ngSwitch directive?
      **NgSwitch** directive is similar to JavaScript switch statement which displays one element from among several possible elements, based on a switch condition. In this case only the selected element placed into the DOM. It has been used along with `NgSwitch`, `NgSwitchCase` and `NgSwitchDefault` directives.
 
      For example, let's display the browser details based on selected browser using ngSwitch directive.
@@ -1642,7 +1615,7 @@
      </div>
      ```
 
-88. ### What is safe navigation operator?
+89. ### What is safe navigation operator?
      The safe navigation operator(?)(or known as Elvis Operator) is used to guard against `null` and `undefined` values in property paths when you are not aware whether a path exists or not. i.e. It returns value of the object path if it exists, else it returns the null value.
 
      For example, you can access nested properties of a user profile easily without null reference errors as below,
@@ -1651,20 +1624,20 @@
      ```
      Using this safe navigation operator, Angular framework stops evaluating the expression when it hits the first null value and renders the view without any errors.
 
-89. ### What is Angular compiler?
+90. ### What is Angular compiler?
      The Angular compiler is used to convert the application code into JavaScript code. It reads the template markup, combines it with the corresponding component class code, and emits component factories which creates JavaScript representation of the component along with elements of @Component metadata.
 
      
 
-90. ### What is the role of ngModule metadata in compilation process?
+91. ### What is the role of ngModule metadata in compilation process?
      The `@NgModule` metadata is used to tell the Angular compiler what components to be compiled for this module and how to link this module with other modules.
 
      
 
-91. ### How does angular finds components, directives and pipes?
+92. ### How does angular finds components, directives and pipes?
      The Angular compiler finds a component or directive in a template when it can match the selector of that component or directive in that template. Whereas it finds a pipe if the pipe's name appears within the pipe syntax of the template HTML.
 
-92. ### What are feature modules?
+93. ### What are feature modules?
      Feature modules are NgModules, which are used for the purpose of organizing code. The feature module can be created with Angular CLI using the below command in the root directory,
      ```javascript
      ng generate module MyCustomFeature //
@@ -1687,14 +1660,14 @@
 
      
 
-93. ### What are the imported modules in CLI generated feature modules?
+94. ### What are the imported modules in CLI generated feature modules?
      In the CLI generated feature module, there are two JavaScript import statements at the top of the file
      1. **NgModule:** InOrder to use the `@NgModule` decorator
      2. **CommonModule:** It provides many common directives such as `ngIf` and `ngFor`.
 
      
 
-94. ### What are the differences between ngmodule and javascript module?
+95. ### What are the differences between ngmodule and javascript module?
      Below are the main differences between Angular NgModule and javascript module,
 
      | NgModule | JavaScript module |
@@ -1704,7 +1677,7 @@
      | It only export the declarable classes it owns or imports from other modules| It can export any classes |
      | Extend the entire application with services by adding providers to provides array | Can't extend the application with services |
 
-95. ### What is a shared module?
+96. ### What is a shared module?
      The Shared Module is the module in which you put commonly used directives, pipes, and components into one module that is shared(import it) throughout the application.
 
      For example, the below shared module imports CommonModule, FormsModule for common directives and components, pipes and directives based on the need,
@@ -1727,7 +1700,7 @@
 
      
 
-96. ### Can I share services using modules?
+97. ### Can I share services using modules?
      No, it is not recommended to share services by importing module. i.e Import modules when you want to use directives, pipes, and components only. The best approach to get a hold of shared services is through 'Angular dependency injection' because importing a module will result in a new service instance.
 
 Certainly! Here are detailed answers to your questions:
