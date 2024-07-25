@@ -1382,29 +1382,31 @@
 
    
 
-70.  ### What is Bazel tool?
-      Bazel is a powerful build tool developed and massively used by Google and it can keep track of the dependencies between different packages and build targets. In Angular8, you can build your CLI application with Bazel.
-      **Note:** The Angular framework itself is built with Bazel.
+70.  ### What is Bazel?
 
-   
+		Bazel is a build tool developed by Google that helps manage and build complex software projects. It tracks dependencies between packages and builds only what’s needed. 
+		
+		In Angular 8, you can use Bazel to build your Angular application. Note that Angular itself is built using Bazel.
 
 71.  ### What are the advantages of Bazel tool?
-      Below are the list of key advantages of Bazel tool,
+      **Advantages of Bazel**
 
-      1. It creates the possibility of building your back-ends and front-ends with the same tool
-      2. The incremental build and tests
-      3. It creates the possibility to have remote builds and cache on a build farm.
+		1. **Fast Builds**: Bazel builds only what has changed, which speeds up the build process.
+		2. **Scalability**: It handles large codebases efficiently.
+		3. **Incremental Builds**: Rebuilds only the parts of the project that are affected by changes.
+		4. **Parallel Execution**: Runs tasks in parallel to improve build speed.
+		5. **Dependency Tracking**: Keeps track of dependencies to avoid redundant work.
 
    
 
 72. ### How do you use Bazel with Angular CLI?
      The @angular/bazel package provides a builder that allows Angular CLI to use Bazel as the build tool.
      1. **Use in an existing applciation:** Add @angular/bazel using CLI
-         ```javascript
+         ```bash
          ng add @angular/bazel
          ```
      2. **Use in a new application:** Install the package and create the application with collection option
-         ```javascript
+         ```bash
          npm install -g @angular/bazel
          ng new --collection=@angular/bazel
          ```
@@ -1415,7 +1417,7 @@
 73. ### How do you run Bazel directly?
      Sometimes you may want to bypass the Angular CLI builder and run Bazel directly using Bazel CLI. You can install it globally using @bazel/bazel npm package. i.e, Bazel CLI is available under @bazel/bazel package. After you can apply the below common commands,
 
-     ```javascrippt
+     ```bash
      bazel build [targets] // Compile the default output artifacts of the given targets.
      bazel test [targets] // Run the tests with *_test targets found in the pattern.
      bazel run [target]: Compile the program represented by target and then run it.
