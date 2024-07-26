@@ -1889,7 +1889,7 @@ An Angular library is a reusable package of code that can be used across multipl
 The Angular Compatibility Compiler (ngcc) converts Angular libraries compiled with the View Engine to Ivy-compatible format. It ensures compatibility with the Ivy rendering engine.
 
 114. ### :warning: What is NgZone?
-`NgZone` is an Angular service that helps manage change detection and application state by allowing you to control when Angular runs change detection and handles asynchronous operations.
+`NgZone` is a service in Angular that helps manage and optimize how your application detects changes and handles asynchronous tasks (like HTTP requests or timers).
 
 115. ### What is NoopZone?
 `NoopZone` is a placeholder implementation of `NgZone` that disables Angular’s change detection. It can be used for performance testing or to avoid Angular’s automatic change detection.
