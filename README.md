@@ -1574,7 +1574,7 @@ These packages allow Angular applications to run in various environments, making
      It supports the most recent two versions of all major browsers. The latest version of Angular material is 18.1.0
 
 83. ### What is NgUpgrade?
-     NgUpgrade is a library put together by the Angular team, which you can use in your applications to mix and match AngularJS and Angular components and bridge the AngularJS and Angular dependency injection systems.
+     NgUpgrade is a library created by the Angular team that allows you to run AngularJS and Angular components together in the same application. It helps bridge the dependency injection systems of both frameworks, making it easier to migrate from AngularJS to Angular gradually.
 
      
 
