@@ -1565,13 +1565,13 @@ These packages allow Angular applications to run in various environments, making
      ``` 
 
 82. ### What is Angular Material?
-     Angular Material is a collection of Material Design components for Angular framework following the Material Design spec. You can apply Material Design very easily using Angular Material. The installation can be done through npm or yarn,
+     Angular Material is a collection of Material Design components for the Angular framework. It makes it easy to apply Material Design principles to your Angular applications.
      ```bash
      npm install --save @angular/material @angular/cdk @angular/animations
      (OR)
      yarn add @angular/material @angular/cdk @angular/animations
      ```
-     It supports the most recent two versions of all major browsers. The latest version of Angular material is 8.1.1
+     It supports the most recent two versions of all major browsers. The latest version of Angular material is 18.1.0
 
 83. ### What is NgUpgrade?
      NgUpgrade is a library put together by the Angular team, which you can use in your applications to mix and match AngularJS and Angular components and bridge the AngularJS and Angular dependency injection systems.
