@@ -1955,7 +1955,7 @@ Sure, here are more detailed answers for each question:
 ### 122. :warning: What is the difference between Subject and Observable in Angular?
 
 **Answer:**
-- **Observable:** An Observable is a data producer that emits data to subscribers over time. It is a one-way data communication mechanism. Observables are lazy, meaning they do not produce values until they are subscribed to. They are commonly used to handle asynchronous data streams, such as HTTP requests or user inputs.
+- **Observable:** Observables are declarative which provide support for passing messages between publishers and subscribers in the application. They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
 
 - **Subject:** A Subject is a special type of Observable that acts as both an observer and an observable. It allows values to be multicasted to many observers, making it possible to use one data stream for multiple subscribers. Subjects are hot observables, meaning they start emitting values as soon as they are created, and all subscribers receive the same values.
 
