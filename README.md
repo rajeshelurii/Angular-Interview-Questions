@@ -1,5 +1,5 @@
 **Angular Interview Quetions**
-1. ### :red_circle: What is Angular?
+1. ### What is Angular?
 
    **Angular** is a platform and framework for building client-side applications using HTML, CSS, and JavaScript/TypeScript. Angular is developed and maintained by Google and is widely used for building single-page applications 
    (SPAs). It is built entirely using typescript.
@@ -261,7 +261,7 @@
 
   
 
-11. ### What are lifecycle hooks available?
+11. ### :warning: What are lifecycle hooks available?
     Angular application goes through an entire set of processes or has a lifecycle right from its initiation to the end of the application.
     Constructor is the first method triggered when component is started and ngOnChanges is the first lifecycle hook.
 
@@ -559,7 +559,7 @@
 	**Element Injector**
 	The Element Injector is responsible for providing services at the component and directive level. Each Angular component and directive has its own Element Injector, allowing for a more granular and localized provision of services.
 
-19. ### What is the purpose of async pipe?
+19. ### :warning: What is the purpose of async pipe?
     The AsyncPipe subscribes to an observable or promise and returns the latest value it has emitted. When a new value is emitted, the pipe marks the component to be checked for changes.
 
     Let's take a time observable which continuously updates the view for every 2 seconds with the current time.
@@ -996,11 +996,11 @@
 
   
 
-39. ### What is RxJS?
+39. ### :warning: What is RxJS?
     RxJS is a library for composing asynchronous and callback-based code in a functional, reactive style using Observables. Many APIs such as  HttpClient produce and consume RxJS Observables and also uses operators for processing observables.
 
     For example, you can import observables and operators for using HttpClient as below,
-    ```javascript
+    ```typescript
     import { Observable, throwError } from 'rxjs';
     import { catchError, retry } from 'rxjs/operators';
     ```
@@ -1104,21 +1104,21 @@
     });
     ```
 
-44. ### What is Angular Universal?
+44. ### :warning: What is Angular Universal?
     Angular Universal is a technology for Angular that allows you to render Angular applications on the server side rather than in the browser. This server-side rendering (SSR) approach has several benefits, including improved performance, better SEO, and faster initial load times.
 
 
-45. ### What are different types of compilation in Angular?
+45. ### :warning: What are different types of compilation in Angular?
     Angular offers two ways to compile your application,
     1. Just-in-Time (JIT)
     2. Ahead-of-Time (AOT)
 
 
-46. ### What is JIT?
+46. ### :warning: What is JIT?
     Just-in-Time (JIT) is a type of compilation that compiles your app in the browser at runtime. JIT compilation was the default until Angular 8, now default is AOT. When you run the ng build (build only) or ng serve (build and serve locally) CLI commands, the type of compilation (JIT or AOT) depends on the value of the aot property in your build configuration specified in angular.json. By default, aot is set to true.
 
 
-47. ### What is AOT?
+47. ### :warning: What is AOT?
     Ahead-of-Time (AOT) is a type of compilation that compiles your app at build time. This is the default starting in Angular 9. When you run the ng build (build only) or ng serve (build and serve locally) CLI commands, the type of compilation (JIT or AOT) depends on the value of the aot property in your build configuration specified in angular.json. By default, aot is set to true.
     
     ```cmd
@@ -1126,7 +1126,7 @@
     ng serve
     ```
 
-48. ### What are the advantages with AOT?
+48. ### :warning: What are the advantages with AOT?
     Below are the list of AOT benefits,
 
     - **Faster initial load time:** Since the application is already compiled, the browser can execute the code directly, resulting in a quicker startup.
@@ -1544,7 +1544,7 @@ These packages allow Angular applications to run in various environments, making
 
      
 
-81. ### What is lazy loading?
+81. ### :warning: What is lazy loading?
      Lazy loading is one of the most useful concepts of Angular Routing. It helps us to download the web pages in chunks instead of downloading everything in a big bundle. It is used for lazy loading by asynchronously loading the feature module for routing whenever required using the property `loadChildren`. Let's load both `Customer` and `Order` feature modules lazily as below,
      ```javascript
      const routes: Routes = [
@@ -1564,7 +1564,7 @@ These packages allow Angular applications to run in various environments, making
      ];
      ``` 
 
-82. ### What is Angular Material?
+82. ### :warning: What is Angular Material?
      Angular Material is a collection of Material Design components for the Angular framework. It makes it easy to apply Material Design principles to your Angular applications.
      ```bash
      npm install --save @angular/material @angular/cdk @angular/animations
@@ -1613,7 +1613,7 @@ These packages allow Angular applications to run in various environments, making
      }
      ```     
 
-87. ### What is the purpose of ngFor trackBy?
+87. ### :warning: What is the purpose of ngFor trackBy?
      The main purpose of using *ngFor with trackBy option is performance optimization. Normally if you use NgFor with large data sets, a small change to one item by removing or adding an item, can trigger a cascade of DOM manipulations. In this case, Angular sees only a fresh list of new object references and to replace the old DOM elements with all new DOM elements. You can help Angular to track which items added or removed by providing a `trackBy` function which takes the index and the current item as arguments and needs to return the unique identifier for this item.
 
      For example, lets set trackBy to the trackByTodos() method
@@ -1705,11 +1705,11 @@ These packages allow Angular applications to run in various environments, making
      | It only export the declarable classes it owns or imports from other modules| It can export any classes |
      | Extend the entire application with services by adding providers to provides array | Can't extend the application with services |
 
-96. ### What is a shared module?
+96. ### :warning: What is a shared module?
      The Shared Module is the module in which you put commonly used directives, pipes, and components into one module that is shared(import it) throughout the application.
 
      For example, the below shared module imports CommonModule, FormsModule for common directives and components, pipes and directives based on the need,
-     ```js
+     ```typescript
      import { CommonModule } from '@angular/common';
      import { NgModule } from '@angular/core';
      import { FormsModule } from '@angular/forms';
@@ -1789,7 +1789,7 @@ Server-side XSS protection should be implemented in conjunction with Angular's c
 - **Output Encoding**: Encode output data to prevent injection attacks.
 - **Security Headers**: Use HTTP security headers like Content Security Policy (CSP) to mitigate XSS risks.
 
-102. ### What are HTTP Interceptors?
+102. ### :warning: What are HTTP Interceptors?
 HTTP Interceptors are a mechanism in Angular to intercept and modify HTTP requests and responses. They allow you to:
 - Add headers to requests.
 - Handle or transform responses.
@@ -1878,10 +1878,10 @@ You can translate attributes similarly to text content by using the `i18n` attri
 112. ### What is an Angular library?
 An Angular library is a reusable package of code that can be used across multiple Angular applications. It can include components, services, and other Angular artifacts.
 
-113. ### What is the purpose of `ngcc`?
+113. ### :warning: What is the purpose of `ngcc`?
 The Angular Compatibility Compiler (ngcc) converts Angular libraries compiled with the View Engine to Ivy-compatible format. It ensures compatibility with the Ivy rendering engine.
 
-114. ### What is NgZone?
+114. ### :warning: What is NgZone?
 `NgZone` is an Angular service that helps manage change detection and application state by allowing you to control when Angular runs change detection and handles asynchronous operations.
 
 115. ### What is NoopZone?
