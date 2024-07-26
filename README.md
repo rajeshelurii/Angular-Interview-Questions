@@ -1963,24 +1963,31 @@ Sure, here are more detailed answers for each question:
 
 ### 123. :warning: What is the difference between `for...in` and `for...of` in JavaScript?
 
-**Answer:**
-- **`for...in`:** The `for...in` loop iterates over the enumerable properties of an object, including inherited properties. It is generally used for iterating over object properties.
+**`for...in` Loop**
 
-  ```javascript
-  const obj = {a: 1, b: 2, c: 3};
-  for (let key in obj) {
-    console.log(key); // a, b, c
-  }
-  ```
+- **What it does**: Iterates over the keys (property names) of an object.
+- **When to use**: When you need to get the keys of an object.
 
-- **`for...of`:** The `for...of` loop iterates over the values of an iterable object, such as an array, string, or Map. It is generally used for iterating over elements in an array or other iterable objects.
+```javascript
+const obj = {a: 1, b: 2, c: 3};
+for (let key in obj) {
+  console.log(key); // logs 'a', 'b', 'c'
+}
+```
 
-  ```javascript
-  const arr = [1, 2, 3];
-  for (let value of arr) {
-    console.log(value); // 1, 2, 3
-  }
-  ```
+**`for...of` Loop**
+
+- **What it does**: Iterates over the values of an iterable object (like arrays, strings, or Maps).
+- **When to use**: When you need to get the values of an array or other iterable objects.
+
+```javascript
+const arr = [1, 2, 3];
+for (let value of arr) {
+  console.log(value); // logs 1, 2, 3
+}
+```
+`Note` that if you try to use for...in loop on array it will still use the keys of items which is the indices. which is not recomended.
+
 
 ### 124. :warning: What are generic types in Angular?
 
