@@ -1932,3 +1932,707 @@ function example(value: string | number) {
   }
 }
 ```
+
+121. ### :warning: Ts cosole trick question
+```typescript
+console.log(1 + "2" + "2"); //122
+console.log(1 + +"2" + "2"); //32
+console.log(1 + - "1" + "2"); // 02
+console.log(+"1" + "1" + "2"); //112
+console.log("A" - "B" + "2"); //Nan2
+console.log("A" - "B" + 2); // Nan
+```
+
+Sure, here are more detailed answers for each question:
+
+### 122. What is the difference between Subject and Observable in Angular?
+
+**Answer:**
+- **Observable:** An Observable is a data producer that emits data to subscribers over time. It is a one-way data communication mechanism. Observables are lazy, meaning they do not produce values until they are subscribed to. They are commonly used to handle asynchronous data streams, such as HTTP requests or user inputs.
+
+- **Subject:** A Subject is a special type of Observable that acts as both an observer and an observable. It allows values to be multicasted to many observers, making it possible to use one data stream for multiple subscribers. Subjects are hot observables, meaning they start emitting values as soon as they are created, and all subscribers receive the same values.
+
+### 123. What is the difference between `for...in` and `for...of` in JavaScript?
+
+**Answer:**
+- **`for...in`:** The `for...in` loop iterates over the enumerable properties of an object, including inherited properties. It is generally used for iterating over object properties.
+
+  ```javascript
+  const obj = {a: 1, b: 2, c: 3};
+  for (let key in obj) {
+    console.log(key); // a, b, c
+  }
+  ```
+
+- **`for...of`:** The `for...of` loop iterates over the values of an iterable object, such as an array, string, or Map. It is generally used for iterating over elements in an array or other iterable objects.
+
+  ```javascript
+  const arr = [1, 2, 3];
+  for (let value of arr) {
+    console.log(value); // 1, 2, 3
+  }
+  ```
+
+### 124. What are generic types in Angular?
+
+**Answer:**
+Generic types in Angular are a way to create reusable and type-safe components, services, and classes that can work with different data types. By using generics, you can define a template that can accept various types of data without losing type safety.
+
+Example of a generic service:
+
+```typescript
+class DataService<T> {
+  private data: T[] = [];
+
+  add(item: T) {
+    this.data.push(item);
+  }
+
+  getAll(): T[] {
+    return this.data;
+  }
+}
+
+const numberService = new DataService<number>();
+numberService.add(123);
+const numbers = numberService.getAll(); // numbers: number[]
+
+const stringService = new DataService<string>();
+stringService.add('Hello');
+const strings = stringService.getAll(); // strings: string[]
+```
+
+### 125. What is the difference between FormBuilder and FormGroup in Angular?
+
+**Answer:**
+- **FormBuilder:** FormBuilder is a service provided by Angular that helps in the creation of FormGroup, FormControl, and FormArray. It reduces the amount of boilerplate code required to create forms and allows for more readable and maintainable form creation.
+
+  ```typescript
+  constructor(private fb: FormBuilder) {}
+  
+  this.form = this.fb.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]]
+  });
+  ```
+
+- **FormGroup:** FormGroup is a class that tracks the value and validity state of a group of FormControls. It represents a form as a whole and contains child controls that make up the form. Each control is a FormControl, FormGroup, or FormArray.
+
+  ```typescript
+  this.form = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email])
+  });
+  ```
+
+### 126. How do you add dynamic validation in a form in Angular?
+
+**Answer:**
+To add dynamic validation to a form in Angular, you can use the `setValidators` method on a FormControl or FormGroup and then call `updateValueAndValidity` to apply the new validators. Here’s an example:
+
+```typescript
+// Assuming we have a form control
+const emailControl = this.form.get('email');
+
+// Set new validators dynamically
+emailControl.setValidators([Validators.required, Validators.email]);
+
+// Update the validity state
+emailControl.updateValueAndValidity();
+```
+
+### 127. What is a nested reactive form in Angular?
+
+**Answer:**
+A nested reactive form in Angular is a form structure where a FormGroup contains other FormGroups or FormArrays, allowing for complex forms with hierarchical structures. This is useful for forms that require multiple levels of grouping, such as a form for entering information about a user and their addresses.
+
+Example:
+
+```typescript
+this.userForm = this.fb.group({
+  name: ['', Validators.required],
+  addresses: this.fb.array([
+    this.fb.group({
+      street: ['', Validators.required],
+      city: ['', Validators.required]
+    })
+  ])
+});
+
+// Accessing nested FormGroup
+const addresses = this.userForm.get('addresses') as FormArray;
+```
+
+### 128. What is the use of FormArray in Angular?
+
+**Answer:**
+FormArray is used to manage an array of FormControls, FormGroups, or other FormArrays in Angular forms. It is useful for creating dynamic forms where the number of form controls can change, such as adding or removing items in a list.
+
+Example:
+
+```typescript
+this.form = this.fb.group({
+  items: this.fb.array([
+    this.fb.control('Item 1'),
+    this.fb.control('Item 2')
+  ])
+});
+
+// Adding a new control to the FormArray
+const items = this.form.get('items') as FormArray;
+items.push(this.fb.control('Item 3'));
+```
+
+### 129. What is the ChangeDetector class in Angular?
+
+**Answer:**
+The ChangeDetector class in Angular is used to control the change detection mechanism, which is responsible for keeping the view in sync with the model. It provides methods to manually trigger change detection and check the component's view for changes.
+
+Methods include:
+- `detectChanges()`: Manually triggers change detection.
+- `markForCheck()`: Marks the component for checking in the next change detection cycle.
+- `detach()`: Detaches the component from the change detection tree.
+- `reattach()`: Reattaches the component to the change detection tree.
+
+Example:
+
+```typescript
+import { ChangeDetectorRef } from '@angular/core';
+
+constructor(private cd: ChangeDetectorRef) {}
+
+// Manually triggering change detection
+this.cd.detectChanges();
+```
+
+### 130. Name 10 RxJS operators.
+
+**Answer:**
+1. **map:** Transforms items emitted by an observable by applying a function to each item.
+   ```typescript
+   import { map } from 'rxjs/operators';
+
+   observable.pipe(map(value => value * 2));
+   ```
+
+2. **filter:** Emits only those items from an observable that pass a predicate test.
+   ```typescript
+   import { filter } from 'rxjs/operators';
+
+   observable.pipe(filter(value => value > 10));
+   ```
+
+3. **mergeMap:** Projects each source value to an Observable, which is merged in the output Observable.
+   ```typescript
+   import { mergeMap } from 'rxjs/operators';
+
+   observable.pipe(mergeMap(value => otherObservable));
+   ```
+
+4. **switchMap:** Projects each source value to an Observable, which is merged in the output Observable, but unsubscribes from previous inner observables.
+   ```typescript
+   import { switchMap } from 'rxjs/operators';
+
+   observable.pipe(switchMap(value => otherObservable));
+   ```
+
+5. **catchError:** Catches errors on the observable to be handled by returning a new observable or throwing an error.
+   ```typescript
+   import { catchError } from 'rxjs/operators';
+
+   observable.pipe(catchError(error => of('Error handled')));
+   ```
+
+6. **debounceTime:** Emits a value from the source Observable only after a particular time span has passed without another source emission.
+   ```typescript
+   import { debounceTime } from 'rxjs/operators';
+
+   observable.pipe(debounceTime(300));
+   ```
+
+7. **distinctUntilChanged:** Emits all items emitted by the source Observable that are distinct by comparison from the previous item.
+   ```typescript
+   import { distinctUntilChanged } from 'rxjs/operators';
+
+   observable.pipe(distinctUntilChanged());
+   ```
+
+8. **take:** Emits only the first N values emitted by the source Observable.
+   ```typescript
+   import { take } from 'rxjs/operators';
+
+   observable.pipe(take(5));
+   ```
+
+9. **combineLatest:** Combines the latest values from all input observables and emits them as an array.
+   ```typescript
+   import { combineLatest } from 'rxjs';
+
+   combineLatest([observable1, observable2]).subscribe(values => {
+     // values is an array of the latest values from each input observable
+   });
+   ```
+
+10. **startWith:** Emits a specified value before the source observable starts emitting values.
+    ```typescript
+    import { startWith } from 'rxjs/operators';
+
+    observable.pipe(startWith('Initial value'));
+    ```
+
+### 131. What are the types of encapsulation in Angular?
+In Angular, encapsulation refers to the concept of restricting access to the internal details of a component, allowing for a well-defined interface for interaction. It's a fundamental aspect of component design in Angular and is closely related to the component’s styling and view encapsulation.
+
+Here's a breakdown of encapsulation in Angular:
+
+1. **Component Encapsulation**: Angular components encapsulate their logic, template, and styles. This means that the internal workings of a component are hidden from the outside, and only the defined public API (input/output properties and methods) is exposed. This promotes modularity and reusability.
+
+2. **View Encapsulation**: Angular provides three strategies for view encapsulation:
+
+   - **Emulated** (default): Angular emulates native scoping of styles by adding unique attributes to elements and styles. This ensures that styles defined in a component are scoped to that component and do not affect other components.
+
+   - **Native**: This uses the native Shadow DOM to encapsulate styles. Styles defined in the component only apply to the component’s template, not affecting the global styles or other components.
+
+   - **None**: No encapsulation is applied. Styles are global and affect the entire application. This can lead to style conflicts if not managed carefully.
+
+```typescript
+@Component({
+selector: 'app-component',
+templateUrl: './component.html',
+styleUrls: ['./component.css'],
+encapsulation: ViewEncapsulation."typename"
+})
+```
+
+### 132. What is `ViewChild` in Angular?
+
+**Answer:**
+`ViewChild` is a decorator that allows you to access a child component, directive, or DOM element from within the parent component. It provides a reference to the child, enabling you to interact with it directly.
+
+Example:
+
+```typescript
+import { Component, ViewChild, ElementRef } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <input #myInput type="text" />
+    <button (click)="focusInput()">Focus Input</button>
+  `
+})
+export class ParentComponent {
+  @ViewChild('myInput') inputElement: ElementRef;
+
+  focusInput() {
+    this.inputElement.nativeElement.focus();
+  }
+}
+```
+
+### 133. What is the use of an interface in Angular?
+
+**Answer:**
+Interfaces in Angular are used to define the structure of objects, ensuring type safety and consistency. They help in defining the shape of data that components, services, or other parts of the application are expected to handle.
+
+Example:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const user: User = {
+  id: 1,
+  name: 'John Doe',
+  email: 'john.doe@example.com'
+};
+```
+
+### 134. What is an entry component in Angular?
+
+**Answer:**
+An entry component is any component that is loaded imperatively, meaning it is not referenced in a template but rather loaded dynamically at runtime. Entry components are often used in scenarios such as modals, dialogs, or other dynamic content.
+
+To specify entry components in an Angular module:
+
+```typescript
+@NgModule({
+  declarations: [AppComponent, ModalComponent],
+  entryComponents: [ModalComponent],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+### 135. What are the ways to pass data to multiple components in Angular?
+
+**Answer:**
+1. **Input/Output Properties:** Use `@Input` to pass data from a parent component to a child component and `@Output` to emit events from child to parent.
+   ```typescript
+   @Component({
+     selector: 'app-child',
+     template: '<p>{{data}}</p>'
+   })
+   export class ChildComponent {
+     @Input() data: string;
+   }
+   ```
+
+2. **Service with a Shared State:** Create a service to hold and manage the shared state. Use observables to notify components about changes.
+   ```typescript
+   @Injectable({ providedIn: 'root' })
+   export class DataService {
+     private dataSubject = new BehaviorSubject<string>('Initial data');
+     data$ = this.dataSubject.asObservable();
+
+     updateData(newData: string) {
+       this.dataSubject.next(newData);
+     }
+   }
+   ```
+
+3. **Route Parameters:** Pass data through route parameters.
+   ```typescript
+   this.router.navigate(['/route', { id: 1 }]);
+   ```
+
+4. **Observable Data Streams:** Use subjects or other observable streams to pass data between components.
+   ```typescript
+   this.dataService.data$.subscribe(data => {
+     this.data = data;
+   });
+   ```
+
+### 136. What is a resolver in Angular?
+
+**Answer:**
+A resolver in Angular is a class that implements the `Resolve` interface and is used to pre-fetch data before a route is activated. It ensures that the necessary data is available when the route and its component are initialized.
+
+Example:
+
+```typescript
+@Injectable({ providedIn: 'root' })
+export class DataResolver implements Resolve<DataType> {
+  constructor(private dataService: DataService) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<DataType> {
+    return this.dataService.getData(route.params['id']);
+  }
+}
+```
+
+In the routing module:
+
+```typescript
+const routes: Routes = [
+  {
+    path: 'path',
+    component: MyComponent,
+    resolve: {
+      data: DataResolver
+    }
+  }
+];
+```
+
+### 137. What is the use of `trackBy` in `*ngFor`?
+
+**Answer:**
+`trackBy` is a function used with `*ngFor` to improve performance by providing a unique identifier for each item in the list. This helps Angular track which items have changed, been added, or removed, and only update the necessary parts of the DOM.
+
+Example:
+
+```typescript
+@Component({
+  selector: 'app-list',
+  template: `
+    <div *ngFor="let item of items; trackBy: trackById">
+      {{item.name}}
+    </div>
+  `
+})
+export class ListComponent {
+  items = [{id: 1, name: 'Item 1'}, {id: 2, name: 'Item 2'}];
+
+  trackById(index: number, item: any): number {
+    return item.id;
+  }
+}
+```
+
+### 138. What is the difference between Observables and Promises?
+
+**Answer:**
+- **Observables:**
+  - Can emit multiple values over time (stream of values).
+  - Lazy evaluation: They do not start emitting values until subscribed to.
+  - Supports various operators for complex data transformations (map, filter, mergeMap, etc.).
+  - Can be cancelled: You can unsubscribe from an observable to stop receiving data.
+  - Can handle multiple types of asynchronous operations, such as events and HTTP requests.
+
+  ```typescript
+  const observable = new Observable(observer => {
+    observer.next('Hello');
+    observer.next('World');
+    observer.complete();
+  });
+
+  observable.subscribe(value => console.log(value));
+  ```
+
+- **Promises:**
+  - Emit a single value (or an error) and complete.
+  - Eager evaluation: They start executing as soon as they are created.
+  - Do not support cancellation.
+  - Used for handling a single asynchronous operation, such as an HTTP request.
+
+  ```typescript
+  const promise = new Promise((resolve, reject) => {
+    resolve('Hello, World');
+  });
+
+  promise.then(value => console.log(value));
+  ```
+
+Here’s how you can address each of the Angular-related questions:
+
+### 139. Making Multiple API Calls and Handling Responses
+
+To make multiple API calls and then use the combined response to make another API call, you can use RxJS operators like `forkJoin` and `switchMap`. Here’s an example:
+
+```typescript
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html'
+})
+export class ExampleComponent {
+  constructor(private http: HttpClient) {}
+
+  makeApiCalls() {
+    const apiUrls = [
+      'https://api.example.com/data1',
+      'https://api.example.com/data2',
+      // add more URLs here
+    ];
+
+    // Make multiple API calls
+    forkJoin(apiUrls.map(url => this.http.get(url)))
+      .pipe(
+        switchMap(responses => {
+          // Combine responses and transform data
+          const combinedData = responses.flat();
+          const transformedData = combinedData.map(({ name, id }) => ({ name, id }));
+          
+          // Make another API call based on the combined response
+          return this.http.post('https://api.example.com/another-endpoint', transformedData);
+        })
+      )
+      .subscribe(result => {
+        console.log('Final API result:', result);
+      });
+  }
+}
+```
+
+### 140. Converting API Response
+
+Assuming you receive the response as `[{name, address, id, phoneno}, ...]`, and you want to convert it to `[{name, id}, ...]`, you can use the `map` function:
+
+```typescript
+this.http.get<any[]>('https://api.example.com/data')
+  .subscribe(data => {
+    const transformedData = data.map(({ name, id }) => ({ name, id }));
+    console.log('Transformed Data:', transformedData);
+  });
+```
+
+### 141. Handling Performance Issues
+
+To address performance issues in an Angular application, you might look into:
+
+1. **Change Detection**: Ensure that change detection is optimized (e.g., use `OnPush` strategy where possible).
+2. **Lazy Loading**: Implement lazy loading for modules to reduce initial load time.
+3. **Code Splitting**: Split large bundles to improve load times.
+4. **Memory Leaks**: Check for and fix memory leaks, particularly with observables and subscriptions.
+5. **Optimizing Angular Builds**: Use tools like Angular CLI's production build (`ng build --prod`).
+
+### 142. Security and Authentication While Routing
+
+For maintaining security and authentication, you can use route guards:
+
+1. **AuthGuard**: Implement an `AuthGuard` to protect routes.
+2. **CanActivate**: Use the `canActivate` method in the guard to check if the user is authenticated.
+
+Example of `AuthGuard`:
+
+```typescript
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from './auth.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(): boolean {
+    if (this.authService.isAuthenticated()) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+}
+```
+
+### 143. Redirecting to Login Page
+
+To redirect to the login page, you can use the Angular Router:
+
+```typescript
+this.router.navigate(['/login']);
+```
+
+### 144. Authentication vs Authorization
+
+- **Authentication**: Verifies the identity of a user (e.g., logging in).
+- **Authorization**: Determines what actions an authenticated user is allowed to perform (e.g., access to specific resources).
+
+### 145. Interacting Between Components
+
+If you want to change `Component B` from `Component A`, you can use:
+
+- **Services**: Share data or state through a common service.
+- **Event Emitters**: Use `@Output` and `EventEmitter` if components are related (e.g., parent-child).
+
+Example using a service:
+
+```typescript
+@Injectable({
+  providedIn: 'root'
+})
+export class SharedService {
+  private dataSubject = new BehaviorSubject<any>(null);
+  data$ = this.dataSubject.asObservable();
+
+  updateData(data: any) {
+    this.dataSubject.next(data);
+  }
+}
+```
+
+### 146. Login and Logout Authentication
+
+- **Login**: Authenticate the user and store the token in localStorage or sessionStorage.
+- **Logout**: Remove the token and redirect to the login page.
+
+Example for login:
+
+```typescript
+login(userCredentials) {
+  this.http.post('https://api.example.com/login', userCredentials)
+    .subscribe(response => {
+      localStorage.setItem('authToken', response.token);
+      this.router.navigate(['/home']);
+    });
+}
+```
+
+### 147. Server-Side Rendering (SSR)
+
+**Server-Side Rendering (SSR)** involves rendering Angular applications on the server rather than the client. This can improve the initial load time and SEO. Angular provides support for SSR through Angular Universal.
+
+### 148. Handling Large Data Sets
+
+For large data sets (e.g., 100,000 records), consider:
+
+- **Pagination**: Load data in chunks or pages to improve performance.
+- **Infinite Scroll**: Load data as the user scrolls.
+- **Virtual Scrolling**: Render only the visible items in the viewport.
+
+### 149. Localization in Angular
+
+Angular provides localization support through the `@angular/localize` package. You can use `ngx-translate` or Angular's built-in localization features to manage multiple languages.
+
+### 150. Interceptors in Angular
+
+**Interceptors** are used to modify HTTP requests and responses globally. Common use cases include adding authentication tokens, handling errors, or modifying headers.
+
+Example:
+
+```typescript
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const authReq = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${localStorage.getItem('authToken')}`)
+    });
+    return next.handle(authReq);
+  }
+}
+```
+
+### 151. Types of Forms in Angular
+
+1. **Template-Driven Forms**: Use Angular's directives in templates (e.g., `ngModel`).
+2. **Reactive Forms**: Use `FormGroup` and `FormControl` in the component.
+
+### 152. TrackBy vs Without TrackBy
+
+- **Without `trackBy`**: Angular re-renders the entire list when changes occur.
+- **With `trackBy`**: Angular tracks items by a unique identifier to optimize rendering performance.
+
+Example with `trackBy`:
+
+```html
+<li *ngFor="let item of items; trackBy: trackById">{{ item.name }}</li>
+```
+
+```typescript
+trackById(index: number, item: any): number {
+  return item.id;
+}
+```
+
+### 153. Standalone Components
+
+**Standalone Components** are components that do not require the use of Angular modules. They can be used independently and declared with the `standalone: true` option in the `@Component` decorator.
+
+### 154. Host Binding and Host Listener
+
+- **Host Binding**: Binds properties of the host element to component properties.
+  ```typescript
+  @HostBinding('attr.class') className = 'my-class';
+  ```
+- **Host Listener**: Listens to events on the host element.
+  ```typescript
+  @HostListener('click', ['$event']) onClick(event: Event) {
+    console.log('Host clicked', event);
+  }
+  ```
+
+### 155. Dumb Components vs Smart Components
+
+- **Dumb Components**: Focus on display logic and receive data via inputs; they don’t handle business logic.
+- **Smart Components**: Manage data and state; often handle business logic and pass data to dumb components.
+
+### 156. Changes in Angular Versions
+
+To discuss changes in Angular versions, focus on significant updates and improvements:
+
+1. **Major Releases**: Include breaking changes and new features (e.g., Angular 8 introduced Ivy).
+2. **Minor and Patch Releases**: Include new features and bug fixes (e.g., performance improvements).
+
+To remember specific version changes, refer to Angular's [release notes](https://github.com/angular/angular/releases).
+
