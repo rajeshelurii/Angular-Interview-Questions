@@ -1714,9 +1714,8 @@ These packages allow Angular applications to run in various environments, making
      | Extend the entire application with services by adding providers to provides array | Can't extend the application with services |
 
 96. ### :warning: What is a shared module?
-     The Shared Module is the module in which you put commonly used directives, pipes, and components into one module that is shared(import it) throughout the application.
+     The Shared Module is the module in which you put commonly used directives, pipes, and components into one module that is shared(import it) throughout the application. It is shared by importing the shared module in the feature module imports array.
 
-     For example, the below shared module imports CommonModule, FormsModule for common directives and components, pipes and directives based on the need,
      ```typescript
      import { CommonModule } from '@angular/common';
      import { NgModule } from '@angular/core';
