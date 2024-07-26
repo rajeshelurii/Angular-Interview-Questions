@@ -1957,7 +1957,9 @@ Sure, here are more detailed answers for each question:
 **Answer:**
 - **Observable:** Observables are declarative which provide support for passing messages between publishers and subscribers in the application. They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
 
-- **Subject:** A Subject is a special type of Observable that acts as both an observer and an observable. It allows values to be multicasted to many observers, making it possible to use one data stream for multiple subscribers. Subjects are hot observables, meaning they start emitting values as soon as they are created, and all subscribers receive the same values.
+- **Subject:** A `Subject` in Angular is like a special kind of data stream that can both send and receive data. Think of it as a bridge between a data producer and multiple data consumers.
+
+
 
 ### 123. :warning: What is the difference between `for...in` and `for...of` in JavaScript?
 
