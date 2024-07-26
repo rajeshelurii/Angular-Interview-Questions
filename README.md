@@ -1426,12 +1426,14 @@
    
 
 74. ### What is platform in Angular?
-     A platform is the context in which an Angular application runs. The most common platform for Angular applications is a web browser, but it can also be an operating system for a mobile device, or a web server. The runtime-platform is provided by the @angular/platform-* packages and these packages allow applications that make use of `@angular/core` and `@angular/common` to execute in different environments.
-     i.e, Angular can be used as platform-independent framework in different environments, For example,
+     In Angular, a "platform" is the context in which an application runs. The most common platform is a web browser, but it can also be a mobile device's operating system or a web server.
 
-     1. While running in the browser, it uses `platform-browser` package.
-     2. When SSR(server-side rendering ) is used, it uses `platform-server` package for providing web server implementation.
+Angular uses different packages to support these environments:
 
+- For running in a web browser, it uses the `@angular/platform-browser` package.
+- For server-side rendering (SSR), it uses the `@angular/platform-server` package.
+
+These packages allow Angular applications to run in various environments, making Angular a platform-independent framework.
    
 
 75. ### What happens if I import the same module twice?
