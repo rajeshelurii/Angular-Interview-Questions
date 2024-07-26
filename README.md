@@ -2650,5 +2650,7 @@ To discuss changes in Angular versions, focus on significant updates and improve
 1. **Major Releases**: Include breaking changes and new features (e.g., Angular 8 introduced Ivy).
 2. **Minor and Patch Releases**: Include new features and bug fixes (e.g., performance improvements).
 
+You can answer Enhanced Debugging, Improvements in SSR
+
 To remember specific version changes, refer to Angular's [release notes](https://github.com/angular/angular/releases).
 
