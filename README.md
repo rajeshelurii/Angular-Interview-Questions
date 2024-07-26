@@ -1,5 +1,5 @@
 **Angular Interview Quetions**
-1. ### :warning: What is Angular?
+1. ### :red_circle: What is Angular?
 
    **Angular** is a platform and framework for building client-side applications using HTML, CSS, and JavaScript/TypeScript. Angular is developed and maintained by Google and is widely used for building single-page applications 
    (SPAs). It is built entirely using typescript.
