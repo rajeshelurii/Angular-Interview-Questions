@@ -1,0 +1,140 @@
+
+5. What are the key components of Angular? `components, modules, services, templates`
+6. What are directives? `Component, Structural, Attribute directives`
+11. What are lifecycle hooks available? `ngOnChanges, ngOnInit, ngDoCheck, ngAfterContentInit, ngAfterContentChecked, ngAfterViewInit, ngAfterViewChecked, ngOnDestroy`
+12. What is a data binding? `Interpolation, Property Binding, Event Binding, Two-Way Binding`
+13. What is metadata? `Class, Property, Method, Parameter Decorator`
+18. How is Dependency Hierarchy formed? `Root level, Feature module level, Component level`
+23. What happens if you use script tag inside template? `DOM Sanitizer sanitizes`
+25. What are template expressions?
+26. What are template statements?
+27. How do you categorize data binding types?
+28. What are pipes?
+29. What is a parameterized pipe?
+30. How do you chain pipes?
+31. What is a custom pipe?
+32. What is the difference between pure and impure pipe?
+33. What is a bootstrapping module?
+34. What are observables?
+35. What is HttpClient and its benefits?
+36. Explain on how to use HttpClient with an example?
+37. How can you read full response?
+38. How do you perform Error handling?
+39. What is RxJS?
+40. What is subscribing?
+41. What is the difference between promise and observable?
+42. What is multicasting?
+43. How do you perform error handling in observables?
+44. What is Angular Universal?
+45. What are different types of compilation in Angular?
+46. What is JIT?
+47. What is AOT?
+48. What are the advantages with AOT?
+49. What is the purpose of metadata json files?
+50. What is Angular Ivy?
+51. What are the features included in ivy?
+52. Can I use AOT compilation with Ivy?
+53. What is Angular Language Service?
+54. How do you install angular language service in the project?
+55. Is there any editor support for Angular Language Service?
+56. What are web workers in angular?
+57. What are the limitations with web workers?
+58. What is Angular CLI Builder?
+59. What is a Builder?
+60. How do you invoke a builder?
+61. How do you create app shell in Angular?
+62. What are the Case Types in Angular?
+63. What are the class decorators in Angular?
+64. What is Declarable in Angular?
+65. What are the restrictions on declarable classes?
+66. What is a DI token?
+67. What is Angular DSL?
+68. What is an RxJS Subject in Angular?
+69. What is Bazel?
+70. What are the advantages of Bazel tool?
+71. How do you use Bazel with Angular CLI?
+72. How do you run Bazel directly?
+73. What is platform in Angular?
+74. What happens if I import the same module twice?
+75. How do you select an element within a component template?
+76. How do you detect route change in Angular?
+77. How do you pass headers for HTTP client?
+78. What is the purpose of differential loading in CLI?
+79. Does Angular support dynamic imports?
+80. What is lazy loading?
+81. What is Angular Material?
+82. What is NgUpgrade?
+83. How do you test Angular application using CLI?
+84. What is the difference between ngIf and hidden property?
+85. What is slice pipe?
+86. What is the purpose of ngFor trackBy?
+87. What is the purpose of ngSwitch directive?
+88. What is the safe navigation operator?
+89. What is Angular compiler?
+90. What is the role of ngModule metadata in the compilation process?
+91. How does Angular find components, directives, and pipes?
+92. What are feature modules?
+93. What are the imported modules in CLI-generated feature modules?
+94. What are the differences between ngModule and JavaScript modules?
+95. What is a shared module?
+96. Can I share services using modules?
+97. How do you provide configuration inheritance?
+98. What is Angular's security model for preventing XSS attacks?
+99. What is the role of the template compiler in the prevention of XSS attacks?
+100. What is sanitization? Does Angular support it?
+101. How do you support server-side XSS protection in Angular applications?
+102. What are HTTP Interceptors?
+103. What are the applications of HTTP interceptors?
+104. Are multiple interceptors supported in Angular?
+105. How can I use an interceptor for an entire application?
+106. How does Angular simplify Internationalization (i18n)?
+107. What is the purpose of the i18n attribute?
+108. What is the purpose of a custom ID in translation?
+109. What happens if the custom ID is not unique?
+110. Can I translate text without creating an element?
+111. How can I translate attributes?
+112. What is an Angular library?
+113. What is the purpose of ngcc?
+114. What is NgZone?
+115. What is NoopZone?
+116. How do you create displayBlock components?
+117. What are the possible data update scenarios for change detection?
+118. What is the purpose of any type cast function?
+119. What is the non-null type assertion operator?
+120. What is type narrowing?
+121. Ts console trick question
+122. What is the difference between Subject and Observable in Angular?
+123. What is the difference between for...in and for...of in JavaScript?
+124. What are generic types in Angular?
+125. What is the difference between FormBuilder and FormGroup in Angular?
+126. How do you add dynamic validation in a form in Angular?
+127. What is a nested reactive form in Angular?
+128. What is the use of FormArray in Angular?
+129. What is the ChangeDetector class in Angular?
+130. Name 10 RxJS operators.
+131. What are the types of encapsulation in Angular?
+132. What is ViewChild in Angular?
+133. What is the use of an interface in Angular?
+134. What is an entry component in Angular?
+135. What are the ways to pass data to multiple components in Angular?
+136. What is a resolver in Angular?
+137. What is the use of trackBy in *ngFor?
+138. What is the difference between Observables and Promises?
+139. Making Multiple API Calls and Handling Responses
+140. Converting API Response
+141. Handling Performance Issues
+142. Security and Authentication While Routing
+143. Redirecting to Login Page
+144. Authentication vs Authorization
+145. Interacting Between Components
+146. Login and Logout Authentication
+147. Server-Side Rendering (SSR)
+148. Handling Large Data Sets
+149. Localization in Angular
+150. Interceptors in Angular
+151. Types of Forms in Angular
+152. TrackBy vs Without TrackBy
+153. Standalone Components
+154. Host Binding and Host Listener
+155. Dumb Components vs Smart Components `Dumb handle only ui using input/outputs, Smart handle both html and business logic(services)`
+156. Changes in Angular Versions `Enhanced Debugging, Improvements in SSR`
