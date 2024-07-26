@@ -2032,7 +2032,7 @@ const strings = stringService.getAll(); // strings: string[]
   });
   ```
 
-- **FormGroup:** FormGroup is a class that tracks the value and validity state of a group of FormControls. It represents a form as a whole and contains child controls that make up the form. Each control is a FormControl, FormGroup, or FormArray.
+- **FormGroup:** A FormGroup is a way to manage a collection of form controls in Angular. It keeps track of the values and validation state of the form as a whole.
 
   ```typescript
   this.form = new FormGroup({
