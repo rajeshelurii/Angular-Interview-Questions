@@ -1040,7 +1040,7 @@
     // => Observer got a complete notification
     ```  
 
-41. ### What is the difference between promise and observable?
+41. ### :warning: What is the difference between promise and observable?
     Both **Promises** and **Observables** are used for handling asynchronous operations in JavaScript and TypeScript, but they have different characteristics and use cases. Here’s a comparison to help you understand their differences:
 
 	**Promises**
