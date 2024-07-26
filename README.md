@@ -1940,7 +1940,7 @@ function example(value: string | number) {
 }
 ```
 
-121. ### :warning: Ts cosole trick question
+### 121. :warning: Ts cosole trick question
 ```typescript
 console.log(1 + "2" + "2"); //122
 console.log(1 + +"2" + "2"); //32
@@ -1952,14 +1952,14 @@ console.log("A" - "B" + 2); // Nan
 
 Sure, here are more detailed answers for each question:
 
-### 122. What is the difference between Subject and Observable in Angular?
+### 122. :warning: What is the difference between Subject and Observable in Angular?
 
 **Answer:**
 - **Observable:** An Observable is a data producer that emits data to subscribers over time. It is a one-way data communication mechanism. Observables are lazy, meaning they do not produce values until they are subscribed to. They are commonly used to handle asynchronous data streams, such as HTTP requests or user inputs.
 
 - **Subject:** A Subject is a special type of Observable that acts as both an observer and an observable. It allows values to be multicasted to many observers, making it possible to use one data stream for multiple subscribers. Subjects are hot observables, meaning they start emitting values as soon as they are created, and all subscribers receive the same values.
 
-### 123. What is the difference between `for...in` and `for...of` in JavaScript?
+### 123. :warning: What is the difference between `for...in` and `for...of` in JavaScript?
 
 **Answer:**
 - **`for...in`:** The `for...in` loop iterates over the enumerable properties of an object, including inherited properties. It is generally used for iterating over object properties.
@@ -1980,7 +1980,7 @@ Sure, here are more detailed answers for each question:
   }
   ```
 
-### 124. What are generic types in Angular?
+### 124. :warning: What are generic types in Angular?
 
 **Answer:**
 Generic types in Angular are a way to create reusable and type-safe components, services, and classes that can work with different data types. By using generics, you can define a template that can accept various types of data without losing type safety.
@@ -2009,7 +2009,7 @@ stringService.add('Hello');
 const strings = stringService.getAll(); // strings: string[]
 ```
 
-### 125. What is the difference between FormBuilder and FormGroup in Angular?
+### 125. :warning: What is the difference between FormBuilder and FormGroup in Angular?
 
 **Answer:**
 - **FormBuilder:** FormBuilder is a service provided by Angular that helps in the creation of FormGroup, FormControl, and FormArray. It reduces the amount of boilerplate code required to create forms and allows for more readable and maintainable form creation.
@@ -2032,7 +2032,7 @@ const strings = stringService.getAll(); // strings: string[]
   });
   ```
 
-### 126. How do you add dynamic validation in a form in Angular?
+### 126. :warning: How do you add dynamic validation in a form in Angular?
 
 **Answer:**
 To add dynamic validation to a form in Angular, you can use the `setValidators` method on a FormControl or FormGroup and then call `updateValueAndValidity` to apply the new validators. Here’s an example:
@@ -2048,7 +2048,7 @@ emailControl.setValidators([Validators.required, Validators.email]);
 emailControl.updateValueAndValidity();
 ```
 
-### 127. What is a nested reactive form in Angular?
+### 127. :warning: What is a nested reactive form in Angular?
 
 **Answer:**
 A nested reactive form in Angular is a form structure where a FormGroup contains other FormGroups or FormArrays, allowing for complex forms with hierarchical structures. This is useful for forms that require multiple levels of grouping, such as a form for entering information about a user and their addresses.
@@ -2070,7 +2070,7 @@ this.userForm = this.fb.group({
 const addresses = this.userForm.get('addresses') as FormArray;
 ```
 
-### 128. What is the use of FormArray in Angular?
+### 128. :warning: What is the use of FormArray in Angular?
 
 **Answer:**
 FormArray is used to manage an array of FormControls, FormGroups, or other FormArrays in Angular forms. It is useful for creating dynamic forms where the number of form controls can change, such as adding or removing items in a list.
@@ -2090,7 +2090,7 @@ const items = this.form.get('items') as FormArray;
 items.push(this.fb.control('Item 3'));
 ```
 
-### 129. What is the ChangeDetector class in Angular?
+### 129. :warning: What is the ChangeDetector class in Angular?
 
 **Answer:**
 The ChangeDetector class in Angular is used to control the change detection mechanism, which is responsible for keeping the view in sync with the model. It provides methods to manually trigger change detection and check the component's view for changes.
@@ -2112,7 +2112,7 @@ constructor(private cd: ChangeDetectorRef) {}
 this.cd.detectChanges();
 ```
 
-### 130. Name 10 RxJS operators.
+### 130. :warning: Name 10 RxJS operators.
 
 **Answer:**
 1. **map:** Transforms items emitted by an observable by applying a function to each item.
@@ -2187,7 +2187,7 @@ this.cd.detectChanges();
     observable.pipe(startWith('Initial value'));
     ```
 
-### 131. What are the types of encapsulation in Angular?
+### 131. :warning: What are the types of encapsulation in Angular?
 In Angular, encapsulation refers to the concept of restricting access to the internal details of a component, allowing for a well-defined interface for interaction. It's a fundamental aspect of component design in Angular and is closely related to the component’s styling and view encapsulation.
 
 Here's a breakdown of encapsulation in Angular:
@@ -2211,7 +2211,7 @@ encapsulation: ViewEncapsulation."typename"
 })
 ```
 
-### 132. What is `ViewChild` in Angular?
+### 132. :warning: What is `ViewChild` in Angular?
 
 **Answer:**
 `ViewChild` is a decorator that allows you to access a child component, directive, or DOM element from within the parent component. It provides a reference to the child, enabling you to interact with it directly.
@@ -2237,7 +2237,7 @@ export class ParentComponent {
 }
 ```
 
-### 133. What is the use of an interface in Angular?
+### 133. :warning: What is the use of an interface in Angular?
 
 **Answer:**
 Interfaces in Angular are used to define the structure of objects, ensuring type safety and consistency. They help in defining the shape of data that components, services, or other parts of the application are expected to handle.
@@ -2258,7 +2258,7 @@ const user: User = {
 };
 ```
 
-### 134. What is an entry component in Angular?
+### 134. :warning: What is an entry component in Angular?
 
 **Answer:**
 An entry component is any component that is loaded imperatively, meaning it is not referenced in a template but rather loaded dynamically at runtime. Entry components are often used in scenarios such as modals, dialogs, or other dynamic content.
@@ -2274,7 +2274,7 @@ To specify entry components in an Angular module:
 export class AppModule {}
 ```
 
-### 135. What are the ways to pass data to multiple components in Angular?
+### 135. :warning: What are the ways to pass data to multiple components in Angular?
 
 **Answer:**
 1. **Input/Output Properties:** Use `@Input` to pass data from a parent component to a child component and `@Output` to emit events from child to parent.
@@ -2313,7 +2313,7 @@ export class AppModule {}
    });
    ```
 
-### 136. What is a resolver in Angular?
+### 136. :warning: What is a resolver in Angular?
 
 **Answer:**
 A resolver in Angular is a class that implements the `Resolve` interface and is used to pre-fetch data before a route is activated. It ensures that the necessary data is available when the route and its component are initialized.
@@ -2345,7 +2345,7 @@ const routes: Routes = [
 ];
 ```
 
-### 137. What is the use of `trackBy` in `*ngFor`?
+### 137. :warning: What is the use of `trackBy` in `*ngFor`?
 
 **Answer:**
 `trackBy` is a function used with `*ngFor` to improve performance by providing a unique identifier for each item in the list. This helps Angular track which items have changed, been added, or removed, and only update the necessary parts of the DOM.
@@ -2370,7 +2370,7 @@ export class ListComponent {
 }
 ```
 
-### 138. What is the difference between Observables and Promises?
+### 138. :warning: What is the difference between Observables and Promises?
 
 **Answer:**
 - **Observables:**
@@ -2406,7 +2406,7 @@ export class ListComponent {
 
 Here’s how you can address each of the Angular-related questions:
 
-### 139. Making Multiple API Calls and Handling Responses
+### 139. :warning: Making Multiple API Calls and Handling Responses
 
 To make multiple API calls and then use the combined response to make another API call, you can use RxJS operators like `forkJoin` and `switchMap`. Here’s an example:
 
@@ -2449,7 +2449,7 @@ export class ExampleComponent {
 }
 ```
 
-### 140. Converting API Response
+### 140. :warning: Converting API Response
 
 Assuming you receive the response as `[{name, address, id, phoneno}, ...]`, and you want to convert it to `[{name, id}, ...]`, you can use the `map` function:
 
@@ -2461,7 +2461,7 @@ this.http.get<any[]>('https://api.example.com/data')
   });
 ```
 
-### 141. Handling Performance Issues
+### 141. :warning: Handling Performance Issues
 
 To address performance issues in an Angular application, you might look into:
 
@@ -2471,7 +2471,7 @@ To address performance issues in an Angular application, you might look into:
 4. **Memory Leaks**: Check for and fix memory leaks, particularly with observables and subscriptions.
 5. **Optimizing Angular Builds**: Use tools like Angular CLI's production build (`ng build --prod`).
 
-### 142. Security and Authentication While Routing
+### 142. :warning: Security and Authentication While Routing
 
 For maintaining security and authentication, you can use route guards:
 
@@ -2503,7 +2503,7 @@ export class AuthGuard implements CanActivate {
 }
 ```
 
-### 143. Redirecting to Login Page
+### 143. :warning: Redirecting to Login Page
 
 To redirect to the login page, you can use the Angular Router:
 
@@ -2511,12 +2511,12 @@ To redirect to the login page, you can use the Angular Router:
 this.router.navigate(['/login']);
 ```
 
-### 144. Authentication vs Authorization
+### 144. :warning: Authentication vs Authorization
 
 - **Authentication**: Verifies the identity of a user (e.g., logging in).
 - **Authorization**: Determines what actions an authenticated user is allowed to perform (e.g., access to specific resources).
 
-### 145. Interacting Between Components
+### 145. :warning: Interacting Between Components
 
 If you want to change `Component B` from `Component A`, you can use:
 
@@ -2539,7 +2539,7 @@ export class SharedService {
 }
 ```
 
-### 146. Login and Logout Authentication
+### 146. :warning: Login and Logout Authentication
 
 - **Login**: Authenticate the user and store the token in localStorage or sessionStorage.
 - **Logout**: Remove the token and redirect to the login page.
@@ -2556,11 +2556,11 @@ login(userCredentials) {
 }
 ```
 
-### 147. Server-Side Rendering (SSR)
+### 147. :warning: Server-Side Rendering (SSR)
 
 **Server-Side Rendering (SSR)** involves rendering Angular applications on the server rather than the client. This can improve the initial load time and SEO. Angular provides support for SSR through Angular Universal.
 
-### 148. Handling Large Data Sets
+### 148. :warning: Handling Large Data Sets
 
 For large data sets (e.g., 100,000 records), consider:
 
@@ -2568,11 +2568,11 @@ For large data sets (e.g., 100,000 records), consider:
 - **Infinite Scroll**: Load data as the user scrolls.
 - **Virtual Scrolling**: Render only the visible items in the viewport.
 
-### 149. Localization in Angular
+### 149. :warning: Localization in Angular
 
 Angular provides localization support through the `@angular/localize` package. You can use `ngx-translate` or Angular's built-in localization features to manage multiple languages.
 
-### 150. Interceptors in Angular
+### 150. :warning: Interceptors in Angular
 
 **Interceptors** are used to modify HTTP requests and responses globally. Common use cases include adding authentication tokens, handling errors, or modifying headers.
 
@@ -2590,12 +2590,12 @@ export class AuthInterceptor implements HttpInterceptor {
 }
 ```
 
-### 151. Types of Forms in Angular
+### 151. :warning: Types of Forms in Angular
 
 1. **Template-Driven Forms**: Use Angular's directives in templates (e.g., `ngModel`).
 2. **Reactive Forms**: Use `FormGroup` and `FormControl` in the component.
 
-### 152. TrackBy vs Without TrackBy
+### 152. :warning: TrackBy vs Without TrackBy
 
 - **Without `trackBy`**: Angular re-renders the entire list when changes occur.
 - **With `trackBy`**: Angular tracks items by a unique identifier to optimize rendering performance.
@@ -2612,11 +2612,11 @@ trackById(index: number, item: any): number {
 }
 ```
 
-### 153. Standalone Components
+### 153. :warning: Standalone Components
 
 **Standalone Components** are components that do not require the use of Angular modules. They can be used independently and declared with the `standalone: true` option in the `@Component` decorator.
 
-### 154. Host Binding and Host Listener
+### 154. :warning: Host Binding and Host Listener
 
 - **Host Binding**: Binds properties of the host element to component properties.
   ```typescript
@@ -2629,12 +2629,12 @@ trackById(index: number, item: any): number {
   }
   ```
 
-### 155. Dumb Components vs Smart Components
+### 155. :warning: Dumb Components vs Smart Components
 
 - **Dumb Components**: Focus on display logic and receive data via inputs; they don’t handle business logic.
 - **Smart Components**: Manage data and state; often handle business logic and pass data to dumb components.
 
-### 156. Changes in Angular Versions
+### 156. :warning: Changes in Angular Versions
 
 To discuss changes in Angular versions, focus on significant updates and improvements:
 
