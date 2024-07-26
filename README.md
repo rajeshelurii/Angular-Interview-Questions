@@ -1986,7 +1986,7 @@ for (let value of arr) {
   console.log(value); // logs 1, 2, 3
 }
 ```
-`Note` that if you try to use for...in loop on array it will still use the keys of items which is the indices. which is not recomended.
+`Note` that if you try to use for...in loop on array it will use the indices as keys. which is not recomended.
 
 
 ### 124. :warning: What are generic types in Angular?
