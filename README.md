@@ -266,22 +266,14 @@
 
     ![ScreenShot](images/lifecycle.png)
 
-    1. **`ngOnChanges`**: Called when an input property (data-bound property) changes. It lets you react to changes in the input data.
-	   **When to use**: You want to respond to changes in input properties.
-	2. **`ngOnInit`**: Called once after the component/directive is initialized. This is where you set up initial data or perform setup tasks.
-	   **When to use**: You need to initialize properties or make API calls after the component has been set up.
-	3. **`ngDoCheck`**: Called during every change detection cycle. This is where you can check for changes Angular doesn’t detect automatically.
-	   **When to use**: You need to manually check for changes that Angular might miss.
-	4. **`ngAfterContentInit`**: Called after Angular projects content into the component (e.g., content inside `<ng-content>`). 
-	   **When to use**: You need to perform actions after the content is projected into the component.
-	5. **`ngAfterContentChecked`**: Called after Angular checks the projected content for changes.
-	   **When to use**: You need to act on changes or perform tasks after Angular checks the projected content.
-	6. **`ngAfterViewInit`**: Called after Angular initializes the component’s view and child views (e.g., `<app-child>` components).
-	   **When to use**: You need to perform tasks that require the component’s view and child views to be fully initialized.
-	7. **`ngAfterViewChecked`**: Called after Angular checks the component’s view and child views for changes.
-	   **When to use**: You need to perform actions after Angular checks the views for changes.
-	8. **`ngOnDestroy`**: Called just before Angular destroys the component/directive. This is where you clean up resources like subscriptions or timers.
-	   **When to use**: You need to clean up resources to avoid memory leaks before the component is destroyed.
+    1. **`ngOnChanges`**: Called when any data-bound input property(@Input()) changes, allowing the component to react to those changes.
+	2. **`ngOnInit`**: Called once after the first `ngOnChanges`. It initializes the component after Angular first displays the data-bound properties and sets up the component. Ideal for performing component initialization.
+	3. **`ngDoCheck`**: Called during every change detection run, immediately after `ngOnChanges` and `ngOnInit`. It allows for custom change detection.
+	4. **`ngAfterContentInit`**: Called once after the first `ngDoCheck` following the content projection into the component's view. It is used to handle any additional initialization tasks after the projected content is available.
+	5. **`ngAfterContentChecked`**: Called after `ngAfterContentInit` and every subsequent `ngDoCheck`. It is used to respond to any changes detected in the projected content.
+	6. **`ngAfterViewInit`**: Called once after the first `ngAfterContentChecked` following the component's view and its child views' initialization. It is used for view-related initialization tasks.
+	7. **`ngAfterViewChecked`**: Called after `ngAfterViewInit` and every subsequent `ngAfterContentChecked`. It is used to respond to any changes detected in the component's view and its child views.
+	8. **`ngOnDestroy`**: Called immediately before Angular destroys the component or directive. It is used to perform cleanup tasks, such as unsubscribing from observables and detaching event handlers to avoid memory leaks.
 
 
   
