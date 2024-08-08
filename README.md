@@ -1095,6 +1095,16 @@ In Angular and other frameworks using RxJS, when you subscribe to an observable,
 
 Unsubscribing is the process of stopping the execution of an observable and releasing the resources associated with it. This is crucial in Angular applications to prevent memory leaks and ensure the efficient use of resources.
 
+Angular observables used as part of HttpClient are automatically completed and hence don't require manual unsubscription in most cases.
+
+**When Manual Unsubscription is Necessary**
+
+**Non-HTTP Observables**: If you have other types of observables, such as those created with interval, fromEvent, or custom observables that do not complete automatically, you should unsubscribe to avoid memory leaks.
+
+**Long-Running Observables**: If your observable is long-running or could potentially not complete, you should manage the subscription lifecycle.
+
+**Combining Multiple Observables**: When combining multiple observables using operators like combineLatest, forkJoin, merge, etc., you may need to manage unsubscription.
+
 There are several ways to handle unsubscription in Angular:
 
 1. **Manual Unsubscription**:
