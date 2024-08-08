@@ -1010,7 +1010,7 @@
     An Observable instance begins publishing values only when someone subscribes to it. So you need to subscribe by calling the `subscribe()` method of the instance, passing an observer object to receive the notifications.
 
     Let's take an example of creating and subscribing to a simple observable, with an observer that logs the received message to the console.
-    ```javascript
+    ```typescript
     // Creates an observable sequence of 5 integers, starting from 1
     const source = range(1, 5);
 
@@ -1087,6 +1087,111 @@
 	
 	// Unsubscribe if needed
 	subscription.unsubscribe();
+	```
+
+42. ### What is Unsubscribing and how to do?
+    
+In Angular and other frameworks using RxJS, when you subscribe to an observable, a subscription is created. This subscription represents the ongoing execution of the observable until it completes or errors out. If not properly managed, these subscriptions can lead to memory leaks because they keep running even after the component that created them is destroyed.
+
+Unsubscribing is the process of stopping the execution of an observable and releasing the resources associated with it. This is crucial in Angular applications to prevent memory leaks and ensure the efficient use of resources.
+
+There are several ways to handle unsubscription in Angular:
+
+1. **Manual Unsubscription**:
+    - Store the subscription in a variable.
+    - Unsubscribe in the `ngOnDestroy` lifecycle hook.
+
+      ```typescript
+	import { Component, OnDestroy } from '@angular/core';
+	import { HttpClient } from '@angular/common/http';
+	import { Subscription } from 'rxjs';
+	
+	@Component({
+	  selector: 'app-example',
+	  template: `...`
+	})
+	export class ExampleComponent implements OnDestroy {
+	  private subscription: Subscription;
+	
+	  constructor(private http: HttpClient) { }
+	
+	  getData() {
+	    this.subscription = this.http.get('https://api.example.com/data').subscribe(res => {
+	      // Handle the response
+	    });
+	  }
+	
+	  ngOnDestroy() {
+	    if (this.subscription) {
+	      this.subscription.unsubscribe();
+	    }
+	  }
+	}
+	```
+
+2. **Using `takeUntil` Operator**:
+    - Use a `Subject` to emit a value when the component is destroyed.
+    - Use the `takeUntil` operator to complete the observable when the component is destroyed.
+	```typescript
+	import { Component, OnDestroy } from '@angular/core';
+	import { HttpClient } from '@angular/common/http';
+	import { Subject } from 'rxjs';
+	import { takeUntil } from 'rxjs/operators';
+	
+	@Component({
+	  selector: 'app-example',
+	  template: `...`
+	})
+	export class ExampleComponent implements OnDestroy {
+	  private destroy$ = new Subject<void>();
+	
+	  constructor(private http: HttpClient) { }
+	
+	  getData() {
+	    this.http.get('https://api.example.com/data').pipe(
+	      takeUntil(this.destroy$)
+	    ).subscribe(res => {
+	      // Handle the response
+	    });
+	  }
+	
+	  ngOnDestroy() {
+	    this.destroy$.next();
+	    this.destroy$.complete();
+	  }
+	}
+	```
+
+3. **Using `async` Pipe**:
+    - Use the `async` pipe in the template to handle subscription and unsubscription automatically.
+  
+43. ### How to handle if you need to do many unsubscribe operations?
+    Using `Subscription` Array
+	```typescript
+	import { Component, OnDestroy } from '@angular/core';
+	import { GetService } from './get.service';
+	import { Subscription } from 'rxjs';
+	
+	@Component({
+	  selector: 'app-example',
+	  template: `...`
+	})
+	export class ExampleComponent implements OnDestroy {
+	  private subscriptions: Subscription[] = [];
+	
+	  constructor(private getService: GetService) { }
+	
+	  getData() {
+	    const sub1 = this.getService.getApiData1().subscribe(res => { /* handle res */ });
+	    const sub2 = this.getService.getApiData2().subscribe(res => { /* handle res */ });
+	    // add more subscriptions as needed
+	    this.subscriptions.push(sub1, sub2);
+	  }
+	
+	  ngOnDestroy() {
+	    this.subscriptions.forEach(sub => sub.unsubscribe());
+	  }
+	}
 	```
 
 42. ### What is multicasting?
@@ -1835,44 +1940,6 @@ You register interceptors in the root module’s `providers` array to apply them
 export class AppModule {}
 ```
 
-106. ### How does Angular simplify Internationalization (i18n)?
-Angular simplifies internationalization by providing built-in support for:
-- **Translation of text** using i18n attributes.
-- **Date, number, and currency formatting** based on locale.
-- **Dynamic localization** using Angular’s `@angular/localize` package.
-
-107. ### What is the purpose of the `i18n` attribute?
-The `i18n` attribute in Angular is used to mark text that should be translated in templates. It helps in identifying and extracting translatable strings.
-
-**Example:**
-```html
-<p i18n="@@welcomeMessage">Welcome to Angular!</p>
-```
-
-108. ### What is the purpose of a custom ID in translation?
-A custom ID is used to uniquely identify translatable text, making it easier to manage and translate content, especially in large applications. It ensures consistency across translations.
-
-109. ### What happens if the custom ID is not unique?
-If a custom ID is not unique, it can lead to translation conflicts or incorrect translations. Multiple elements with the same ID might be translated incorrectly or inconsistently.
-
-110. ### Can I translate text without creating an element?
-Yes, you can translate text without creating a new HTML element by using Angular’s i18n API to handle translations programmatically.
-
-**Example:**
-```typescript
-import { getLocaleDateFormat } from '@angular/common';
-
-const translatedText = this.translate.instant('Hello World');
-```
-
-111. ### How can I translate attributes?
-You can translate attributes similarly to text content by using the `i18n` attribute on the element.
-
-**Example:**
-```html
-<img [attr.alt]="'image.alt' | translate">
-```
-
 112. ### What is an Angular library?
 An Angular library is a reusable package of code that can be used across multiple Angular applications. It can include components, services, and other Angular artifacts.
 
@@ -1892,42 +1959,6 @@ To create a component that displays as a block element, set the component's CSS 
 ```css
 :host {
   display: block;
-}
-```
-
-117. ### What are the possible data update scenarios for change detection?
-- **User Actions**: Events like clicks and input changes.
-- **HTTP Responses**: Data returned from HTTP requests.
-- **Timer-based Updates**: Intervals or timeouts.
-- **Observable Data**: Data changes from RxJS observables.
-
-118. ### What is the purpose of any type cast function?
-Type casting functions (e.g., `as` keyword) are used to assert or convert a value to a specific type. This is useful when you need to override TypeScript’s type inference.
-
-**Example:**
-```typescript
-const someValue = someFunction() as SomeType;
-```
-
-119. ### What is the non-null type assertion operator?
-The non-null type assertion operator (`!`) asserts that a value is not `null` or `undefined`. It tells TypeScript to treat the value as if it’s guaranteed to be present.
-
-**Example:**
-```typescript
-const element = document.getElementById('myElement')!;
-```
-
-120. ### What is type narrowing?
-Type narrowing is the process of refining a variable’s type within a conditional block. It helps TypeScript understand more specific types based on runtime checks.
-
-**Example:**
-```typescript
-function example(value: string | number) {
-  if (typeof value === 'string') {
-    // TypeScript knows value is a string here
-  } else {
-    // TypeScript knows value is a number here
-  }
 }
 ```
 
