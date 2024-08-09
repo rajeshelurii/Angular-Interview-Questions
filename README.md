@@ -895,10 +895,80 @@
 
   
 
-34. ### What are observables?
+34. ### What are observables? How to create custom observables?
     Observables are declarative which provide support for passing messages between publishers and subscribers in the application. They are mainly used for event handling, asynchronous programming, and handling multiple values. In this case, you define a function for publishing values, but it is not executed until a consumer subscribes to it. The subscribed consumer then receives notifications until the function completes, or until they unsubscribe.
 
-  
+Creating a custom observable in Angular is a powerful way to control how data is emitted, handled, and processed. Let's break it down step by step, focusing on the `next`, `error`, and `complete` concepts.
+
+**Step 1: Importing the Required Modules**
+To create a custom observable, you need to import the `Observable` class from `rxjs`:
+
+```typescript
+import { Observable } from 'rxjs';
+```
+
+**Step 2: Creating the Observable**
+You can create a custom observable by using the `Observable` constructor. This constructor takes a function that defines how the observable behaves.
+
+```typescript
+const myObservable = new Observable(observer => {
+  // Emit values using observer.next()
+  observer.next('First Value');
+  observer.next('Second Value');
+
+  // Handle errors with observer.error()
+  if (Math.random() > 0.5) {
+    observer.error('Something went wrong!');
+  }
+
+  // Complete the observable with observer.complete()
+  observer.complete();
+});
+```
+
+**Step 3: Understanding `next`, `error`, and `complete`**
+
+- **`next(value)`**: This method is used to emit a value to the subscribers. Whenever you call `observer.next(value)`, all the subscribers will receive that value.
+
+- **`error(err)`**: If something goes wrong, you can notify the subscribers by calling `observer.error(err)`. This will terminate the observable, and no more values will be emitted.
+
+- **`complete()`**: When the observable is done emitting values, you call `observer.complete()`. This will signal to the subscribers that no more data will be emitted.
+
+**Step 4: Subscribing to the Observable**
+To see the observable in action, you need to subscribe to it. This is where you'll define what to do with the emitted values, how to handle errors, and what to do when the observable completes.
+
+```typescript
+myObservable.subscribe({
+  next: (value) => console.log('Received:', value),
+  error: (err) => console.error('Error:', err),
+  complete: () => console.log('Observable completed!')
+});
+```
+
+**Example in Action**
+Let's look at a full example:
+
+```typescript
+import { Observable } from 'rxjs';
+
+const myObservable = new Observable(observer => {
+  observer.next('First Value');
+  observer.next('Second Value');
+
+  // Random error for demonstration
+  if (Math.random() > 0.5) {
+    observer.error('Something went wrong!');
+  }
+
+  observer.complete();
+});
+
+myObservable.subscribe({
+  next: (value) => console.log('Received:', value),
+  error: (err) => console.error('Error:', err),
+  complete: () => console.log('Observable completed!')
+});
+```  
 
 35. ### What is HttpClient and its benefits?
     Most of the Front-end applications communicate with backend services over `HTTP` protocol using either `XMLHttpRequest` interface or the `fetch()` API. Angular provides a simplified client HTTP API known as `HttpClient` which is based on top of `XMLHttpRequest` interface. This client is available from `@angular/common/http` package.
@@ -982,7 +1052,7 @@
     If the request fails on the server or fails to reach the server due to network issues, then `HttpClient` will return an error object instead of a successful reponse. In this case, you need to handle in the component by passing `error` object as a second callback to `subscribe()` method.
 
     Let's see how it can be handled in the component with an example,
-    ```javascript
+    ```typescript
     fetchUser() {
       this.userService.getProfile()
         .subscribe(
@@ -1003,8 +1073,159 @@
     import { Observable, throwError } from 'rxjs';
     import { catchError, retry } from 'rxjs/operators';
     ```
+40. ### What are operators in RXJS and how to use them?
+Operators in RxJS are functions that allow you to manipulate and transform the data emitted by observables. They are the core of reactive programming, enabling you to compose complex asynchronous code in a declarative and readable way.
 
-  
+### Types of RxJS Operators
+
+1. **Creation Operators**: Used to create new observables from various sources.
+   - Examples: `of`, `from`, `interval`, `timer`.
+
+2. **Transformation Operators**: Modify the data emitted by an observable.
+   - Examples: `map`, `mergeMap`, `switchMap`, `scan`.
+
+3. **Filtering Operators**: Filter out unwanted data emitted by an observable.
+   - Examples: `filter`, `take`, `takeUntil`, `first`.
+
+4. **Combination Operators**: Combine multiple observables into one.
+   - Examples: `merge`, `concat`, `combineLatest`, `forkJoin`.
+
+5. **Error Handling Operators**: Handle errors that occur during observable execution.
+   - Examples: `catchError`, `retry`, `retryWhen`.
+
+6. **Utility Operators**: Perform actions related to the observable, like debugging or finalizing.
+   - Examples: `tap`, `finalize`, `delay`.
+
+### How to Use RxJS Operators
+
+Operators are usually used with the `pipe` method, which allows you to chain multiple operators together. Here's a breakdown of how to use them.
+
+#### 1. **Using the `pipe` Method**
+
+The `pipe` method is used to compose operators and apply them to an observable.
+
+```typescript
+import { of } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+
+const numbers$ = of(1, 2, 3, 4, 5);
+
+numbers$.pipe(
+  filter(n => n % 2 === 0),  // Only even numbers
+  map(n => n * 10)           // Multiply each by 10
+).subscribe(result => console.log(result));
+```
+
+In this example:
+- `of(1, 2, 3, 4, 5)` creates an observable emitting numbers from 1 to 5.
+- `filter(n => n % 2 === 0)` filters out the odd numbers.
+- `map(n => n * 10)` multiplies each remaining number by 10.
+- The final result is `20` and `40`, which are logged to the console.
+
+#### 2. **Commonly Used Operators**
+
+Let's look at a few key operators and how to use them.
+
+- **`map`**: Transforms each emitted value by applying a function to it.
+
+  ```typescript
+  import { of } from 'rxjs';
+  import { map } from 'rxjs/operators';
+
+  const numbers$ = of(1, 2, 3);
+
+  numbers$.pipe(
+    map(n => n * 2)
+  ).subscribe(result => console.log(result));  // Outputs: 2, 4, 6
+  ```
+
+- **`filter`**: Filters out values based on a predicate function.
+
+  ```typescript
+  import { of } from 'rxjs';
+  import { filter } from 'rxjs/operators';
+
+  const numbers$ = of(1, 2, 3, 4, 5);
+
+  numbers$.pipe(
+    filter(n => n > 3)
+  ).subscribe(result => console.log(result));  // Outputs: 4, 5
+  ```
+
+- **`mergeMap`**: Flattens and merges the inner observables into a single observable.
+
+  ```typescript
+  import { of } from 'rxjs';
+  import { mergeMap } from 'rxjs/operators';
+
+  const letters$ = of('a', 'b', 'c');
+  const numbers$ = of(1, 2, 3);
+
+  letters$.pipe(
+    mergeMap(letter => numbers$.pipe(
+      map(number => `${letter}${number}`)
+    ))
+  ).subscribe(result => console.log(result));
+  ```
+
+  This will output:
+  ```
+  a1
+  a2
+  a3
+  b1
+  b2
+  b3
+  c1
+  c2
+  c3
+  ```
+
+- **`catchError`**: Handles errors and allows you to return a fallback observable or value.
+
+  ```typescript
+  import { of, throwError } from 'rxjs';
+  import { catchError } from 'rxjs/operators';
+
+  const faulty$ = throwError('Something went wrong!');
+
+  faulty$.pipe(
+    catchError(error => of('Error handled, returning fallback value'))
+  ).subscribe(result => console.log(result));
+  ```
+
+  This will output:
+  ```
+  Error handled, returning fallback value
+  ```
+
+- **`tap`**: Allows you to perform side effects without altering the stream.
+
+  ```typescript
+  import { of } from 'rxjs';
+  import { tap, map } from 'rxjs/operators';
+
+  const numbers$ = of(1, 2, 3);
+
+  numbers$.pipe(
+    tap(n => console.log('Before:', n)),
+    map(n => n * 2),
+    tap(n => console.log('After:', n))
+  ).subscribe(result => console.log('Final Result:', result));
+  ```
+
+  This logs each step of the transformation:
+  ```
+  Before: 1
+  After: 2
+  Final Result: 2
+  Before: 2
+  After: 4
+  Final Result: 4
+  Before: 3
+  After: 6
+  Final Result: 6
+  ```  
 
 40. ### What is subscribing?
     An Observable instance begins publishing values only when someone subscribes to it. So you need to subscribe by calling the `subscribe()` method of the instance, passing an observer object to receive the notifications.
@@ -1089,7 +1310,7 @@
 	subscription.unsubscribe();
 	```
 
-42. ### What is Unsubscribing and how to do?
+42. ### How to Unsubscribe an observable and why?
     
 In Angular and other frameworks using RxJS, when you subscribe to an observable, a subscription is created. This subscription represents the ongoing execution of the observable until it completes or errors out. If not properly managed, these subscriptions can lead to memory leaks because they keep running even after the component that created them is destroyed.
 
@@ -1466,35 +1687,114 @@ There are several ways to handle unsubscription in Angular:
 		This syntax helps Angular understand how to render and manage dynamic content in your web application.
 
 
-69. ### What is an RxJS Subject in Angular?
+69. ### What is Subject in Rxjs observables?
+In RxJS, a `Subject` is a special type of observable that acts both as an observable and an observer. This means that it can emit values to multiple subscribers and also receive values from external sources. Subjects are particularly useful when you want to multicast (share) values among multiple subscribers or when you need to manually control the emission of values.
 
-	An RxJS Subject is a special type of Observable that can send data to multiple subscribers at once. Unlike regular Observables, which send data to each subscriber independently, a Subject allows multiple subscribers to receive the same data.
-	
-	**Key Points:**
-	
-	- **Multicast:** A Subject can send data to many subscribers simultaneously.
-	- **Like EventEmitters:** Subjects are similar to event emitters because they manage multiple listeners.
-	
-	**Example:**
-	
-	```typescript
-	import { Subject } from 'rxjs';
-	
-	// Create a new Subject
-	const subject = new Subject<number>();
-	
-	// Subscribe to the Subject
-	subject.subscribe(value => console.log(`observerA: ${value}`));
-	subject.subscribe(value => console.log(`observerB: ${value}`));
-	
-	// Send data to all subscribers
-	subject.next(1);
-	subject.next(2);
-	```
-	
-	In this example, both `observerA` and `observerB` will receive the values `1` and `2`.
+**Key Features of `Subject`**
 
-   
+1. **Multicasting**: Unlike a regular observable, which only emits values to a single subscriber, a `Subject` can emit values to multiple subscribers at once.
+
+2. **Acts as an Observer**: A `Subject` can also act as an observer, which means you can use its `next`, `error`, and `complete` methods to emit values, errors, or completion notifications.
+
+3. **Manual Control**: With a `Subject`, you have full control over when and what values are emitted. This makes it useful in situations where you need to manually trigger events or values.
+
+**How to Use `Subject`**
+
+**1. Creating a Subject**
+
+To create a `Subject`, you import it from `rxjs` and instantiate it:
+
+```typescript
+import { Subject } from 'rxjs';
+
+const mySubject = new Subject<number>();
+```
+
+**2. Subscribing to a Subject**
+
+You can subscribe to a `Subject` just like any other observable:
+
+```typescript
+mySubject.subscribe({
+  next: (value) => console.log('Subscriber 1 received:', value)
+});
+
+mySubject.subscribe({
+  next: (value) => console.log('Subscriber 2 received:', value)
+});
+```
+
+**3. Emitting Values**
+
+You can emit values to all subscribers by using the `next` method:
+
+```typescript
+mySubject.next(1);  // Outputs "Subscriber 1 received: 1" and "Subscriber 2 received: 1"
+mySubject.next(2);  // Outputs "Subscriber 1 received: 2" and "Subscriber 2 received: 2"
+```
+
+**4. Completing or Throwing Errors**
+
+You can also use `complete` or `error` to send a completion or error notification to all subscribers:
+
+```typescript
+mySubject.complete();  // Notifies all subscribers that the sequence is complete
+
+// OR
+
+mySubject.error('Something went wrong!');  // Notifies all subscribers of an error
+```
+
+**Types of Subjects**
+
+1. **`Subject`**: The basic form of a subject, as described above.
+
+2. **`BehaviorSubject`**: A `Subject` that requires an initial value and emits its current value (or the initial value) to new subscribers.
+
+    ```typescript
+    const behaviorSubject = new BehaviorSubject<number>(0); // Initial value
+
+    behaviorSubject.subscribe(value => console.log('Subscriber 1:', value));
+    
+    behaviorSubject.next(1); // Subscriber 1: 1
+    
+    behaviorSubject.subscribe(value => console.log('Subscriber 2:', value)); 
+    // Subscriber 2 will immediately receive the latest value: 1
+    ```
+
+3. **`ReplaySubject`**: A `Subject` that can buffer a specified number of values and replay them to new subscribers.
+
+    ```typescript
+    const replaySubject = new ReplaySubject<number>(2); // Buffer size 2
+    
+    replaySubject.next(1);
+    replaySubject.next(2);
+    replaySubject.next(3);
+
+    replaySubject.subscribe(value => console.log('Subscriber:', value)); 
+    // Subscriber will receive: 2, 3 (the last 2 values)
+    ```
+
+4. **`AsyncSubject`**: A `Subject` that emits its last value to subscribers only when the sequence completes.
+
+    ```typescript
+    const asyncSubject = new AsyncSubject<number>();
+
+    asyncSubject.subscribe(value => console.log('Subscriber 1:', value));
+
+    asyncSubject.next(1);
+    asyncSubject.next(2);
+
+    asyncSubject.complete(); 
+    // Subscriber 1 will receive the last value before completion: 2
+    ```
+
+**Use Cases for Subjects**
+
+- **Multicasting**: When you want to share a single observable's values with multiple subscribers.
+- **Manual Event Handling**: When you need to manually control the emission of values or events.
+- **Bridging between Callbacks and Observables**: Subjects can act as a bridge, where you receive data from callbacks or event handlers and want to stream that data as an observable.
+- **State Management**: `BehaviorSubject` is commonly used for state management, as it holds and emits the current state value to new subscribers.
 
 70.  ### What is Bazel?
 
@@ -2274,6 +2574,65 @@ export class ParentComponent {
 
   focusInput() {
     this.inputElement.nativeElement.focus();
+  }
+}
+```
+### 133. What is `EventEmitter` in Angular?
+
+`EventEmitter` is a class provided by Angular that facilitates the communication between a child component and its parent component by allowing the child to emit events that the parent can listen to and react to. Essentially, it’s a specialized version of `Subject` from RxJS designed for Angular’s event-binding system.
+
+In Angular, `EventEmitter` is typically used with the `@Output()` decorator to create custom events that can be listened to by the parent component.
+
+**How It Works:**
+
+1. **In the Child Component**: 
+   - You define an `EventEmitter` instance, decorate it with `@Output()`, and use its `emit()` method to send data or notify the parent component about an event (like a button click).
+   
+2. **In the Parent Component**: 
+   - You listen to the custom event emitted by the child component and handle the event accordingly.
+
+**Example:**
+
+Let’s say we have a child component that has a button, and we want to notify the parent component whenever the button is clicked.
+
+**Child Component:**
+
+```typescript
+import { Component, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  template: `<button (click)="notifyParent()">Click Me</button>`
+})
+export class ChildComponent {
+  // Creating an EventEmitter instance and marking it as an output event
+  @Output() buttonClicked = new EventEmitter<string>();
+
+  notifyParent() {
+    // Emitting an event with some data
+    this.buttonClicked.emit('Button was clicked!');
+  }
+}
+```
+
+**Parent Component:**
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <app-child (buttonClicked)="handleButtonClick($event)"></app-child>
+    <p>{{ message }}</p>
+  `
+})
+export class ParentComponent {
+  message: string;
+
+  handleButtonClick(data: string) {
+    // Handling the event from the child component
+    this.message = data;
   }
 }
 ```
