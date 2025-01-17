@@ -1,4 +1,14 @@
 **Angular Interview Quetions**
+
+Imp concepts
+angular language service
+routing
+authguard, auth service
+gitignore
+launch.json
+http interceptors
+
+
 1. ### What is Angular?
 
    **Angular** is a platform and framework for building client-side applications using HTML, CSS, and JavaScript/TypeScript. Angular is developed and maintained by Google and is widely used for building single-page applications 
