@@ -1969,7 +1969,8 @@ These packages allow Angular applications to run in various environments, making
      
 
 81. ### :warning: What is lazy loading?
-     Lazy loading is one of the most useful concepts of Angular Routing. It helps us to download the web pages in chunks instead of downloading everything in a big bundle. It is used for lazy loading by asynchronously loading the feature module for routing whenever required using the property `loadChildren`. Let's load both `Customer` and `Order` feature modules lazily as below,
+     Lazy loading in angular is a technique that loads feature modules on demand rather than during the initial application load. This improves performance, reduces bundle size and speeds up initial rendering.
+	 So inside the feature module we will have default path to customers component making the class file and its dependent services loaded on demand.
      ```javascript
      const routes: Routes = [
        {
