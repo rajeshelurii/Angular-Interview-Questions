@@ -1322,91 +1322,91 @@ Let's look at a few key operators and how to use them.
 
 42. ### How to Unsubscribe an observable and why?
     
-In Angular and other frameworks using RxJS, when you subscribe to an observable, a subscription is created. This subscription represents the ongoing execution of the observable until it completes or errors out. If not properly managed, these subscriptions can lead to memory leaks because they keep running even after the component that created them is destroyed.
-
-Unsubscribing is the process of stopping the execution of an observable and releasing the resources associated with it. This is crucial in Angular applications to prevent memory leaks and ensure the efficient use of resources.
-
-Angular observables used as part of HttpClient are automatically completed and hence don't require manual unsubscription in most cases.
-
-**When Manual Unsubscription is Necessary**
-
-**Non-HTTP Observables**: If you have other types of observables, such as those created with interval, fromEvent, or custom observables that do not complete automatically, you should unsubscribe to avoid memory leaks.
-
-**Long-Running Observables**: If your observable is long-running or could potentially not complete, you should manage the subscription lifecycle.
-
-**Combining Multiple Observables**: When combining multiple observables using operators like combineLatest, forkJoin, merge, etc., you may need to manage unsubscription.
-
-There are several ways to handle unsubscription in Angular:
-
-1. **Manual Unsubscription**:
-    - Store the subscription in a variable.
-    - Unsubscribe in the `ngOnDestroy` lifecycle hook.
-
-      ```typescript
-	import { Component, OnDestroy } from '@angular/core';
-	import { HttpClient } from '@angular/common/http';
-	import { Subscription } from 'rxjs';
+	In Angular and other frameworks using RxJS, when you subscribe to an observable, a subscription is created. This subscription represents the ongoing execution of the observable until it completes or errors out. If not properly managed, these subscriptions can lead to memory leaks because they keep running even after the component that created them is destroyed.
 	
-	@Component({
-	  selector: 'app-example',
-	  template: `...`
-	})
-	export class ExampleComponent implements OnDestroy {
-	  private subscription: Subscription;
+	Unsubscribing is the process of stopping the execution of an observable and releasing the resources associated with it. This is crucial in Angular applications to prevent memory leaks and ensure the efficient use of resources.
 	
-	  constructor(private http: HttpClient) { }
+	Angular observables used as part of HttpClient are automatically completed and hence don't require manual unsubscription in most cases.
 	
-	  getData() {
-	    this.subscription = this.http.get('https://api.example.com/data').subscribe(res => {
-	      // Handle the response
-	    });
-	  }
+	**When Manual Unsubscription is Necessary**
 	
-	  ngOnDestroy() {
-	    if (this.subscription) {
-	      this.subscription.unsubscribe();
-	    }
-	  }
-	}
-	```
+	**Non-HTTP Observables**: If you have other types of observables, such as those created with interval, fromEvent, or custom observables that do not complete automatically, you should unsubscribe to avoid memory leaks.
+	
+	**Long-Running Observables**: If your observable is long-running or could potentially not complete, you should manage the subscription lifecycle.
+	
+	**Combining Multiple Observables**: When combining multiple observables using operators like combineLatest, forkJoin, merge, etc., you may need to manage unsubscription.
+	
+	There are several ways to handle unsubscription in Angular:
+	
+	1. **Manual Unsubscription**:
+	    - Store the subscription in a variable.
+	    - Unsubscribe in the `ngOnDestroy` lifecycle hook.
+	
+	      ```typescript
+		import { Component, OnDestroy } from '@angular/core';
+		import { HttpClient } from '@angular/common/http';
+		import { Subscription } from 'rxjs';
+		
+		@Component({
+		  selector: 'app-example',
+		  template: `...`
+		})
+		export class ExampleComponent implements OnDestroy {
+		  private subscription: Subscription;
+		
+		  constructor(private http: HttpClient) { }
+		
+		  getData() {
+		    this.subscription = this.http.get('https://api.example.com/data').subscribe(res => {
+		      // Handle the response
+		    });
+		  }
+		
+		  ngOnDestroy() {
+		    if (this.subscription) {
+		      this.subscription.unsubscribe();
+		    }
+		  }
+		}
+		```
+	
+	2. **Using `takeUntil` Operator**:
+	    - Use a `Subject` to emit a value when the component is destroyed.
+	    - Use the `takeUntil` operator to complete the observable when the component is destroyed.
+		```typescript
+		import { Component, OnDestroy } from '@angular/core';
+		import { HttpClient } from '@angular/common/http';
+		import { Subject } from 'rxjs';
+		import { takeUntil } from 'rxjs/operators';
+		
+		@Component({
+		  selector: 'app-example',
+		  template: `...`
+		})
+		export class ExampleComponent implements OnDestroy {
+		  private destroy$ = new Subject<void>();
+		
+		  constructor(private http: HttpClient) { }
+		
+		  getData() {
+		    this.http.get('https://api.example.com/data').pipe(
+		      takeUntil(this.destroy$)
+		    ).subscribe(res => {
+		      // Handle the response
+		    });
+		  }
+		
+		  ngOnDestroy() {
+		    this.destroy$.next();
+		    this.destroy$.complete();
+		  }
+		}
+		```
 
-2. **Using `takeUntil` Operator**:
-    - Use a `Subject` to emit a value when the component is destroyed.
-    - Use the `takeUntil` operator to complete the observable when the component is destroyed.
-	```typescript
-	import { Component, OnDestroy } from '@angular/core';
-	import { HttpClient } from '@angular/common/http';
-	import { Subject } from 'rxjs';
-	import { takeUntil } from 'rxjs/operators';
-	
-	@Component({
-	  selector: 'app-example',
-	  template: `...`
-	})
-	export class ExampleComponent implements OnDestroy {
-	  private destroy$ = new Subject<void>();
-	
-	  constructor(private http: HttpClient) { }
-	
-	  getData() {
-	    this.http.get('https://api.example.com/data').pipe(
-	      takeUntil(this.destroy$)
-	    ).subscribe(res => {
-	      // Handle the response
-	    });
-	  }
-	
-	  ngOnDestroy() {
-	    this.destroy$.next();
-	    this.destroy$.complete();
-	  }
-	}
-	```
-
-3. **Using `async` Pipe**:
-    - Use the `async` pipe in the template to handle subscription and unsubscription automatically.
-  
-43. ### How to handle if you need to do many unsubscribe operations?
+	3. **Using `async` Pipe**:
+	    - Use the `async` pipe in the template to handle subscription and unsubscription automatically.
+    
+  42. ### How to handle if you need to do many unsubscribe operations?
     Using `Subscription` Array
 	```typescript
 	import { Component, OnDestroy } from '@angular/core';
